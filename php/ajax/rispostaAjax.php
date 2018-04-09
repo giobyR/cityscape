@@ -13,8 +13,13 @@
             $this->data=$data;
         }
         function getRisposta($tipoRichiesta){
-            $str="\$_".$tipoRichiesta."['str']";
-            $risposta=json_decode($str,false);
+            if(strpos($tipoRichiesta,'GET')){
+                $str=$_GET['str'];
+                $risposta=json_decode($str,false);
+            }else{
+                $str=$_POST['str'];
+                $risposta=json_decode($str,false);
+            }
             return $risposta;  
         }
     }
@@ -39,7 +44,7 @@
                         $creatore=null){
             $this->idEvento=$idEvento;
             $this->titolo=$titolo;
-            $this->descizione=$descrizione;
+            $this->descrizione=$descrizione;
             $this->data=$data;
             $this->luogo=$luogo;
             $this->prezzo=$prezzo;

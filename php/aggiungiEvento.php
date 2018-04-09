@@ -34,10 +34,11 @@
     function aggiungi_evento(&$evento){
         global $cityscapeDB;
         $timestamp=date('Y-m-d H:i:s');
-        $query="INSERT INTO evento(titolo,dataCreazione,dataEvento,maxPartecipanti,descrizione,luogo,poster,gratis,creatore,categoria) "
+        $query="INSERT INTO evento(titolo,dataCreazione,dataEvento,maxPartecipanti,descrizione,luogo,poster,prezzo,creatore,categoria) "
                 ."VALUES(\"".$evento["titoloEvento"]."\",\""
-                        .$timestamp."\","
-                        ."STR_TO_DATE('".$evento["dataEvento"]."','%d-%m-%Y'),"
+                        .$timestamp."\",\""
+                        //."STR_TO_DATE('".$evento["dataEvento"]."','%d-%m-%Y'),"
+                        .$evento["dataEvento"]."\","
                         .(empty($evento["maxPartecipanti"])?'NULL':("\"".$evento["maxPartecipanti"]."\"")).",\""
                         .$evento["descrizioneEvento"]."\",\""
                         .$evento["luogoEvento"]."\",\""

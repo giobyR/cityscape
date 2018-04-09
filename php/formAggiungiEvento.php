@@ -18,7 +18,7 @@
 
         <form id='caricaEvento' method="POST" action="/php/aggiungiEvento.php" enctype="multipart/form-data">
             Titolo*<input type="text" name="titoloEvento" required><br>
-            Data Evento*<input type="data" name="dataEvento" id="dataEvento" placeholder='gg/mm/aaaa' required>
+            Data Evento*<input type="data" name="dataEvento" id="dataEvento" placeholder='aaaa/mm/dd' required>
             <span id="err_data"></span><br>
             Luogo Evento*<input type="text" name="luogoEvento" required><br>
             Descrizione*<textarea name="descrizioneEvento" 
@@ -63,13 +63,13 @@
     }
     */
     function verificaData(){
-        var re=/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+        var re=/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/;
         var data=document.getElementById('dataEvento');
         var err=document.getElementById('err_data');
         var vm;
         if((data.value !='')&&(val=data.value.match(re))){
                 //giorno fra 1 e 31 
-                if(val[1]<1 || val[1]>31){
+                if(val[3]<1 || val[1]>31){
                     vm="il giorno inserito non e' valido!";
                     data.setCustomValidity(vm);
                     gestisciErroreForm.segnalaErrore(err,data);
@@ -81,7 +81,7 @@
                     gestisciErroreForm.segnalaErrore(err,data);
                 }
                 //anno  inferiore a quello odierno
-                if(val[3]> 1910 || val[3]<(new Date().getFullYear())){
+                if(val[1]> 1910 || val[3]<(new Date().getFullYear())){
                     vm="l'anno inserito non e'valido!";
                     data.setCustomValidity(vm);
                     gestisciErroreForm.segnalaErrore(err,data);

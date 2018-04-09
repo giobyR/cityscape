@@ -74,6 +74,9 @@
       cursor: pointer;
       transition:  0.3s ease-out;
   }
+  .event-content button:click{
+      background: rgb(52, 66, 148);
+  }
   .container{
       display:block;
       overflow: hidden;

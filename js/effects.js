@@ -23,3 +23,9 @@
             }
         //});
     }
+    function hideEventOnBlur(element){
+        var fratello=element.nextElementSibling;
+        if(fratello.style.maxHeight){
+            fratello.style.maxHeight=null;
+        }    
+    }

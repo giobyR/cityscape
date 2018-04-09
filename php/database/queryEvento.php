@@ -1,19 +1,15 @@
 <?php
+    require_once __DIR__."/../configurazione.php";
     require_once DIR_AJAX.'rispostaAjax.php';
-    require_once DIR_DATABASE.'cityscapeDB.php';
+    require_once DIR_DATABASE.'cityscapeDB_manager.php';
 
-    function scegli_richiesta(){
-        if($_SERVER["REQUEST_METHOD"]=="GET"){
-            $tipo_richiesta=$_GET["tipo_richiesta"];
-            switch($tipo_richiesta){
-
-            }
-        }
-    }
-    function recuperaEventiPiuRecenti(&$limite_risultati){
-        $query="SELECT * FROM evento WHERE dataEvento>CURRENT_DATE ORDER BY dataEvento ASC LIMIT '".$limite_risultati."';";
+    function recuperaEventiPiuRecenti($limite_risultati){
         global $cityscapeDB;
+        $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
+        //devo modificare questa query perche sto prendendo eventi passati a oggi e non futuri
+        $query="SELECT * FROM evento WHERE dataEvento>=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
-        
-    }
+        $cityscapeDB->closeConnection();
+        return $result;
+    }   
 ?>

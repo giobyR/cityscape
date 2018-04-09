@@ -20,14 +20,14 @@
     <link rel="stylesheet" href="/css/layout_evento.css">
 
     <script type="text/javascript" src="/js/effects.js"></script>
+    <script type="text/javascript" src="/js/caricaEventi.js"></script>
+    <script type="text/javascript" src="/js/ajaxManager.js"></script>
+    <script type="text/javascript" src="/js/gestione_evento.js"></script>
     <title>Eventi del momento</title>
 </head>
-<body>
-    <?php
-        include DIR_LAYOUT."navbar.php";
-        include DIR_LAYOUT."sidebar.php";  
-        include DIR_LAYOUT."layout_evento.php";
-    ?>
+<body onLoad="CaricaEventi.loadData(0)">
+    <div id="divContenuto">
+    </div>
     
 </body>
 </html>

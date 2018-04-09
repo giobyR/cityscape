@@ -1,9 +1,4 @@
 function gestioneEvento(){}
-gestioneEvento.idEvento=null;
-gestioneEvento.titolo=null;
-gestioneEvento.descrizione=null;
-gestioneEvento.dataEvento=null;
-gestioneEvento.luogoEvento=null;
 
 gestioneEvento.caricaInfoEvento=function(evento){
     //div principale
@@ -13,10 +8,10 @@ gestioneEvento.caricaInfoEvento=function(evento){
     var divInternoImg=document.createElement('div');
     divInternoImg.setAttribute('class','container-img');
     divInternoImg.setAttribute('onClick','displayEventOnClick(this)');
-
+    divInternoImg.setAttribute('onblur','hideEventOnBlur(this)');
     var img=document.createElement('img');
     img.setAttribute('class','img');
-    img.setAttribute('src','/images/eventi/'+evento.poster);
+    img.setAttribute('src',"/images/eventi/" + evento.poster);
 
     var titoloElem=document.createElement('div');
     titoloElem.setAttribute('class','overlay');
@@ -38,15 +33,15 @@ gestioneEvento.caricaInfoEvento=function(evento){
     //label numero partecipanti
     var maxPartecipantiSpan=document.createElement('span');
     maxPartecipantiSpan.setAttribute('class','groupA');
-    if(evento.maxPartecipanti=0){
+    if(evento.maxPartecipanti==null){
         maxPartecipantiSpan.textContent='posti non limitati';
     }else{
         maxPartecipantiSpan.textContent=evento.maxPartecipanti;
     }
     //label prezzo 
-    var prezzoSpan=createElement('span');
+    var prezzoSpan=document.createElement('span');
     prezzoSpan.setAttribute('class','groupB');
-    if(evento.prezzo=0){
+    if(evento.prezzo==0){
         prezzoSpan.textContent='gratis';
     }else{
         prezzoSpan.textContent=evento.prezzo;
@@ -59,6 +54,7 @@ gestioneEvento.caricaInfoEvento=function(evento){
     divContenuto.appendChild(spanLuogo);
     divContenuto.appendChild(maxPartecipantiSpan);
     divContenuto.appendChild(prezzoSpan);
+    divContenuto.appendChild(button);
     //aggiungo i due div al div principale
     divEvent.appendChild(divInternoImg);
     divEvent.appendChild(divContenuto);
@@ -75,10 +71,13 @@ gestioneEvento.creaElementoLista=function(evento){
     return elemLista;
 }
 gestioneEvento.refreshData=function(arrayEventi){
-    var lista=gestioneEvento.creaLista;
-    for(var i=0;i<arrayEventi.length;i++){
-        var elem=gestioneEvento.creaElementoLista(arrayEventi[i]);
-        lista.appendChild(elem);
+    var lista=gestioneEvento.creaLista();
+    for(var i=0;i<arrayEventi.length;++i){
+        if(arrayEventi[i] !=undefined){
+            var elem=gestioneEvento.creaElementoLista(arrayEventi[i]);
+            lista.appendChild(elem);
+        }
     }
     //devo aggiungerlo alla pagina web principale
+    document.getElementById("divContenuto").appendChild(lista);
 }

@@ -22,35 +22,25 @@ AjaxManager.creaConnessione=function(){
 AjaxManager.inviaRichiesta=function(tipoRichiesta,url,isAsync,data,responseFunction){
     var xmlHttp=AjaxManager.creaConnessione();
     var datiRicevuti;
+    var datiDaElaborare=new Array();
     //funzione usata per convertire i dati da inviare in stringa
-    var datiInviati=JSON.stringify(data); 
+    //var datiInviati=JSON.stringify(data); 
     if(xmlHttp===null){
         window.alert("il browser usato non supporta Ajax!");
         return;
     }
-    if(tipoRichiesta=="GET"){   //invio i dati tramite url
-        url=url+"?str="+datiInviati;
-        xmlHttp.open(tipoRichiesta,url,isAsync);
-    }else{
-        alert("sono in post");
-        xmlHttp.open(tipoRichiesta,url,isAsync);
-    }
+    xmlHttp.open(tipoRichiesta,url,isAsync);
     xmlHttp.onreadystatechange=function(){
         if(xmlHttp.readyState==4){
             if(xmlHttp.status==200){
                 console.log(xmlHttp.responseText);
                 datiRicevuti=JSON.parse(xmlHttp.responseText);
+                console.log(datiRicevuti);
+                //datiDaElaborare[0]=JSON.parse(datiRicevuti.data[0]);
+                //console.log(datiDaElaborare);
                 responseFunction(datiRicevuti);
             }
         }
     }
-    if(tipoRichiesta=="POST"){
-        //xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        datiInviati="str="+datiInviati;
-        alert(datiInviati);
-        alert("sto inviando i dati")
-        xmlHttp.send(datiInviati);
-    }else{
-        xmlHttp.send();
-    }
+    xmlHttp.send();
 }
