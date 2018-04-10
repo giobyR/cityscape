@@ -15,12 +15,32 @@
     }
     $tipo_richiesta=$_GET['queryType'];
     $limite_risultati=$_GET['limiteNumeroEventi'];
-    
+    if(isset($_GET['categoria'])){
+        $categoria=$_GET['categoria'];
+    }
     //0=eventi piu' recenti
     switch($tipo_richiesta){
         case 0:
             $result=recuperaEventiPiuRecenti($limite_risultati);
             break;
+        case 1:
+            $result=recuperaEventiPerInteresse($limite_risultati);
+            break;
+        case 2:
+            $result=recuperaEventiInteresseUtente($limite_risultati,$_SESSION['userID']);
+            break;
+        case 3:
+            $result=recuperaEventiPartecipazioneUtente($limite_risultati,$_SESSION['userID']);
+            break;
+        case 4:
+            $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID']);
+            break;
+        case 5:
+            $result=recuperaAccountUtente($_SESSION['userID']);
+            break;
+        case 6:
+            $result=recuperaEventiPerCategoria($categoria,$limite_risultati);
+            break;    
         default:
             $result=null;
             break;    

@@ -1,5 +1,5 @@
 function gestioneEvento(){}
-
+//crea dinamicamente i tag html usati per generare un evento 
 gestioneEvento.caricaInfoEvento=function(evento){
     //div principale
     var divEvent=document.createElement('div');
@@ -60,8 +60,10 @@ gestioneEvento.caricaInfoEvento=function(evento){
     divEvent.appendChild(divContenuto);
     return divEvent;
 }
+//crea lista di eventi 
 gestioneEvento.creaLista=function(){
     var listaEventi=document.createElement('ul');
+    listaEventi.setAttribute('class','lista');
     return listaEventi;
 }
 gestioneEvento.creaElementoLista=function(evento){

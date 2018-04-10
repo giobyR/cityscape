@@ -1,8 +1,15 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
 .navbar {
     background-color: #333;
     overflow: hidden;
+    margin:5px;
 }
-.navbar a {
+.navbar li{
     float: left;
     display: block;
     color: #f2f2f2;
@@ -16,20 +23,19 @@
     background-color: rgb(59, 75, 167);
     color: white;
 }
-.dropdown{
+.dropdown {
     float: left;
     overflow: hidden;
 }
 /* comportamento menu a scomparsa ->eredità proprietà dropdown*/
 .dropdown .dropdown-button{
-    font-size: 17px; 
+    font-size: 18px; 
     border: none;
-    outline: none;
     color: white;
     padding: 18px 16px;
     background-color: inherit;
     font-family: inherit;
-    margin: 0;
+    margin: inherit;
 }
 .dropdown-content{
     display: none;
@@ -49,7 +55,7 @@
 }
 
 /* comportamento durante hover navbar*/
-.navbar a:hover, .dropdown:hover .dropdown-button{
+.navbar li:hover, .dropdown:hover .dropdown-button{
     background-color: rgb(100, 136, 212);
     color: white;
 }
@@ -58,35 +64,6 @@
     background-color: #ddd;
     color: black;
 }
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content{
     display: block;
-}
-.search-field{
-    float:right;
-    font-size: 18px;
-    padding: 18px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(59, 75, 167);
-    opacity: 0;
-}
-.search-field:hover, .search-field:focus,{
-    box-shadow: 0 30px 16px 0 rgba(0,0.50,0,0.50), 0 17px 16px 0 rgba(0,0.19,0,0.19);
-}
-.icon-search{
-    float: right;
-    overflow: hidden;
-    padding: 14px;
-    height: 31px;
-    width: 30px;
-    border:1;
-    background-color:  rgb(161, 159, 159);
-}
-/* per scalare se si modifica la dimensione della finestra*/
-.icon-search img{
-    width: 100%;
-    height: auto;
-}
-.icon-search:hover{
-    box-shadow: 0 30px 16px 0 rgba(0,0.50,0,0.50), 0 17px 16px 0 rgba(0,0.19,0,0.19);
-
 }

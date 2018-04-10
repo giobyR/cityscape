@@ -26,8 +26,12 @@
     <title>Eventi del momento</title>
 </head>
 <body onLoad="CaricaEventi.loadData(0)">
-    <div id="divContenuto">
-    </div>
+    <?php
+        echo "<div id='sidebar'>";
+            include DIR_LAYOUT.'navbar.php';
+        echo "</div>";
+    ?>
+    <div id="divContenuto"></div>
     
 </body>
 </html>
