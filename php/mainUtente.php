@@ -27,7 +27,7 @@
     <script type="text/javascript" src="/js/gestione_evento.js"></script>
     <title>Profilo utente</title>
 </head>
-<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">
+<body>
     <?php
         include DIR_LAYOUT.'sidebar.php';
     ?>

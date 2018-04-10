@@ -55,7 +55,7 @@
     //recupera eventi creati da un certo utente
     function recuperaEventiCreati($limite_risultati,$idUtente){
         global $cityscapeDB;
-        $query="SELECT * FROM evento WHERE creatore=".$idUtente.";";
+        $query="SELECT * FROM evento WHERE creatore=".$idUtente."ORDER DESC LIMIT ".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
