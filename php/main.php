@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <link rel="stylesheet" href="/css/layout_evento.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <script type="text/javascript" src="/js/effects.js"></script>
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
@@ -25,13 +27,26 @@
     <script type="text/javascript" src="/js/gestione_evento.js"></script>
     <title>Eventi del momento</title>
 </head>
-<body onLoad="CaricaEventi.loadData(0)">
-    <?php
-        echo "<div id='sidebar'>";
+<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">
+    <header>
+        <h1>Ultimi eventi aggiunti</h1>
+    </header>
+    <nav>
+        <?php
+            //echo "<div id='sidebar'>";
             include DIR_LAYOUT.'navbar.php';
-        echo "</div>";
-    ?>
+            //echo "</div>";
+        ?>
+    </nav>
     <div id="divContenuto"></div>
+    <footer>
+        <address>
+            Creato da Popitanu Silviu Roberto<br>
+            Contatti: <a href="<mailto:>popitanu_roberto@hotmail.com</mailto:>">Popitanu S. Roberto</a><br>
+            Indirizzo: Sarzana(SP),Italia<br>
+        </address>
+        <p><a href="../html/condizioniUso.html">Termini e condizioni d'uso</a></p>
+    </footer>
     
 </body>
 </html>

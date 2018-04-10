@@ -1,9 +1,11 @@
 
     function openSidebar(){
         document.getElementById("sideBar").setAttribute("style","width:250px");
+        document.getElementById("main").setAttribute('style','margin-left:250px');
     }
     function closeSidebar(){
         document.getElementById("sideBar").setAttribute("style","width:0");
+        document.getElementById("main").setAttribute('style','margin-left:0');
     }
     function searchOnHover(){
         document.getElementById("searchBar").setAttribute("style","opacity:1");
