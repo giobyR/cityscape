@@ -20,25 +20,31 @@
     }
     //0=eventi piu' recenti
     switch($tipo_richiesta){
-        case 0:
+        case EVENTI_PIU_RECENTI:
             $result=recuperaEventiPiuRecenti($limite_risultati);
             break;
-        case 1:
+        case EVENTI_PIU_INTERESSANTI:
             $result=recuperaEventiPerInteresse($limite_risultati);
             break;
-        case 2:
+        case EVENTI_INTERESSE_UTENTE:
             $result=recuperaEventiInteresseUtente($limite_risultati,$_SESSION['userID']);
             break;
-        case 3:
+        case EVENTI_PARTECIPAZIONI_UTENTE:
             $result=recuperaEventiPartecipazioneUtente($limite_risultati,$_SESSION['userID']);
             break;
-        case 4:
+        case EVENTI_CREATI_UTENTE:
             $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID']);
             break;
-        case 5:
+        case ACCOUNT_UTENTE:
             $result=recuperaAccountUtente($_SESSION['userID']);
             break;
-        case 6:
+        case CATEGORIA_BAMBINI:
+        case CATEGORIA_CINEMA:
+        case CATEGORIA_CONCERTI:
+        case CATEGORIA_CULTURA:
+        case CATEGORIA_NIGHTLIFE:
+        case CATEGORIA_SPORT:
+        case CATEGORIA_ALTRO:
             $result=recuperaEventiPerCategoria($categoria,$limite_risultati);
             break;    
         default:

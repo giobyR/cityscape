@@ -1,0 +1,13 @@
+.element-container{
+    width: 500px;
+    height: 30px;
+    display: block;
+    margin: 4px;
+}
+.element-container input{
+    height: 100%;
+    width: auto;
+}
+#formInfoUtente{
+    display: inline-block;
+}

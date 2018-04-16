@@ -17,8 +17,11 @@
     //recupera gli eventi in base alla categoria scelta
     function recuperaEventiPerCategoria($categoria,$limite_risultati){
         global $cityscapeDB;
+        $categoria=($categoria);
+        $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         $query="SELECT * FROM evento WHERE categoria='".$categoria."' "
-                ."AND dataEvento>=CURRENT_DATE ASC LIMIT". $limite_risultati.";";
+                ."AND dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$limite_risultati.";";
+        echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
@@ -55,7 +58,7 @@
     //recupera eventi creati da un certo utente
     function recuperaEventiCreati($limite_risultati,$idUtente){
         global $cityscapeDB;
-        $query="SELECT * FROM evento WHERE creatore=".$idUtente."ORDER DESC LIMIT ".$limite_risultati.";";
+        $query="SELECT * FROM evento WHERE creatore=".$idUtente."ORDER BY dataEvento DESC LIMIT ".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
@@ -66,6 +69,18 @@
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
+    }
+    function aggiornaAccountUtente($infoUtente){
+        global $cityscapeDB;
+        $query="UPDATE utente SELECT nome='".$infoUtente->nome."', "
+                ."cognome='".$infoUtente->cognome."', "
+                ."email='".$infoUtente->email."', "
+                ."password='".$infoUtente->password."', "
+                ."codiceReferral='".$infoUtente->referral."' "
+                ."WHERE idUtente='".$infoUtente->idUtente."' ;";
+        $result=$cityscapeDB->lanciaQuery($query);
+        $cityscapeDB->closeConnection();
+        return $result;         
     }
     function aggiungiInteresseUtente($idEvento,$utente){
         global $cityscapeDB;

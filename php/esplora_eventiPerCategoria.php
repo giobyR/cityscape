@@ -1,14 +1,13 @@
 
 <?php
-    //session_start();
+    session_start();
     require_once __DIR__."/configurazione.php";
-    /*
+    
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
         header("Location: /index.html");
         exit;
     }
-    */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +23,12 @@
     <script type="text/javascript" src="/js/effects.js"></script>
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
     <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestione_evento.js"></script>
+    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
     <title>Eventi del momento</title>
 </head>
-<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">
+<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)">
     <header>
-        <h1>Ultimi eventi aggiunti</h1>
+        <h1>Eventi creati</h1>
     </header>
     <nav>
         <?php
@@ -47,6 +46,13 @@
         </address>
         <p><a href="../html/condizioniUso.html">Termini e condizioni d'uso</a></p>
     </footer>
-    
+    <?php
+        if(isset($_GET['categoria'])){
+            $categoria=strtoupper($_GET['categoria']);
+            echo "<script>";
+            echo "document.body.addEventListener('load',CaricaEventi.loadData(CaricaEventi.CATEGORIA_".$categoria."));";
+            echo "</script>";
+        }
+    ?>    
 </body>
 </html>

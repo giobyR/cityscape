@@ -1,6 +1,6 @@
-function gestioneEvento(){}
+function gestioneDashboard(){}
 //crea dinamicamente i tag html usati per generare un evento 
-gestioneEvento.caricaInfoEvento=function(evento){
+gestioneDashboard.caricaInfoEvento=function(evento){
     //div principale
     var divEvent=document.createElement('div');
     divEvent.setAttribute('class','container');
@@ -8,7 +8,7 @@ gestioneEvento.caricaInfoEvento=function(evento){
     var divInternoImg=document.createElement('div');
     divInternoImg.setAttribute('class','container-img');
     divInternoImg.setAttribute('onClick','displayEventOnClick(this)');
-    divInternoImg.setAttribute('onblur','hideEventOnBlur(this)');
+    divInternoImg.setAttribute('onBlur','hideEventOnBlur(this)');
     var img=document.createElement('img');
     img.setAttribute('class','img');
     img.setAttribute('src',"/images/eventi/" + evento.poster);
@@ -60,23 +60,51 @@ gestioneEvento.caricaInfoEvento=function(evento){
     divEvent.appendChild(divContenuto);
     return divEvent;
 }
+gestioneDashboard.riempiFormProfilo=function(utente){
+    var formInfoUtente=document.getElementById('divContenuto');
+    document.getElementById('idUtente').value=utente.idUtente;
+    document.getElementById('email').value=utente.email;
+    document.getElementById('nome').value=utente.nome;
+    document.getElementById('cognome').value=utente.cognome;
+    document.getElementById('password').value=utente.password;
+    document.getElementById('referral').value=utente.referral;
+}
+
+gestioneDashboard.aggiornaProfiloLatoServer=function(){
+    var formInfoUtente=document.getElementById('divContenuto');
+    var utente=new Array();
+    //prelevo le modifiche fatte al profilo dall'utente
+    utente['idUtente']=document.getElementById('idUtente').value;
+    utente['email']=document.getElementById('email').value;
+    utente['nome']=document.getElementById('nome').value;
+    utente['cognome']=document.getElementById('cognome').value;
+    utente['password']=document.getElementById('password').value;
+    utente['referral']=document.getElementById('referral').value;
+    //carico informazioni nel database tramite richeista Ajax
+    CaricaEventi.loadDataProfilo(CaricaEventi.AGGIORNA_UTENTE,utente);
+}
+//aggiorna la webpage contenente i dati riguardanti il profilo utente
+gestioneDashboard.refreshProfiloUtente=function(datiUtente){
+    var formDatiUtente=gestioneDashboard.creaProfiloUtente(datiUtente);
+    document.getElementById('divContenuto').appendChild(formDatiUtente);
+}
 //crea lista di eventi 
-gestioneEvento.creaLista=function(){
+gestioneDashboard.creaLista=function(){
     var listaEventi=document.createElement('ul');
     listaEventi.setAttribute('class','lista');
     return listaEventi;
 }
-gestioneEvento.creaElementoLista=function(evento){
+gestioneDashboard.creaElementoLista=function(evento){
     var elemLista=document.createElement('li');
-    var div=gestioneEvento.caricaInfoEvento(evento);
+    var div=gestioneDashboard.caricaInfoEvento(evento);
     elemLista.appendChild(div);
     return elemLista;
 }
-gestioneEvento.refreshData=function(arrayEventi){
-    var lista=gestioneEvento.creaLista();
+gestioneDashboard.refreshData=function(arrayEventi){
+    var lista=gestioneDashboard.creaLista();
     for(var i=0;i<arrayEventi.length;++i){
         if(arrayEventi[i] !=undefined){
-            var elem=gestioneEvento.creaElementoLista(arrayEventi[i]);
+            var elem=gestioneDashboard.creaElementoLista(arrayEventi[i]);
             lista.appendChild(elem);
         }
     }

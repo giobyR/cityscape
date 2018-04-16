@@ -1,27 +1,27 @@
 <div>
 <ul class="navbar">
     <li class="active"><a>Home</a></li>
-    <li><a href='#' onclick='CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)'>Ultimi Eventi Inseriti</a></li>
-    <li><a href='#' onclick='CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)'>Eventi del momento</a></li>
+    <li><a href='/php/esplora_eventiRecenti' >Ultimi Eventi Inseriti</a></li>
+    <li><a href='/php/eventiPiuInteressanti' >Eventi del momento</a></li>
     <li class="dropdown">
         <a class="dropdown-button" href='javascript:void(0)'>Categoria Eventi</a>
         <div class="dropdown-content">
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'bambini')">Bambini</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'cinema')">Cinema</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'concerti')">Concerti</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'cultura')">Cultura</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'nightlife')">Nightlife</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'sport')">Sport</a>
-            <a href='#' onclick="CaricaEventi.loadDataCategoria(CaricaEventi.CATEGORIA,'altro')">Altro</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=bambini' >Bambini</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=cinema' >Cinema</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=concerti' >Concerti</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=cultura' >Cultura</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=nightlife' >Nightlife</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=sport' >Sport</a>
+            <a href='/php/esplora_eventiPerCategoria.php?categoria=altro' >Altro</a>
         </div>
     </li>
     <li class="dropdown">
         <a class="dropdown-button" href='javascript:void(0)'>Profilo Personale</a>
         <div class="dropdown-content">
-            <a href="/php/mainUtente.php" onclick='CaricaEventi.loadData(CaricaEventi.ACCOUNT_UTENTE)'>Account</a>
-            <a href='/php/mainUtente.php' onclick='CaricaEventi.loadData(CaricaEventi.EVENTI_INTERESSE_UTENTE)'>Eventi d'interesse</a>
-            <a href='/php/mainUtente.php' onclick='CaricaEventi.loadData(CaricaEventi.EVENTI_PARTECIPAZIONI_UTENTE)'>Partecipazioni</a>
-            <a href='/php/mainUtente.php' onclick='CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE)'>Eventi creati</a>
+            <a href="/php/profilo_infoAAccount.php" >Account</a>
+            <a href='/php/profilo_eventiInteresse.php' >Eventi d'interesse</a>
+            <a href='/php/profilo_partecipazioni.php' >Partecipazioni</a>
+            <a href='/php/profilo_eventiCreati.php' >Eventi creati</a>
             <a href='php/login_reg/logout.php'>Logout</a>
         </div>
     </li>

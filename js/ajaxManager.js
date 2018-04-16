@@ -42,5 +42,11 @@ AjaxManager.inviaRichiesta=function(tipoRichiesta,url,isAsync,data,responseFunct
             }
         }
     }
-    xmlHttp.send();
+    if(tipoRichiesta=="POST"){
+        xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var datiDaInviare=JSON.stringify(data);
+        xmlHttp.send("str="+datiDaInviare);
+    }else{
+        xmlHttp.send();
+    }
 }

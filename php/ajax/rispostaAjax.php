@@ -17,7 +17,8 @@
                 $str=$_GET['str'];
                 $risposta=json_decode($str,false);
             }else{
-                $str=$_POST['str'];
+                //$str=$_POST['str'];
+                $str=stripslashes(htmlspecialchars($_POST['str']));
                 $risposta=json_decode($str,false);
             }
             return $risposta;  
@@ -52,5 +53,26 @@
             $this->poster=$poster;
             $this->creatore=$creatore;
         }         
+    }
+    class Utente{
+        public $idUtente;
+        public $nome;
+        public $cognome;
+        public $email;
+        public $password;
+        public $referral;
+        function Utente($idUtente=null,
+                        $nome=null,
+                        $cognome=null,
+                        $email=null,
+                        $password=null,
+                        $referral=null){
+            $this->idUtente=$idUtente;
+            $this->nome=$nome;
+            $this->cognome=$cognome;
+            $this->email=$email;
+            $this->password=$password;
+            $this->referral=$referral;
+        }
     }
 ?>

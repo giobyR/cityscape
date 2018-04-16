@@ -24,26 +24,29 @@
     <script type="text/javascript" src="/js/effects.js"></script>
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
     <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestione_evento.js"></script>
-    <title>Profilo utente</title>
+    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <title>Eventi del momento</title>
 </head>
-<body>
-    <?php
-        include DIR_LAYOUT.'sidebar.php';
-    ?>
-    <div id='main'>
-        <nav>
-            <?php
-                include DIR_LAYOUT.'navbar.php';
-            ?>
-        </nav>
-        <span style="font-size:30px;cursor:pointer" onclick="openSidebar()">&#9776;Profilo Personale</span>
-        <div id="divContenuto"></div>
-        <footer>
-            <?php
-                include DIR_LAYOUT.'footer.php';
-            ?>
-        </footer>
-    </div>
+<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)">
+    <header>
+        <h1>Ultimi eventi aggiunti</h1>
+    </header>
+    <nav>
+        <?php
+            //echo "<div id='sidebar'>";
+            include DIR_LAYOUT.'navbar.php';
+            //echo "</div>";
+        ?>
+    </nav>
+    <div id="divContenuto"></div>
+    <footer>
+        <address>
+            Creato da Popitanu Silviu Roberto<br>
+            Contatti: <a href="<mailto:>popitanu_roberto@hotmail.com</mailto:>">Popitanu S. Roberto</a><br>
+            Indirizzo: Sarzana(SP),Italia<br>
+        </address>
+        <p><a href="../html/condizioniUso.html">Termini e condizioni d'uso</a></p>
+    </footer>
+    
 </body>
 </html>

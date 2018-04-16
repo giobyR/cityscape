@@ -73,6 +73,7 @@
             }
             upload_file($uploadOK,$err_msg);
             if($uploadOK==1){
+                //devo modificarlo per indirizzarlo alla pagina eventi creati
                 header('Location: ../php/mieiEventi.php');
             }else{
                 header('Location: ../php/formAggiungiEvento.php?err_msg='.$err_msg);
