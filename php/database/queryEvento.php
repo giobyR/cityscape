@@ -105,10 +105,11 @@
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $utente=$cityscapeDB->sqlInjectionFilter($utente);
         //cancello l'evento dal database
-        $query="DELETE * FROM evento WHERE idEvento='".$idEvento."' AND creatore=".$utente.";";
+        $query="DELETE FROM evento WHERE idEvento=".$idEvento." AND creatore=".$utente.";";
+        //echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         //cancello tutte le statistiche collegate a questo evento
-        $query="DELETE * FROM statisticheutenti WHERE evento='".$idEvento."';";
+        $query="DELETE FROM statisticheutenti WHERE evento=".$idEvento.";";
         $result2=$cityscapeDB->lanciaQuery($query);
         $result=$result && $result2;
         $cityscapeDB->closeConnection();

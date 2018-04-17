@@ -21,6 +21,6 @@
     define('CATEGORIA_NIGHTLIFE',11);
     define('CATEGORIA_SPORT',12);
     define('CATEGORIA_ALTRO',13);
-
+    define('CANCELLA_EVENTO',14);
 
 ?>

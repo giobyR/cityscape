@@ -14,9 +14,14 @@
         return;
     }
     $tipo_richiesta=$_GET['queryType'];
-    $limite_risultati=$_GET['limiteNumeroEventi'];
+    if(isset($_GET['limiteNumeroEventi'])){
+        $limite_risultati=$_GET['limiteNumeroEventi'];
+    }
     if(isset($_GET['categoria'])){
         $categoria=$_GET['categoria'];
+    }
+    if(isset($_GET['idEvento'])){
+        $idEvento=$_GET['idEvento'];
     }
     //0=eventi piu' recenti
     switch($tipo_richiesta){
@@ -46,7 +51,10 @@
         case CATEGORIA_SPORT:
         case CATEGORIA_ALTRO:
             $result=recuperaEventiPerCategoria($categoria,$limite_risultati);
-            break;    
+            break;  
+        case CANCELLA_EVENTO:
+            $result=cancellaEvento($idEvento,$_SESSION['userID']);
+            break;      
         default:
             $result=null;
             break;    

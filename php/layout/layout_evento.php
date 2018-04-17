@@ -11,5 +11,6 @@
             <span class='groupB'>Gratis</span>
             <button >Maggiori informazioni</button>
         </div>
+        
     </div>
  

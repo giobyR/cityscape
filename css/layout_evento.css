@@ -93,3 +93,11 @@
   .lista{
       list-style-type: none;
   }
+  .delete-button{
+      display: block;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top:0;
+      right:0;
+  }

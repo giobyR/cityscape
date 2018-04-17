@@ -95,11 +95,41 @@ gestioneDashboard.creaElementoLista=function(evento){
     elemLista.appendChild(div);
     return elemLista;
 }
+gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
+    var elemLista=document.createElement('li');
+    var div=gestioneDashboard.caricaInfoEvento(evento);
+    //aggiungo il delete button alla struttura del mio evento
+    var deleteButton=document.createElement('input');
+    deleteButton.setAttribute('type','image');
+    deleteButton.setAttribute('class','delete-button');
+    deleteButton.setAttribute('src','/images/delete.png');
+    deleteButton.setAttribute('title','cancella');
+    deleteButton.addEventListener('click',function(){
+                                        //CaricaEventi.cancellaEvento(evento.idEvento);
+                                        elemLista.removeChild(div);
+                                        //da attivare quando voglio rimuovere eventi creati
+                                        //CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE);
+                                });
+    div.appendChild(deleteButton);
+    elemLista.appendChild(div);
+    return elemLista;
+}
 gestioneDashboard.refreshData=function(arrayEventi){
     var lista=gestioneDashboard.creaLista();
     for(var i=0;i<arrayEventi.length;++i){
         if(arrayEventi[i] !=undefined){
             var elem=gestioneDashboard.creaElementoLista(arrayEventi[i]);
+            lista.appendChild(elem);
+        }
+    }
+    //devo aggiungerlo alla pagina web principale
+    document.getElementById("divContenuto").appendChild(lista);
+}
+gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
+    var lista=gestioneDashboard.creaLista();
+    for(var i=0;i<arrayEventi.length;++i){
+        if(arrayEventi[i] !=undefined){
+            var elem=gestioneDashboard.creaElementoListaConDeleteButton(arrayEventi[i]);
             lista.appendChild(elem);
         }
     }

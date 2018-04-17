@@ -21,6 +21,7 @@ CaricaEventi.EVENTI_PARTECIPAZIONI_UTENTE=3;
 CaricaEventi.EVENTI_CREATI_UTENTE=4;
 CaricaEventi.ACCOUNT_UTENTE=5;
 CaricaEventi.AGGIORNA_UTENTE=7;
+CaricaEventi.CANCELLA_EVENTO=14;
 //indica se la richiesta ajax e' asincrona oppure no con il server
 CaricaEventi.ASYNC_TYPE='true';
 //costanti usate dalle risposte ajax per indicare lo stato della risposta
@@ -28,6 +29,7 @@ CaricaEventi.SUCCESS_RESPONSE='0';
 CaricaEventi.NO_DATA='-1';
 
 CaricaEventi.loadData=function(queryType){
+    /*
     if(queryType==CaricaEventi.ACCOUNT_UTENTE){
         var url=CaricaEventi.urlModificaProfiloUtente+"?queryType="+queryType;
         var responseFunction=CaricaEventi.rispostaAjaxProfiloUtente;
@@ -35,6 +37,7 @@ CaricaEventi.loadData=function(queryType){
         var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
         var responseFunction=CaricaEventi.rispostaAjax;
     }
+    */
     switch(queryType){
         case CaricaEventi.ACCOUNT_UTENTE:
             var url=CaricaEventi.urlModificaProfiloUtente+"?queryType="+queryType;
@@ -68,12 +71,29 @@ CaricaEventi.loadData=function(queryType){
             var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_ALTRO+"&categoria=altro&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
+        case CaricaEventi.EVENTI_CREATI_UTENTE:
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.EVENTI_CREATI_UTENTE+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var responseFunction=CaricaEventi.rispostaAjaxProfiloEventiCreati;
+            break;
+        default:
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var responseFunction=CaricaEventi.rispostaAjax;
+            break;
     }
     AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
                                 url,
                                 CaricaEventi.ASYNC_TYPE,
                                 null,
                                 responseFunction);    
+}
+CaricaEventi.cancellaEvento=function(idEvento){
+    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CANCELLA_EVENTO+"&idEvento="+idEvento;
+    var responseFunction=CaricaEventi.rispostaAjax;
+    AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                url,
+                                CaricaEventi.ASYNC_TYPE,
+                                null,
+                                responseFunction);
 }
 //invia richiesta ajax per gestire le categorie utenti
 CaricaEventi.insertCategoria=function(categoria){
@@ -125,5 +145,21 @@ CaricaEventi.rispostaAjax=function(risposta){
         }
         console.log(arrayDati);
         gestioneDashboard.refreshData(arrayDati/*JSON.parse(risposta.data)*/);
-    }
+    }    
 }
+CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
+    //console.log(risposta);
+    if(risposta.statoRisposta==CaricaEventi.NO_DATA){
+        //crea lista eventi vuota nella pagina principale
+        return;
+    }
+    if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
+        var arrayDati=new Array();
+        for(var i=0;i<risposta.data.length;i++){
+            if(risposta.data[i]!==false)
+                arrayDati[i]=JSON.parse(risposta.data[i]);
+        }
+        console.log(arrayDati);
+        gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/);
+    }
+}    
