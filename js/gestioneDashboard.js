@@ -83,11 +83,6 @@ gestioneDashboard.aggiornaProfiloLatoServer=function(){
     //carico informazioni nel database tramite richeista Ajax
     CaricaEventi.loadDataProfilo(CaricaEventi.AGGIORNA_UTENTE,utente);
 }
-//aggiorna la webpage contenente i dati riguardanti il profilo utente
-gestioneDashboard.refreshProfiloUtente=function(datiUtente){
-    var formDatiUtente=gestioneDashboard.creaProfiloUtente(datiUtente);
-    document.getElementById('divContenuto').appendChild(formDatiUtente);
-}
 //crea lista di eventi 
 gestioneDashboard.creaLista=function(){
     var listaEventi=document.createElement('ul');

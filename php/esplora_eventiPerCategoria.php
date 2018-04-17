@@ -26,7 +26,7 @@
     <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
     <title>Eventi del momento</title>
 </head>
-<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)">
+<body >
     <header>
         <h1>Eventi creati</h1>
     </header>

@@ -21,7 +21,6 @@
         $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         $query="SELECT * FROM evento WHERE categoria='".$categoria."' "
                 ."AND dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$limite_risultati.";";
-        echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
@@ -41,7 +40,8 @@
     function recuperaEventiInteresseUtente($limite_risultati,$utente){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
-                ." WHERE SU.utente='".$utente."' AND SU.interesse=1;";
+                ." WHERE SU.utente=".$utente." AND SU.interesse=1;";
+        //echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
@@ -50,7 +50,7 @@
     function recuperaEventiPartecipazioneUtente($limite_risultati,$utente){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
-                ." WHERE SU.utente='".$utente."' AND SU.partecipazione=1;";
+                ." WHERE SU.utente=".$utente." AND SU.partecipazione=1;";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
@@ -58,7 +58,7 @@
     //recupera eventi creati da un certo utente
     function recuperaEventiCreati($limite_risultati,$idUtente){
         global $cityscapeDB;
-        $query="SELECT * FROM evento WHERE creatore=".$idUtente."ORDER BY dataEvento DESC LIMIT ".$limite_risultati.";";
+        $query="SELECT * FROM evento WHERE creatore=".$idUtente." ORDER BY dataEvento DESC LIMIT ".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
