@@ -112,8 +112,9 @@
     function getReferral($idUtente){
         global $cityscapeDB;
         $idUtente=$cityscapeDB->sqlInjectionFilter($idUtente);
-        $query="SELECT U.referral FROM utente U WHERE U.idUtente='".$idUtente."';";
+        $query="SELECT U.codiceReferral FROM utente U WHERE U.idUtente=".$idUtente.";";
         $result=$cityscapeDB->lanciaQuery($query);
+        //echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result;
     }

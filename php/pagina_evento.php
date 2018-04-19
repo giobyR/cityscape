@@ -25,6 +25,8 @@
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
     <script type="text/javascript" src="/js/ajaxManager.js"></script>
     <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <script type="text/javascript" src="/js/gestionePaginaEvento.js"></script>
+
     <title>Informazioni Evento</title>
 </head>
 <body>
@@ -57,83 +59,17 @@
     Codice Referral<input type='text' id='referral' name='referral' disabled>
     <button id='buttonPartecipa'>Partecipa</button>
     <p id='errMsg'></p>
-    <script>
-        function abilitaReferral(){
-            if(document.getElementById('sceltaSI').checked !=false){
-                document.getElementById('referral').setAttribute('disabled','false');
-            }else{
-                document.getElementById('referral').setAttribute('disabled','true');
-            }
+    <?php
+        $result= getReferral($_GET['creatore']); 
+        while($row= $result->fetch_assoc()){
+            $referral=$row['codiceReferral'];
         }
-        window.onLoad=function(){
-            document.getElementById("sceltaSI").addEventListener('click',abilitaReferral);
-            document.getElementById('sceltaNO').addEventListener('click',abilitaReferral);
-            //invia la partecipazione 
-            document.getElementById('buttonPartecipa').addEventListener('click',inviaPartecipazione);
-            //controlla validità referral e indica lo sconto corrispondente
-            document.getElementById('referral').addEventListener('blur',function(){
-                <?php 
-                    $result= getReferrral($_GET['creatore']); 
-                    while($row= $result->fetch_assoc()){
-                        $referral=$row['referral'];
-                    }
-                    echo "var referral='".$referral."';";
-                ?>
-                if(document.getElementById('referral').value ==referral){
-                    <?php
-                        $result=getScontoReferral($_GET['referral'],$_GET['idEvento']);
-                        while($row= $result->fetch_assoc()){
-                            $sconto=$row['sconto'];
-                        }
-                        echo "document.getElementById('errMsg').innerHTML='Verrà applicato uno sconto pari a ".$sconto." '";
-                    ?>
-                }
-            });
-        }
-        document.getElementById("sceltaSI").addEventListener('click',abilitaReferral);
-        document.getElementById('sceltaNO').addEventListener('click',abilitaReferral);
-        //invia la partecipazione 
-        document.getElementById('buttonPartecipa').addEventListener('click',inviaPartecipazione);
-        //controlla validità referral e indica lo sconto corrispondente
-        document.getElementById('referral').addEventListener('blur',function(){
-            <?php 
-                $result= getReferrral($_GET['creatore']); 
-                while($row= $result->fetch_assoc()){
-                    $referral=$row['referral'];
-                }
-                echo "var referral='".$referral."';";
-            ?>
-            if(document.getElementById('referral').value ==referral){
-                <?php
-                    $result=getScontoReferral($_GET['referral'],$_GET['idEvento']);
-                    while($row= $result->fetch_assoc()){
-                        $sconto=$row['sconto'];
-                    }
-                    echo "document.getElementById('errMsg').innerHTML='Verrà applicato uno sconto pari a ".$sconto." '";
-                ?>
-            }
-        });
-        function inviaPartecipazione(){
-            var url=CaricaEventi.urlRichiestaPHP
-                    +"?queryType="
-                    +CaricaEventi.AGGIUNGI_PARTECIPAZIONE
-                    +"&idEvento="+<?php echo $_GET['idEvento'];?>
-                    +"&utente="+<?php echo $_SESSION['userID'];?>;
-            var responseFunction=riceviConferma;
-            AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
-                                url,
-                                CaricaEventi.ASYNC_TYPE,
-                                null,
-                                responseFunction);
-        }                        
-        function riceviConferma(risposta){
-            if(risposta.statoRisposta==CaricaEventi.NO_DATA){
-                document.getElementById('errMsg').innerHTML="Impossibile salvare la partecipazione, riprovare!";
-            }
-            if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
-                document.getElementById('errMsg').innerHTML="Evento prenotato!";
-            }
-        }            
-    </script>
+        echo "<script>";
+        echo "document.getElementById('referral').addEventListener('blur',function(){ verificaReferral(".$referral.",".$_SESSION['userID'].")});";
+        echo "document.getElementById('buttonPartecipa').addEventListener('click',inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID']."));";
+        echo "document.getElementById('sceltaSI').addEventListener('click',abilitaReferral);";
+        echo "document.getElementById('sceltaNO').addEventListener('click',abilitaReferral);";
+        echo "</script>";
+    ?>
 </body>
 </html>

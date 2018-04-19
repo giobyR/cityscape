@@ -17,23 +17,31 @@
     switch($tipo_richiesta){
         case CANCELLA_EVENTO:
             $result=cancellaEvento($idEvento,$_SESSION['userID']);
-            $msg="cancellazione evento andata a buon fine"
+            $msg="cancellazione evento andata a buon fine";
             break;
         case AGGIUNGI_PARTECIPAZIONE:
             $result=aggiungiPartecipazioneUtente($idEvento,$_SESSION['userID']);
-            $msg="aggiunta nuova partecipazione"
+            $msg="aggiunta nuova partecipazione";
             break;
         case AGGIUNGI_INTERESSE_UTENTE:
             $result=aggiungiInteresseUtente($idEvento,$_SESSION['userID']);
-            $msg="salvato interesse utente per eento indicato"
-            break;   
+            $msg="salvato interesse utente per evento indicato";
+            break;
+        case RICEVI_SCONTO_REFERRAL:
+            $result=getScontoReferral($_GET['referral'],$idEvento);
+            $msg="trovato sconto referral";
+            break;
     }
     if(verificaResultVuoto($result)){
         $risposta=setResultVuoto();
         echo json_encode($risposta);
         return;
     }
-    $risposta=setRisposta($result,$msg);
+    if(isset($_GET['referral'])){
+        $risposta=setRispostaSconto($result);
+    }else{
+        $risposta=setRisposta($result,$msg);
+    }
     echo json_encode($risposta);
     return;
 
@@ -54,5 +62,12 @@
             $risposta=new RispostaAjax("0",$msg);
         }
 
+    }
+    function setRispostaSconto($result){
+        $risposta=new RispostaAjax('o',$msg);
+        while($row= $result->fetch_assoc()){
+            $risposta->data=$row['sconto'];
+        }
+        return $risposta;
     }
 ?>

@@ -24,5 +24,6 @@
     define('CANCELLA_EVENTO',14);
     define('AGGIUNGI_PARTECIPAZIONE',15);
     define('AGGIUNGI_INTERESSE_UTENTE',16);
+    define('RICEVI_SCONTO_REFERRAL',17);
 
 ?>
