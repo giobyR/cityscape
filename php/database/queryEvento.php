@@ -100,6 +100,23 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    function getScontoReferral($referral,$idEvento){
+        global $cityscapeDB;
+        $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
+        $referral=$cityscapeDB->sqlInjectionFilter($referral);
+        $query="SELECT S.sconto FROM sconto S WHERE S.referral='".$referral."' AND S.evento=".$idEvento.";";
+        $result=$cityscapeDB->lanciaQuery($query);
+        $cityscapeDB->closeConnection();
+        return $result;
+    }
+    function getReferral($idUtente){
+        global $cityscapeDB;
+        $idUtente=$cityscapeDB->sqlInjectionFilter($idUtente);
+        $query="SELECT U.referral FROM utente U WHERE U.idUtente='".$idUtente."';";
+        $result=$cityscapeDB->lanciaQuery($query);
+        $cityscapeDB->closeConnection();
+        return $result;
+    }
     function cancellaEvento($idEvento,$utente){
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);

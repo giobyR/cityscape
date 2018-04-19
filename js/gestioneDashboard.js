@@ -47,8 +47,18 @@ gestioneDashboard.caricaInfoEvento=function(evento){
         prezzoSpan.textContent=evento.prezzo;
     }
     //button per accedere alla pagina con le informazioni su tale evento
-    var button=document.createElement('button');
+    var button=document.createElement('a');
     button.textContent="Maggiori Informazioni";
+    var infoEvento="/php/pagina_evento.php?idEvento="+evento.idEvento
+                    +"&titolo="+evento.titolo
+                    +"&descrizione="+evento.descrizione
+                    +"&data="+evento.data
+                    +"&luogo="+evento.luogo
+                    +"&prezzo="+evento.prezzo
+                    +"&maxPartecipanti="+evento.maxPartecipanti
+                    +"&poster="+evento.poster
+                    +"&creatore="+evento.creatore;
+    button.setAttribute('href',infoEvento);
     //aggiungo i label precedent come figli di divContenuto
     divContenuto.appendChild(spanData);
     divContenuto.appendChild(spanLuogo);
@@ -105,10 +115,16 @@ gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
     deleteButton.setAttribute('src','/images/delete.png');
     deleteButton.setAttribute('title','cancella');
     deleteButton.addEventListener('click',function(){
-                                        //CaricaEventi.cancellaEvento(evento.idEvento);
+                                        var tipo_CANCELLAZIONE_EVENTO=16;
+                                        var url=CaricaEventi.urlOperazioniAggiornamento
+                                                +'?queryType='+tipo_CANCELLAZIONE_EVENTO
+                                                +"&idEvento="+evento.idEvento;
+                                        AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                                                    url,
+                                                                    CaricaEventi.ASYNC_TYPE,
+                                                                    null,null);        
                                         elemLista.removeChild(div);
-                                        //da attivare quando voglio rimuovere eventi creati
-                                        //CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE);
+                                    
                                 });
     div.appendChild(deleteButton);
     elemLista.appendChild(div);

@@ -38,7 +38,9 @@ AjaxManager.inviaRichiesta=function(tipoRichiesta,url,isAsync,data,responseFunct
                 console.log(datiRicevuti);
                 //datiDaElaborare[0]=JSON.parse(datiRicevuti.data[0]);
                 //console.log(datiDaElaborare);
-                responseFunction(datiRicevuti);
+                if(responseFunction !=null){
+                    responseFunction(datiRicevuti);
+                }
             }
         }
     }

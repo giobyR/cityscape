@@ -22,5 +22,7 @@
     define('CATEGORIA_SPORT',12);
     define('CATEGORIA_ALTRO',13);
     define('CANCELLA_EVENTO',14);
+    define('AGGIUNGI_PARTECIPAZIONE',15);
+    define('AGGIUNGI_INTERESSE_UTENTE',16);
 
 ?>

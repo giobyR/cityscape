@@ -25,6 +25,14 @@
             <a href='php/login_reg/logout.php'>Logout</a>
         </div>
     </li>
-    
+    <li class="searchImg">
+        <input type="image" src="/images/search.png">
+    </li>
+    <li class="search-bar">
+        <input type="text" placeholder="parola chiave..." name="cercaTesto">
+        <input type="date" placeholder="yyyy-mm-dd" name="cercaData">
+        <input type="text" placeholder="luogo.." name="luogo">
+        <input type=""
+    </li>
 </ul>
 </div>

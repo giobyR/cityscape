@@ -3,6 +3,7 @@ CaricaEventi.tipoConnessione='GET';
 CaricaEventi.tipoConnessioneProfiloUtente='POST';
 CaricaEventi.urlRichiestaPHP='/php/ajax/caricaEventi.php';
 CaricaEventi.urlModificaProfiloUtente='/php/ajax/modificaProfilo.php';
+CaricaEventi.urlOperazioniAggiornamento='/php/ajax/operazioniAggiornamento.php';
 //parametri da usare per impostare il tipo di interrogazione AJax
 CaricaEventi.tipoRichiesta="GET";
 CaricaEventi.limiteNumeroEventi=20;
@@ -22,6 +23,7 @@ CaricaEventi.EVENTI_CREATI_UTENTE=4;
 CaricaEventi.ACCOUNT_UTENTE=5;
 CaricaEventi.AGGIORNA_UTENTE=7;
 CaricaEventi.CANCELLA_EVENTO=14;
+CaricaEventi.AGGIUNGI_PARTECIPAZIONE=15;
 //indica se la richiesta ajax e' asincrona oppure no con il server
 CaricaEventi.ASYNC_TYPE='true';
 //costanti usate dalle risposte ajax per indicare lo stato della risposta
@@ -85,15 +87,6 @@ CaricaEventi.loadData=function(queryType){
                                 CaricaEventi.ASYNC_TYPE,
                                 null,
                                 responseFunction);    
-}
-CaricaEventi.cancellaEvento=function(idEvento){
-    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CANCELLA_EVENTO+"&idEvento="+idEvento;
-    var responseFunction=CaricaEventi.rispostaAjax;
-    AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
-                                url,
-                                CaricaEventi.ASYNC_TYPE,
-                                null,
-                                responseFunction);
 }
 //invia richiesta ajax per gestire le categorie utenti
 CaricaEventi.insertCategoria=function(categoria){
