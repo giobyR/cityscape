@@ -54,7 +54,16 @@
             break;  
         case CANCELLA_EVENTO:
             $result=cancellaEvento($idEvento,$_SESSION['userID']);
-            break;      
+            break;
+        case CERCA_PAROLA_CHIAVE:
+            $result=cercaParolaChiave($_GET['parolaChiave']);
+            break;
+        case CERCA_LUOGO:
+            $result=cercaLuogo($_GET['luogo']);
+            break;
+        case CERCA_DATA:
+            $result=cercaData($_GET['data']);
+            break;                  
         default:
             $result=null;
             break;    

@@ -25,5 +25,8 @@
     define('AGGIUNGI_PARTECIPAZIONE',15);
     define('AGGIUNGI_INTERESSE_UTENTE',16);
     define('RICEVI_SCONTO_REFERRAL',17);
+    define('CERCA_PAROLA_CHIAVE',18);
+    define('CERCA_LUOGO',19);
+    define('CERCA_DATA',20);
 
 ?>

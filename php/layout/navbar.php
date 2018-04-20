@@ -29,10 +29,20 @@
         <input type="image" src="/images/search.png">
     </li>
     <li class="search-bar">
-        <input type="text" placeholder="parola chiave..." name="cercaTesto">
-        <input type="date" placeholder="yyyy-mm-dd" name="cercaData">
-        <input type="text" placeholder="luogo.." name="luogo">
-        <input type=""
+        <input type="text" placeholder="parola chiave..." id="cercaTesto">
+        <input type="date" placeholder="yyyy-mm-dd" id="cercaData">
+        <input type="text" placeholder="luogo.." id="cercaLuogo">
     </li>
 </ul>
 </div>
+<script>
+    document.getElementById("cercaTesto").addEventListener("change",function(){
+                    var valore=document.getElementById("cercaTesto").value;
+                    CaricaEventi.cercaParola(valore,"parolaChiave")});
+    document.getElementById("cercaData").addEventListener("change",function(){
+                    var valore2=document.getElementById("cercaData").value;
+                    CaricaEventi.cercaParola(valore2,"data")});
+    document.getElementById("cercaLuogo").addEventListener("change",function(){
+                    var valore3=document.getElementById("cercaLuogo").value;
+                    CaricaEventi.cercaParola(valore3,"luogo")});
+</script>

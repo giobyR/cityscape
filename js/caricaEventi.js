@@ -24,6 +24,9 @@ CaricaEventi.ACCOUNT_UTENTE=5;
 CaricaEventi.AGGIORNA_UTENTE=7;
 CaricaEventi.CANCELLA_EVENTO=14;
 CaricaEventi.AGGIUNGI_PARTECIPAZIONE=15;
+CaricaEventi.CERCA_PAROLA_CHIAVE=18;
+CaricaEventi.CERCA_LUOGO=19;
+CaricaEventi.CERCA_DATA=20;
 //indica se la richiesta ajax e' asincrona oppure no con il server
 CaricaEventi.ASYNC_TYPE='true';
 //costanti usate dalle risposte ajax per indicare lo stato della risposta
@@ -76,7 +79,7 @@ CaricaEventi.loadData=function(queryType){
         case CaricaEventi.EVENTI_CREATI_UTENTE:
             var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.EVENTI_CREATI_UTENTE+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjaxProfiloEventiCreati;
-            break;
+            break;    
         default:
             var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
@@ -106,6 +109,27 @@ CaricaEventi.loadDataProfilo=function(infoUtente){
                                 url,
                                 CaricaEventi.ASYNC_TYPE,
                                 infoUtente,
+                                responseFunction);
+}
+CaricaEventi.cercaParola=function(queryType,parolaChiave,tipoRicerca){
+    var tipoQuery;
+    switch(queryType){
+        case CaricaEventi.CERCA_PAROLA_CHIAVE:
+            tipoQuery=CaricaEventi.CERCA_PAROLA_CHIAVE;
+            break;
+        case CaricaEventi.CERCA_LUOGO:
+            tipoQuery=CaricaEventi.CERCA_LUOGO;
+            break;
+        case CaricaEventi.CERCA_DATA:
+            tipoQuery=CaricaEventi.CERCA_DATA;
+            break;        
+    }
+    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+tipoQuery+"&"+tipoRicerca+"="+parolaChiave+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+    var responseFunction=CaricaEventi.rispostaAjax;
+    AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                url,
+                                CaricaEventi.ASYNC_TYPE,
+                                null,
                                 responseFunction);
 }
 //riceve risposta da server con dati utente e aggiorna

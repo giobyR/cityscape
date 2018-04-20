@@ -139,7 +139,11 @@ gestioneDashboard.refreshData=function(arrayEventi){
         }
     }
     //devo aggiungerlo alla pagina web principale
-    document.getElementById("divContenuto").appendChild(lista);
+    var node=document.getElementById("divContenuto");
+    while(node.firstChild){
+        node.removeChild(node.firstChild);
+    }
+    node.appendChild(lista);
 }
 gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
     var lista=gestioneDashboard.creaLista();
@@ -150,5 +154,9 @@ gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
         }
     }
     //devo aggiungerlo alla pagina web principale
-    document.getElementById("divContenuto").appendChild(lista);
+    var node=document.getElementById("divContenuto");
+    while(node.firstChild){
+        node.removeChild(node.firstChild);
+    }
+    node.appendChild(lista);
 }

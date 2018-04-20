@@ -133,4 +133,32 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    function cercaParolaChiave($parola_chiave){
+        global $cityscapeDB;
+        $parola_chiave=$cityscapeDB->sqlInjectionFilter($parola_chiave);
+        $query="SELECT * FROM evento WHERE (descrizione LIKE '%".$parola_chiave."%' ) "
+                ."OR (titolo LIKE '%".$parola_chiave."%' );";
+        $result=$cityscapeDB->lanciaQuery($query);
+        echo "<script>console.log('".$query."')</script>";        
+        $cityscapeDB->closeConnection();
+        return $result; 
+    }
+    function cercaLuogo($luogo){
+        global $cityscapeDB;
+        $luogo=$cityscapeDB->sqlInjectionFilter($luogo);
+        $query="SELECT * FROM evento WHERE luogo LIKE '%".$luogo."%'; ";
+        $result=$cityscapeDB->lanciaQuery($query);
+        echo "<script>console.log('".$query."')</script>";        
+        $cityscapeDB->closeConnection();
+        return $result; 
+    }
+    function cercaData($data){
+        global $cityscapeDB;
+        $data=$cityscapeDB->sqlInjectionFilter($data);
+        $query="SELECT * FROM evento WHERE dataEvento LIKE '%".$data."%'; ";
+        $result=$cityscapeDB->lanciaQuery($query);
+        echo "<script>console.log('".$query."')</script>";        
+        $cityscapeDB->closeConnection();
+        return $result; 
+    }
 ?>
