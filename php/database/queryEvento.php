@@ -5,60 +5,62 @@
 
 
     //recupera gli eventi futuri in ordine ascendente
-    function recuperaEventiPiuRecenti($limite_risultati){
+    function recuperaEventiPiuRecenti($limite_risultati,$offset){
         global $cityscapeDB;
         $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         //devo modificare questa query perche sto prendendo eventi passati a oggi e non futuri
-        $query="SELECT * FROM evento WHERE dataEvento>=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$limite_risultati.";";
+        $query="SELECT * FROM evento WHERE dataEvento>=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;
     }
     //recupera gli eventi in base alla categoria scelta
-    function recuperaEventiPerCategoria($categoria,$limite_risultati){
+    function recuperaEventiPerCategoria($categoria,$limite_risultati,$offset){
         global $cityscapeDB;
         $categoria=($categoria);
         $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         $query="SELECT * FROM evento WHERE categoria='".$categoria."' "
-                ."AND dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$limite_risultati.";";
+                ."AND dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
     }
     //recupera eventi raggruppati per interesse utenti in ordine decrescente 
-    function recuperaEventiPerInteresse($limite_risultati){
+    function recuperaEventiPerInteresse($limite_risultati,$offset){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN "
                 ."(SELECT SU.evento,COUNT(*) AS Interessi FROM statisticheutenti SU "
                 ."GROUP BY SU.evento ) AS D ON E.idEvento=D.evento"
-                ."GROUP BY E.idEvento ORDER BY D.Interessi DESC LIMIT '".$limite_risultati."';";
+                ."GROUP BY E.idEvento ORDER BY D.Interessi DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
     }
     //recupera eventi di interesse a un certo utente
-    function recuperaEventiInteresseUtente($limite_risultati,$utente){
+    function recuperaEventiInteresseUtente($limite_risultati,$utente,$offset){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
-                ." WHERE SU.utente=".$utente." AND SU.interesse=1;";
+                ." WHERE SU.utente=".$utente." AND SU.interesse=1"
+                ."GROUP BY E.idEvento ORDER BY E.dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
         //echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        
     }
     //recupera eventi a cui l'utente partecipa
-    function recuperaEventiPartecipazioneUtente($limite_risultati,$utente){
+    function recuperaEventiPartecipazioneUtente($limite_risultati,$utente,$offset){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
-                ." WHERE SU.utente=".$utente." AND SU.partecipazione=1;";
+                ." WHERE SU.utente=".$utente." AND SU.partecipazione=1 "
+                ."GROUP BY E.idEvento ORDER BY E.dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
     }    
     //recupera eventi creati da un certo utente
-    function recuperaEventiCreati($limite_risultati,$idUtente){
+    function recuperaEventiCreati($limite_risultati,$idUtente,$offset){
         global $cityscapeDB;
-        $query="SELECT * FROM evento WHERE creatore=".$idUtente." ORDER BY dataEvento DESC LIMIT ".$limite_risultati.";";
+        $query="SELECT * FROM evento WHERE creatore=".$idUtente." ORDER BY dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
@@ -133,29 +135,32 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
-    function cercaParolaChiave($parola_chiave){
+    function cercaParolaChiave($parola_chiave,$limite_risultati,$offset){
         global $cityscapeDB;
         $parola_chiave=$cityscapeDB->sqlInjectionFilter($parola_chiave);
         $query="SELECT * FROM evento WHERE (descrizione LIKE '%".$parola_chiave."%' ) "
-                ."OR (titolo LIKE '%".$parola_chiave."%' );";
+                ."OR (titolo LIKE '%".$parola_chiave."%' )"
+                ." GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result; 
     }
-    function cercaLuogo($luogo){
+    function cercaLuogo($luogo,$limite_risultati,$offset){
         global $cityscapeDB;
         $luogo=$cityscapeDB->sqlInjectionFilter($luogo);
-        $query="SELECT * FROM evento WHERE luogo LIKE '%".$luogo."%'; ";
+        $query="SELECT * FROM evento WHERE luogo LIKE '%".$luogo."%' "
+                ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result; 
     }
-    function cercaData($data){
+    function cercaData($data,$limite_risultati,$offset){
         global $cityscapeDB;
         $data=$cityscapeDB->sqlInjectionFilter($data);
-        $query="SELECT * FROM evento WHERE dataEvento LIKE '%".$data."%'; ";
+        $query="SELECT * FROM evento WHERE dataEvento LIKE '%".$data."%' "
+            ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();

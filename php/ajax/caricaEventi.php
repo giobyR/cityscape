@@ -23,22 +23,25 @@
     if(isset($_GET['idEvento'])){
         $idEvento=$_GET['idEvento'];
     }
+    if(isset($_GET['offset'])){
+        $offset=$_GET['offset'];
+    }
     //0=eventi piu' recenti
     switch($tipo_richiesta){
         case EVENTI_PIU_RECENTI:
-            $result=recuperaEventiPiuRecenti($limite_risultati);
+            $result=recuperaEventiPiuRecenti($limite_risultati,$offset);
             break;
         case EVENTI_PIU_INTERESSANTI:
-            $result=recuperaEventiPerInteresse($limite_risultati);
+            $result=recuperaEventiPerInteresse($limite_risultati,$offset);
             break;
         case EVENTI_INTERESSE_UTENTE:
-            $result=recuperaEventiInteresseUtente($limite_risultati,$_SESSION['userID']);
+            $result=recuperaEventiInteresseUtente($limite_risultati,$_SESSION['userID'],$offset);
             break;
         case EVENTI_PARTECIPAZIONI_UTENTE:
-            $result=recuperaEventiPartecipazioneUtente($limite_risultati,$_SESSION['userID']);
+            $result=recuperaEventiPartecipazioneUtente($limite_risultati,$_SESSION['userID'],$offset);
             break;
         case EVENTI_CREATI_UTENTE:
-            $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID']);
+            $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID'],$offset);
             break;
         case ACCOUNT_UTENTE:
             $result=recuperaAccountUtente($_SESSION['userID']);
@@ -50,19 +53,19 @@
         case CATEGORIA_NIGHTLIFE:
         case CATEGORIA_SPORT:
         case CATEGORIA_ALTRO:
-            $result=recuperaEventiPerCategoria($categoria,$limite_risultati);
+            $result=recuperaEventiPerCategoria($categoria,$limite_risultati,$offset);
             break;  
         case CANCELLA_EVENTO:
             $result=cancellaEvento($idEvento,$_SESSION['userID']);
             break;
         case CERCA_PAROLA_CHIAVE:
-            $result=cercaParolaChiave($_GET['parolaChiave']);
+            $result=cercaParolaChiave($_GET['parolaChiave'],$limite_risultati,$offset);
             break;
         case CERCA_LUOGO:
-            $result=cercaLuogo($_GET['luogo']);
+            $result=cercaLuogo($_GET['luogo'],$limite_risultati,$offset);
             break;
         case CERCA_DATA:
-            $result=cercaData($_GET['data']);
+            $result=cercaData($_GET['data'],$limite_risultati,$offset);
             break;                  
         default:
             $result=null;

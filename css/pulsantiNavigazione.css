@@ -1,0 +1,6 @@
+.pulsanti-navigazione{
+    float:left;
+}
+.precedente , .successivo{
+    height: 50px;
+}

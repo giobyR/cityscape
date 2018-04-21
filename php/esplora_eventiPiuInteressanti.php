@@ -38,6 +38,12 @@
             //echo "</div>";
         ?>
     </nav>
+    <section class="pulsanti-navigazione">
+        <?php
+            $searchType=EVENTI_PIU_INTERESSANTI;
+            include DIR_LAYOUT.'pulsanti_navigazione.php';
+        ?>
+    </section>
     <div id="divContenuto"></div>
     <footer>
         <address>

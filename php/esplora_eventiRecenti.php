@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/css/layout_evento.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pulsantiNavigazione.css">
+
 
     <script type="text/javascript" src="/js/effects.js"></script>
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
@@ -38,6 +40,12 @@
             //echo "</div>";
         ?>
     </nav>
+    <section class="pulsanti-navigazione">
+        <?php
+            $searchType=EVENTI_PIU_RECENTI;
+            include DIR_LAYOUT.'pulsanti_navigazione.php';
+        ?>
+    </section>
     <div id="divContenuto"></div>
     <footer>
         <address>

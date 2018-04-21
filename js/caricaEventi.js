@@ -32,7 +32,19 @@ CaricaEventi.ASYNC_TYPE='true';
 //costanti usate dalle risposte ajax per indicare lo stato della risposta
 CaricaEventi.SUCCESS_RESPONSE='0';
 CaricaEventi.NO_DATA='-1';
+CaricaEventi.CURRENT_PAGE_INDEX=1;
 
+CaricaEventi.caricaPrecedente=function(queryType){
+    CaricaEventi.CURRENT_PAGE_INDEX++;
+    CaricaEventi.loadData(queryType);
+}
+CaricaEventi.caricaSuccessivo=function(queryType){
+    CaricaEventi.CURRENT_PAGE_INDEX--;
+    if(CaricaEventi.CURRENT_PAGE_INDEX<=1){
+        CaricaEventi.CURRENT_PAGE_INDEX=1;
+    }
+    CaricaEventi.loadData(queryType);
+}
 CaricaEventi.loadData=function(queryType){
     /*
     if(queryType==CaricaEventi.ACCOUNT_UTENTE){
@@ -49,39 +61,57 @@ CaricaEventi.loadData=function(queryType){
             var responseFunction=CaricaEventi.rispostaAjaxProfiloUtente;
             break;
         case CaricaEventi.CATEGORIA_BAMBINI:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_BAMBINI+"&categoria=bambini&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_BAMBINI
+                    +"&categoria=bambini&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_CINEMA:
-    	    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CINEMA+"&categoria=cinema&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CINEMA
+                    +"&categoria=cinema&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    ++"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_CONCERTI:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CONCERTI+"&categoria=concerti&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CONCERTI
+                    +"&categoria=concerti&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_CULTURA:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CULTURA+"&categoria=cultura&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CULTURA
+                    +"&categoria=cultura&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_NIGHTLIFE:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_NIGHTLIFE+"&categoria=nightlife&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_NIGHTLIFE
+                    +"&categoria=nightlife&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_SPORT:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_SPORT+"&categoria=sport&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_SPORT
+                    +"&categoria=sport&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_ALTRO:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_ALTRO+"&categoria=altro&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_ALTRO
+                    +"&categoria=altro&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.EVENTI_CREATI_UTENTE:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.EVENTI_CREATI_UTENTE+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.EVENTI_CREATI_UTENTE
+                    +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjaxProfiloEventiCreati;
             break;    
         default:
-            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType
+                    +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
     }
@@ -124,7 +154,9 @@ CaricaEventi.cercaParola=function(queryType,parolaChiave,tipoRicerca){
             tipoQuery=CaricaEventi.CERCA_DATA;
             break;        
     }
-    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+tipoQuery+"&"+tipoRicerca+"="+parolaChiave+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
+    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+tipoQuery+"&"+tipoRicerca+"="+parolaChiave
+            +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+            +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
     var responseFunction=CaricaEventi.rispostaAjax;
     AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
                                 url,

@@ -140,7 +140,7 @@ gestioneDashboard.refreshData=function(arrayEventi){
     }
     //devo aggiungerlo alla pagina web principale
     var node=document.getElementById("divContenuto");
-    while(node.firstChild){
+    if(node.firstChild){
         node.removeChild(node.firstChild);
     }
     node.appendChild(lista);
@@ -155,7 +155,7 @@ gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
     }
     //devo aggiungerlo alla pagina web principale
     var node=document.getElementById("divContenuto");
-    while(node.firstChild){
+    if(node.firstChild){
         node.removeChild(node.firstChild);
     }
     node.appendChild(lista);
