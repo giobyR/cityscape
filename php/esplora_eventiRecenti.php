@@ -40,13 +40,13 @@
             //echo "</div>";
         ?>
     </nav>
+    <div id="divContenuto"></div>
     <section class="pulsanti-navigazione">
         <?php
             $searchType=EVENTI_PIU_RECENTI;
             include DIR_LAYOUT.'pulsanti_navigazione.php';
         ?>
     </section>
-    <div id="divContenuto"></div>
     <footer>
         <address>
             Creato da Popitanu Silviu Roberto<br>

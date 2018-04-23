@@ -1,6 +1,14 @@
 .pulsanti-navigazione{
-    float:left;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
 }
 .precedente , .successivo{
     height: 50px;
+    display: block;
+}
+.current-page{
+    margin-top: 15px;
 }

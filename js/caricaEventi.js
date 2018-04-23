@@ -69,7 +69,7 @@ CaricaEventi.loadData=function(queryType){
         case CaricaEventi.CATEGORIA_CINEMA:
             var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.CATEGORIA_CINEMA
                     +"&categoria=cinema&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
-                    ++"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjax;
             break;
         case CaricaEventi.CATEGORIA_CONCERTI:
@@ -194,7 +194,9 @@ CaricaEventi.rispostaAjax=function(risposta){
         }
         console.log(arrayDati);
         gestioneDashboard.refreshData(arrayDati/*JSON.parse(risposta.data)*/);
-    }    
+    }
+    var altriEventiDaCaricare=((risposta.data===null)||(risposta.data.length <CaricaEventi.limiteNumeroEventi));
+    gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare);    
 }
 CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
     //console.log(risposta);
@@ -211,4 +213,6 @@ CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
         console.log(arrayDati);
         gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/);
     }
+    var altriEventiDaCaricare=((risposta.data===null)||(risposta.data.length <CaricaEventi.limiteNumeroEventi));
+    gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare); 
 }    

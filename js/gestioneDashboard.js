@@ -160,3 +160,22 @@ gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
     }
     node.appendChild(lista);
 }
+gestioneDashboard.refreshIndiciPagina=function(currentPage,altriEventidaCaricare){
+    var currPage=document.getElementsByClassName("current-page");
+    currPage.innerHTML="Pagina "+currentPage;
+    
+    var previous=document.getElementsByClassName("precedente");
+    if(currentPage===1){
+        previous.disabled=true;
+    }else{
+        previous.disabled=false;
+    }
+
+    var next=document.getElementsByClassName("successivo");
+    if(altriEventidaCaricare){
+        next.disabled=true;
+    }else{
+        next.disabled=false;
+    }
+
+}

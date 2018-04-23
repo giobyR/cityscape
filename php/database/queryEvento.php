@@ -9,7 +9,7 @@
         global $cityscapeDB;
         $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         //devo modificare questa query perche sto prendendo eventi passati a oggi e non futuri
-        $query="SELECT * FROM evento WHERE dataEvento>=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
+        $query="SELECT * FROM evento WHERE dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;
