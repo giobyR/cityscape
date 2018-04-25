@@ -96,6 +96,14 @@
             //form.elements["checkCondizioniUso"].checked=false;
         }
     }
+    function formEffects(elem){
+        var modal = document.getElementById(elem);
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
     /*
     function ajaxRichiesta(whereToSubmit,data){
         var submit=document.getElementById("submitButton");
