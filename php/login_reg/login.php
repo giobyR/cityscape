@@ -7,7 +7,7 @@
     $password=$_POST['pwd'];
     $err_msg=login($email,$password);
     if($err_msg===null){
-        header("Location: /php/formAggiungiEvento.php");
+        header("Location: /php/esplora_eventiRecenti.php");
     }else{
         header("Location: /php/loginUtente.php?err_msg= ".$err_msg);
     }

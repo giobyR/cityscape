@@ -83,13 +83,9 @@
             Oppure
         </p>
         <div id="pulsanti">
-            <a  onclick="document.getElementById('container-login').style.display='flex'" >Login</a>
-            <a  onclick="document.getElementById('container-reg').style.display='block'" >Registrati</a>
-        </div>
-        <?php
-            include "/php/loginUtente.php";
-            include "/php/registrazione.php";
-        ?>       
+            <a  href="/php/loginUtente.php"  >Login</a>
+            <a  href="/php/registrazione.php" onclick="document.getElementById('container-reg').style.display='flex'" >Registrati</a>
+        </div>       
     </div>
 </body>
 </html>
