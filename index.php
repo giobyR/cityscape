@@ -84,8 +84,15 @@
         </p>
         <div id="pulsanti">
             <a  href="/php/loginUtente.php"  >Login</a>
-            <a  href="/php/registrazione.php" onclick="document.getElementById('container-reg').style.display='flex'" >Registrati</a>
+            <a  href="/php/registrazione.php" >Registrati</a>
         </div>       
     </div>
+    <?php
+            if(isset($_GET['err_msg'])){
+                echo "<script>";
+                echo "window.alert('".$_GET['err_msg']."');";
+                echo "</script>";
+            }    
+        ?>  
 </body>
 </html>

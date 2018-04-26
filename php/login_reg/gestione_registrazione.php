@@ -89,7 +89,7 @@ function registra(&$data){
         if(strpos($err_msg,"Impossibile registrarsi,riprovare!")){
             header("Location: ../php/registrazione.php?err_msg=".$err_msg);
         }else{
-            header("Location: /html/main.html");
+            header("Location: /html/esplora_eventiRecenti.php");
         }
     }
 ?>

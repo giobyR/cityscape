@@ -28,19 +28,19 @@
         <div class="form">
             <label for="nome"><b>Nome*</b></label> 
                 <input type="text" name="nome" id="nome" required >   
-            <span id="errNome" class="errore"></span>  
+            <span id="errNome" class="errore"></span><br>  
             <label for="cognome"><b>Cognome*</b></label>
             <input type="text" name="cognome" id="cognome" required >
-            <span id="errCognome" class="errore"></span>
+            <span id="errCognome" class="errore"></span><br>
             <label><b>Email*</b></label> 
             <input type="email" required name="email" id="email" >   
-            <span id="errEmail" class="errore"></span>
+            <span id="errEmail" class="errore"></span><br>
             <label for="pwd"><b>Password*</b></label>
             <input type="password" name="pwd" required id="pwd" >   
-            <span id="errPwd" class="errore"></span>
+            <span id="errPwd" class="errore"></span><br>
             <label for="Rpwd"><b>Conferma Password*</b></label>
             <input type="password" name="Rpwd" required id="Rpwd" >   
-            <span id="errRpwd" class="errore"></span>
+            <span id="errRpwd" class="errore"></span><br>
         </div>
             <div id="condizioniUso">
                 <label>Accetti i <a href="html/condizioniUso.html">termini e condizioni d'uso*</a></label>
