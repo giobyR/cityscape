@@ -2,13 +2,17 @@
     overflow: hidden;
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-content: flex-end;
+    align-content: center;
+    align-items: baseline;
 }
 .precedente , .successivo{
     height: 50px;
-    display: block;
+    display: flex;
+    flex-direction: row;
 }
 .current-page{
     margin-top: 15px;
+    text-align: center;
 }

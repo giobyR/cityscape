@@ -6,6 +6,7 @@
     padding-top: 30px;
     width: 250px;
     height: auto;
+    min-width: 250px;
 }
 .sidebar a{
     padding: 8px 8px 8px 32px;

@@ -28,17 +28,21 @@
     <title>Profilo utente</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.ACCOUNT_UTENTE)">
-    <?php
-        include DIR_LAYOUT.'sidebar.php';
-    ?>
+    <nav>
+        <?php
+            include DIR_LAYOUT.'navbar.php';
+        ?>
+    </nav>
     <div id='main'>
-        <nav>
+        <div class="sidebar">
             <?php
-                include DIR_LAYOUT.'navbar.php';
+                include DIR_LAYOUT.'sidebar.php';
             ?>
-        </nav>
-        <span style="font-size:30px;cursor:pointer" onclick="openSidebar()">&#9776;Profilo Personale</span>
+        </div>
         <div id="divContenuto">
+            <div class="form">
+                
+            </div>
             ID Utente<input type="text" contenteditable="false" id="idUtente"></input>
             Email<input type="text" contenteditable="false" id="email"></input>
             <div class='element-container'>

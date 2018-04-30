@@ -98,8 +98,8 @@
   }
   .delete-button{
       display: block;
-      height: 30px;
-      width: 30px;
+      height: 10px;
+      width: auto;
       position: absolute;
       top:0;
       right:0;
