@@ -28,23 +28,29 @@
     <title>Profilo utente</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_INTERESSE_UTENTE)">
-    <?php
-        include DIR_LAYOUT.'sidebar.php';
-    ?>
+    <nav>
+        <?php
+            include DIR_LAYOUT.'navbar.php';
+        ?>
+    </nav>
     <div id='main'>
-        <nav>
+        <div class="sidebar">
             <?php
-                include DIR_LAYOUT.'navbar.php';
+                include DIR_LAYOUT.'sidebar.php';
             ?>
-        </nav>
-        <span style="font-size:30px;cursor:pointer" onclick="openSidebar()">&#9776;Profilo Personale</span>
-        <div id="divContenuto">
         </div>
-        <footer>
+        <div id="divContenuto"></div>
+        <section class="pulsanti-navigazione">
             <?php
-                include DIR_LAYOUT.'footer.php';
+                $searchType=EVENTI_PIU_INTERESSANTI;
+                include DIR_LAYOUT.'pulsanti_navigazione.php';
             ?>
-        </footer>
+        </section>
     </div>
+    <footer>
+        <?php
+            include DIR_LAYOUT.'footer.php';
+        ?>
+    </footer>
 </body>
 </html>
