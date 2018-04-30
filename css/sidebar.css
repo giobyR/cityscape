@@ -1,30 +1,29 @@
 .sidebar {
     height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
     left: 0;
-    background-color: #111;
-    overflow-x: hidden;
+    background-color: #ccc;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 30px;
+    width: 250px;
+    height: auto;
 }
 .sidebar a{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: rgb(59, 75, 167);
-    display: block;
+    display: flex;
+    flex-direction: column;
     transition: 0.3s;
 }
 .sidebar a:hover{
     color: rgb(100, 136, 212);
 }
-.sidebar .closebtn{
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+@media screen and (max-width: 700px) {
+    .sidebar,.sidebar a {
+        width: 100%;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
 }

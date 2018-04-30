@@ -3,7 +3,7 @@
 }
 .container-img{
     position: relative;
-    max-width: 400px;
+    max-width: 300px;
     width:100%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -47,7 +47,7 @@
   
   .event-content{
       background: white;
-      max-width: 400px;
+      max-width: 300px;
       display: block;
       position: relative;
       max-height: 0;
@@ -59,12 +59,13 @@
   }
   .event-content button{
       width:100%;
+      max-width: 300px;
       background:white;
       color:rgb(59, 75, 167);
       font-size: 18px;
-      position: relative;
+      position: absolute;
       padding: 10px;
-      border: 3px solid black;
+      border: 3px solid;
       border-color: rgb(59, 75, 167);
       border-radius: 10px;
   }
@@ -75,16 +76,18 @@
       transition:  0.3s ease-out;
   }
   .event-content button:click{
-      background: rgb(52, 66, 148);
+      background: rgb(41, 52, 114);
   }
   .container{
-      display:block;
-      overflow: hidden;
-      position: relative;
-      border-radius: 10px;
-      min-width: 200px;
-      width:400px;
+    display:block;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    min-width: 200px;
+    width:300px;
     transition: 0.3s ease-out;
+    margin: 10px;
+
     }
   .container:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.384);

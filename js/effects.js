@@ -1,4 +1,5 @@
 
+    /*
     function openSidebar(){
         document.getElementById("sideBar").setAttribute("style","width:250px");
         document.getElementById("main").setAttribute('style','margin-left:250px');
@@ -7,6 +8,7 @@
         document.getElementById("sideBar").setAttribute("style","width:0");
         document.getElementById("main").setAttribute('style','margin-left:0');
     }
+    */
     function searchOnHover(){
         document.getElementById("searchBar").setAttribute("style","opacity:1");
         document.getElementById("searchBar").setAttribute("style","transition:opacity 1s linear");

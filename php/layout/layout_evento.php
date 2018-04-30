@@ -9,7 +9,7 @@
             <span class='groupB'>Luogo:</span>
             <span class='groupA'>partecipanti:</span>
             <span class='groupB'>Gratis</span>
-            <button >Maggiori informazioni</button>
+            <button>Maggiori informazioni</button>
         </div>
         
     </div>
