@@ -39,33 +39,45 @@
                 include DIR_LAYOUT.'sidebar.php';
             ?>
         </div>
-        <div id="divContenuto">
-            <div class="form">
+        <div id="divContenuto" >
+            <div>
+                <div class="element-container">
+                    <label for="idUtente">ID Utente</label>
+                    <input type="text" contenteditable="false" id="idUtente"></input>
+                </div>
+                <div class='element-container'>
+                    <label for="email">Email</label>
+                    <input type="text" contenteditable="false" id="email"></input>
+                </div>
+                <div class='element-container'>
+                    <label for="referral">Codice Referral</label>
+                    <input type="text" contenteditable="false" id="referral"></input>
+                </div>
+                <div class='element-container'>
+                    <label for="nome">Nome</label>
+                    <input type="text" contenteditable="false" id="nome"></input>
+                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('nome'))">
+                </div>
+                <div class='element-container'>
+                    <label for="cognome">Cognome</label>
+                    <input type="text" contenteditable="false" id="cognome"></input>
+                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('cognome'))">
+                </div>
+                <div class='element-container'>
+                    <label for="password">Password</label>
+                    <input type="text" contenteditable="false" id="password"></input>
+                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('password'))">
+                </div>
                 
+                <input type="submit" id="submit" onSubmit="salvaModifiche()" value="Salva Modifiche"></input>
             </div>
-            ID Utente<input type="text" contenteditable="false" id="idUtente"></input>
-            Email<input type="text" contenteditable="false" id="email"></input>
-            <div class='element-container'>
-                Nome<input type="text" contenteditable="false" id="nome"></input>
-                <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('nome'))">
-            </div>
-            <div class='element-container'>
-                Cognome<input type="text" contenteditable="false" id="cognome"></input>
-                <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('cognome'))">
-            </div>
-            <div class='element-container'>
-                Password<input type="text" contenteditable="false" id="password"></input>
-                <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('password'))">
-            </div>
-            Codice Referral<input type="text" contenteditable="false" id="referral"></input>
-            <input type="submit" id="submit" onSubmit="salvaModifiche()" value="Salva Modifiche"></input>
         </div>
-        <footer>
+    </div>
+    <footer>
             <?php
                 include DIR_LAYOUT.'footer.php';
             ?>
-        </footer>
-    </div>
+    </footer>
     <script>
         //rendo le parti di input del form utente modificabili 
         function rendiModificabileFormElement(dataInput){

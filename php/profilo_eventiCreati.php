@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/css/pulsantiNavigazione.css">
 
 
+
     <script type="text/javascript" src="/js/effects.js"></script>
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
     <script type="text/javascript" src="/js/ajaxManager.js"></script>
@@ -41,6 +42,7 @@
                 ?>
         </div>
         <div id="paginazioneProfilo">
+            <a href="/php/formAggiungiEvento.php" class="button-aggiungi">Aggiungi Nuovo Evento</a>
             <div id="divContenuto"></div>    
             <section class="pulsanti-navigazione">
                     <?php
