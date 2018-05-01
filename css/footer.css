@@ -1,6 +1,6 @@
 footer{
     background-color: #333;
-    font:italic;
+    font-family: "sanfranciscoRegular";
     color: white;
     width: 100%;
     height: 20%;
@@ -8,4 +8,21 @@ footer{
     left:0;
     float: bottom;
     position: relative;
+    
+}
+#titoloFooter{
+    float:left;
+    margin-left: 10px;
+}
+#indirizzoFooter{
+    float: right;
+    margin-right: 30px;
+    margin-top: 30px;
+    font-size: 20px;
+}
+#marchio{
+    font-size: 35px;
+}
+footer a{
+    color:white;
 }

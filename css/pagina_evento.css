@@ -1,0 +1,81 @@
+#poster{
+    width: auto;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+#titolo{
+    font-size: 40px;
+    text-align: center;
+    font-family: "sanFranciscoRegular";
+    color: rgb(67, 107, 218);
+}
+#descrizione{
+    font-size: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 60px;
+}
+#luogo-data,#costo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 40px;
+    font-family: "sanFranciscoRegular";
+}
+
+#luogo-data p,#costo p{
+    margin: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(67, 107, 218);
+}
+#selezione-referral{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+}
+#selezione-referral label{
+    margin-right: 20px;
+}
+#buttonPartecipa{
+    margin-top: 20px;
+    background-color: white;
+    color: green;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-color: green; 
+    border:3px solid;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 200px;
+
+}
+#buttonPartecipa:hover{
+    background-color: green;
+    color: white;
+    border-color: green;
+    border: 3px solid green;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+
+
+}
+#buttonPartecipa:active{
+    background-color: rgb(11, 197, 67);
+    border-color: rgb(11, 197, 67);
+}
+
+#referral-contenitore{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 10px;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
