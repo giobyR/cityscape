@@ -61,10 +61,10 @@
                     <div class="selezionePrezzo">
                         <label for="selezioneGratis">SI</label>
                         <input type='radio' name='selezioneGratis' id="selezioneSI" value='si' checked required >
-                    </div>
-                    <div class="selezionePrezzo">
                         <label for="selezioneGratis">NO</label>
                         <input type='radio' name='selezioneGratis' id="selezioneNO" value='no'  required>
+                    </div>
+                    <div class="selezionePrezzo">
                     </div>
                     <label for="prezzoEvento">Prezzo evento(€)</label>
                     <input type='number' name='prezzoEvento' id="prezzoEvento" value='0' title="scrivere 0 se l'evento è gratis" required>

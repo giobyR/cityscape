@@ -6,8 +6,8 @@ footer{
     height: 20%;
     bottom: 0;
     left:0;
-    float: bottom;
     position: relative;
+    display: block;
     
 }
 #titoloFooter{

@@ -4,7 +4,7 @@
     require_once DIR_DATABASE."queryEvento.php";
 
     if($_SERVER["REQUEST_METHOD"]!="GET"){
-        header("/index.php?errore=Devi registrarti per iscriverti all'evento");
+        header("Location: /index.php?err_msg='Devi registrarti per iscriverti all'evento'");
         return;
     }
 ?>
@@ -28,7 +28,7 @@
 
     <title>Informazioni Evento</title>
 </head>
-<body>
+<body >
     <nav>
         <?php
             include DIR_LAYOUT.'navbar.php';
@@ -70,26 +70,29 @@
     <div id="referral-contenitore">
         <div id="selezione-referral">
             <label>Hai un codice referral?</label>
-            <input type='radio' id="sceltaSI" name='selezioneReferral' checked>NO</input>
-            <input type='radio' id="sceltaNO" name='selezioneReferral'>SI</input>
+            <input type='radio' id="sceltaSI" name='selezioneReferral' value="si" onclick="abilitaReferral()">SI</input>
+            <input type='radio' id="sceltaNO" name='selezioneReferral' value="no" checked onclick="abilitaReferral()">NO</input>
         </div>
         <span >
             <label for="referral">Codice Referral:</label>
             <input type='text' id='referral' name='referral' disabled>
+            <button id="verificaReferral">VERIFICA</button>
         </span>
-        <button id='buttonPartecipa'>Partecipa</button>
+        <p id='errMsg' class="errore"></p>
+        <span class="button-group">
+            <button id='buttonPartecipa'>Partecipa</button>
+            <button id='buttonInteresse'>Sono Interessato</button>
+        </span>
     </div>
-    <p id='errMsg'></p>
     <?php
+    //prelevo il referral della persona che ha organizzato l'evento
         $result= getReferral($_GET['creatore']); 
         while($row= $result->fetch_assoc()){
             $referral=$row['codiceReferral'];
         }
         echo "<script>";
-        echo "document.getElementById('referral').addEventListener('blur',function(){ verificaReferral(".$referral.",".$_SESSION['userID'].")});";
-        echo "document.getElementById('buttonPartecipa').addEventListener('click',inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID']."));";
-        echo "document.getElementById('sceltaSI').addEventListener('click',abilitaReferral);";
-        echo "document.getElementById('sceltaNO').addEventListener('click',abilitaReferral);";
+            echo "document.getElementById('verificaReferral').addEventListener('click',function(){ verificaReferral('".$referral."',".$_GET['idEvento'].")});\n";
+            echo "document.getElementById('buttonPartecipa').addEventListener('click',function(){ inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID'].")});";
         echo "</script>";
     ?>
     <footer>

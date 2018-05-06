@@ -15,25 +15,34 @@
                                             CaricaEventi.ASYNC_TYPE,
                                             null,
                                             responseFunction);
+            }else{
+                document.getElementById('errMsg').innerHTML="codice referral non valido!";
+                return;
             }
         }
         function abilitaReferral(){
-            if(document.getElementById('sceltaSI').checked !=false){
-                document.getElementById('referral').setAttribute('disabled','false');
+            if(document.getElementById('sceltaSI').checked ==true){
+                document.getElementById('referral').disabled=false;
             }else{
-                document.getElementById('referral').setAttribute('disabled','true');
+                document.getElementById('referral').disabled=true;
             }
         }
         function riceviSconto(risposta){
             if(risposta.statoRisposta==CaricaEventi.NO_DATA){
                 document.getElementById('errMsg').innerHTML="nessuno sconto trovato!";
+                console.log(document.getElementById('errMsg').value);
             }
             if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
                 var sconto=JSON.parse(risposta.data);
-                document.getElementById('errMsg').innerHTML="trovato uno sconto sul prezzo di prenotazione pari a"+sconto+"!";
+                document.getElementById('errMsg').innerHTML="trovato uno sconto sul prezzo di prenotazione pari a "+sconto+"!";
+                console.log(document.getElementById('errMsg').value);
             }
         }
         function inviaPartecipazione(idEvento,utente){
+            if(typeof utente =="undefined"){
+                document.getElementById('errMsg').innerHTML="Impossibile inviare la partecipazione perche devi essere registrato!";
+                return;
+            }
             var url=CaricaEventi.urlOperazioniAggiornamento
                     +"?queryType="
                     +CaricaEventi.AGGIUNGI_PARTECIPAZIONE

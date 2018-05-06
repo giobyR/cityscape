@@ -1,13 +1,13 @@
 <?php
-    //session_start();
+    session_start();
     require_once __DIR__."/configurazione.php";
-    /*
+
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
-        header("Location: /index.html");
+        header("Location: /index.html?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
         exit;
     }
-    */
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

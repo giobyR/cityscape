@@ -4,15 +4,14 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    z-index: 1;
     font-size: 20px;
-    position: sticky;
+    position: relative;
 }
 .active{
     background-color: rgb(107, 148, 230);
 }
 li{
-    float:left;
+    float: left;
 }
 li a, .dropdown-button{
     display: inline-block;
@@ -47,17 +46,13 @@ li.dropdown {
 }
 .dropdown:hover .dropdown-content {
     display: block;
-    z-index: 1;
-}
-li .search-bar{
-    float: right;
 }
 input[type="image"]{
     height: 50px;
     float: right;
     align-content: center;
-    justify-content: right;
 }
+
 .search-bar{
     background-color: white;
     width:100%;

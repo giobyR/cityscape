@@ -142,7 +142,7 @@
                 ."OR (titolo LIKE '%".$parola_chiave."%' )"
                 ." GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
-        echo "<script>console.log('".$query."')</script>";        
+        //echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result; 
     }

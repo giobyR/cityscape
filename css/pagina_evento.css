@@ -41,7 +41,26 @@
 #selezione-referral label{
     margin-right: 20px;
 }
-#buttonPartecipa{
+#verificaReferral{
+    background-color: steelblue;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    border-color: steelblue; 
+    border:2px solid;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 150px;
+    margin: 0px;
+}
+#verificaReferral:hover{
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+}
+#verificaReferral:active{
+    background-color: slateblue;
+}
+#buttonPartecipa,#buttonInteresse{
     margin-top: 20px;
     background-color: white;
     color: green;
@@ -52,7 +71,7 @@
     border:3px solid;
     border-radius: 5px;
     font-size: 20px;
-    width: 200px;
+    width: 250px;
 
 }
 #buttonPartecipa:hover{
@@ -61,6 +80,13 @@
     border-color: green;
     border: 3px solid green;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+}
+#buttonInteresse:hover{
+    background-color: yellow;
+    color: white;
+    border-color: yellow;
+    border: 3px solid yellow;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
 
 
 }
@@ -68,7 +94,14 @@
     background-color: rgb(11, 197, 67);
     border-color: rgb(11, 197, 67);
 }
-
+#buttonInteresse:active{
+    background-color: rgb(238, 238, 33);
+    border-color:rgb(238, 238, 33);
+}
+.button-group{
+    display: inline;
+    margin-left: 30px;
+}
 #referral-contenitore{
     display: flex;
     flex-direction: column;

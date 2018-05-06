@@ -33,4 +33,20 @@
             fratello.style.maxHeight=null;
         }    
     }
-    
+    /*
+    function aggiungiListenersPaginaEvento(){
+        var referrralSelector=document.querySelector("[name=selezioneReferral]");
+        //abilito e disabilito il campo referral solo se l'utente ha un referral da inserire
+        referrralSelector.addEventListener("click",function(){
+            if(referrralSelector.value=="si"){
+                document.getElementById("referral").setAttribute("disabled","false");
+            }else{
+                document.getElementById("referral").setAttribute("disabled","false");
+            }
+        })
+        document.getElementById('referral').addEventListener('blur',function(){ verificaReferral(".$referral.",".$_SESSION['userID'].")});
+        document.getElementById('buttonPartecipa').addEventListener('click',inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID']."));
+        document.getElementById('sceltaSI').addEventListener('click',abilitaReferral);
+        document.getElementById('sceltaNO').addEventListener('click',abilitaReferral);
+    }
+    */

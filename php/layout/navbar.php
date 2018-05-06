@@ -1,6 +1,6 @@
 <div>
 <ul class="navbar">
-    <li class="active"><a>Home</a></li>
+    <li><a href="/index.php" class="active">Home</a></li>
     <li><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
     <li><a href='/php/esplora_eventiPiuInteressanti.php' >Eventi del momento</a></li>
     <li class="dropdown">
@@ -26,9 +26,9 @@
         </div>
     </li>
     <li >
-        <input type="image" src="/images/search.png" class="searchImg">
+        <input type="image" src="/images/search.png" id="searchImg"class="searchImg" style="float:right">
     </li>
-    <li class="search-bar">
+    <li class="search-bar" id="search-bar">
         <input type="text" placeholder="parola chiave..." id="cercaTesto">
         <input type="text" placeholder="luogo.." id="cercaLuogo">
         <input type="date" placeholder="yyyy-mm-dd" id="cercaData">
@@ -38,11 +38,19 @@
 <script>
     document.getElementById("cercaTesto").addEventListener("change",function(){
                     var valore=document.getElementById("cercaTesto").value;
-                    CaricaEventi.cercaParola(valore,"parolaChiave")});
+                    CaricaEventi.cercaParola(CaricaEventi.CERCA_PAROLA_CHIAVE,valore,"parolaChiave")});
     document.getElementById("cercaData").addEventListener("change",function(){
                     var valore2=document.getElementById("cercaData").value;
-                    CaricaEventi.cercaParola(valore2,"data")});
+                    CaricaEventi.cercaParola(CaricaEventi.CERCA_DATA,valore2,"data")});
     document.getElementById("cercaLuogo").addEventListener("change",function(){
                     var valore3=document.getElementById("cercaLuogo").value;
-                    CaricaEventi.cercaParola(valore3,"luogo")});
+                    CaricaEventi.cercaParola(CaricaEventi.CERCA_LUOGO,valore3,"luogo")});
+    document.getElementById("searchImg").addEventListener("change",function(){
+                    var gruppoSearch=document.getElementsById('search-bar');
+                    if(gruppoSearch.hidden==true){
+                        gruppoSearch.hidden=false;
+                    }else{
+                        gruppoSearch.hidden=true;
+                    }
+    });
 </script>
