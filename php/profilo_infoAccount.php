@@ -4,7 +4,7 @@
     require_once DIR_SESSION."sessionManager.php";
     
     if(!isLogged()){
-        header("Location: /index.html?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
+        header("Location: /index.php?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
         exit;
     }
 ?>
@@ -43,33 +43,33 @@
             <div>
                 <div class="element-container">
                     <label for="idUtente">ID Utente</label>
-                    <input type="text" contenteditable="false" id="idUtente"></input>
+                    <input type="text" disabled id="idUtente"></input>
                 </div>
                 <div class='element-container'>
                     <label for="email">Email</label>
-                    <input type="text" contenteditable="false" id="email"></input>
+                    <input type="text" disabled id="email"></input>
                 </div>
                 <div class='element-container'>
                     <label for="referral">Codice Referral</label>
-                    <input type="text" contenteditable="false" id="referral"></input>
+                    <input type="text" disabled id="referral"></input>
                 </div>
                 <div class='element-container'>
                     <label for="nome">Nome</label>
-                    <input type="text" contenteditable="false" id="nome"></input>
-                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('nome'))">
+                    <input type="text" disabled id="nome"></input>
+                    <input type='image' class="img-modifica" id="abilitaInputNome" src='/images/edit.png'>
                 </div>
                 <div class='element-container'>
                     <label for="cognome">Cognome</label>
-                    <input type="text" contenteditable="false" id="cognome"></input>
-                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('cognome'))">
+                    <input type="text" disabled id="cognome"></input>
+                    <input type='image' class="img-modifica"  id="abilitaInputCognome" src='/images/edit.png'>
                 </div>
                 <div class='element-container'>
                     <label for="password">Password</label>
-                    <input type="text" contenteditable="false" id="password"></input>
-                    <input type='image' src='/images/edit.png'  onClick="rendiModificabileFormElement(document.getElementById('password'))">
+                    <input type="text" disabled id="password"></input>
+                    <input type='image' class="img-modifica"  id="abilitaInputPassword" src='/images/edit.png'>
                 </div>
-                
-                <input type="submit" id="submit" onSubmit="salvaModifiche()" value="Salva Modifiche"></input>
+                <p id='err_msg' class="errore"></p>
+                <input type="submit" id="submit" value="Salva Modifiche"></input>
             </div>
         </div>
     </div>
@@ -78,17 +78,13 @@
                 include DIR_LAYOUT.'footer.php';
             ?>
     </footer>
-    <script>
-        //rendo le parti di input del form utente modificabili 
-        function rendiModificabileFormElement(dataInput){
-            //var attribute=dataInput.getAttribute('contenteditable');
-            //if(attribute==false){
-                dataInput.setAttribute('contenteditable','true');
-            //}
-        }
-        function salvaModifiche(){
-            gestioneDashboard.aggiornaProfiloLatoServer();
-        }
-    </script>    
+    <?php
+        echo "<script>";
+        echo "document.getElementById('abilitaInputNome').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('nome'))});\n";
+        echo "document.getElementById('abilitaInputCognome').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('cognome'))});\n";
+        echo "document.getElementById('abilitaInputPassword').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('password'))});\n";
+        echo "document.getElementById('submit').addEventListener('click',gestioneDashboard.aggiornaProfiloLatoServer)";
+        echo "</script>";
+    ?>
 </body>
 </html>

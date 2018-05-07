@@ -169,14 +169,17 @@ CaricaEventi.cercaParola=function(queryType,parolaChiave,tipoRicerca){
 CaricaEventi.rispostaAjaxProfiloUtente=function(risposta){
     var datiUtente;
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
+        document.getElementById("err_msg").innerHTML="Impossibile aggiornare il profilo , riprovare!"
         return;
     }
-    if((risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE)||(risposta.data !=null)){
+    if((risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE)&&(risposta.data !=null)){
         datiUtente=JSON.parse(risposta.data);
         //chiamo la funzione che aggiorna la pagina web del profilo utente
         gestioneDashboard.riempiFormProfilo(datiUtente);
+        console.log(datiUtente);
+    }else if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
+        document.getElementById("err_msg").innerHTML="Dati profilo aggiornati!"
     }
-    console.log(datiUtente);
     
 }
 

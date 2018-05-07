@@ -82,7 +82,7 @@ gestioneDashboard.riempiFormProfilo=function(utente){
 
 gestioneDashboard.aggiornaProfiloLatoServer=function(){
     var formInfoUtente=document.getElementById('divContenuto');
-    var utente=new Array();
+    var utente={};
     //prelevo le modifiche fatte al profilo dall'utente
     utente['idUtente']=document.getElementById('idUtente').value;
     utente['email']=document.getElementById('email').value;
@@ -91,7 +91,7 @@ gestioneDashboard.aggiornaProfiloLatoServer=function(){
     utente['password']=document.getElementById('password').value;
     utente['referral']=document.getElementById('referral').value;
     //carico informazioni nel database tramite richeista Ajax
-    CaricaEventi.loadDataProfilo(CaricaEventi.AGGIORNA_UTENTE,utente);
+    CaricaEventi.loadDataProfilo(utente);
 }
 //crea lista di eventi 
 gestioneDashboard.creaLista=function(){
@@ -177,5 +177,10 @@ gestioneDashboard.refreshIndiciPagina=function(currentPage,altriEventidaCaricare
     }else{
         next.disabled=false;
     }
-
+}
+//rendo le parti di input del form utente modificabili    
+gestioneDashboard.rendiModificabileFormElement=function(dataInput){
+    if(dataInput.disabled==true){
+        dataInput.disabled=false;
+    }
 }

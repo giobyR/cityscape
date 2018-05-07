@@ -74,13 +74,14 @@
     }
     function aggiornaAccountUtente($infoUtente){
         global $cityscapeDB;
-        $query="UPDATE utente SELECT nome='".$infoUtente->nome."', "
+        $query="UPDATE utente SET nome='".$infoUtente->nome."', "
                 ."cognome='".$infoUtente->cognome."', "
                 ."email='".$infoUtente->email."', "
                 ."password='".$infoUtente->password."', "
                 ."codiceReferral='".$infoUtente->referral."' "
                 ."WHERE idUtente='".$infoUtente->idUtente."' ;";
         $result=$cityscapeDB->lanciaQuery($query);
+        //echo "<script>console.log('".$query."')</script>";
         $cityscapeDB->closeConnection();
         return $result;         
     }

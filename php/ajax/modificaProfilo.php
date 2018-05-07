@@ -26,14 +26,15 @@
         //prelevo i le informazioni sul profilo utente ricevuti 
         $str=stripslashes(htmlspecialchars($_POST['str']));
         //decodifico i dati inviati tramite JSON
-        $infoUtente=json_decode($str,false);
+        $infoUtente=json_decode($_POST['str'],false);
+        //echo "<script>console.log('".$utente."')</script>";
         //creo oggetto utente da inviare al database tramite query
-        $utente->idUtente=$infoUtente['idUtente'];
-        $utente->nome=$infoUtente['nome'];
-        $utente->cognome=$infoUtente['cognome'];
-        $utente->email=$infoUtente['email'];
-        $utente->password=$infoUtente['password'];
-        $utente->referral=$infoUtente['referral'];
+        $utente->idUtente=$infoUtente->idUtente;
+        $utente->nome=$infoUtente->nome;
+        $utente->cognome=$infoUtente->cognome;
+        $utente->email=$infoUtente->email;
+        $utente->password=$infoUtente->password;
+        $utente->referral=$infoUtente->referral;
         $result=aggiornaAccountUtente($utente);
     }
     if(verificaResultVuoto($result)){
@@ -49,8 +50,7 @@
 
     function verificaResultVuoto($result){
         if(($result===null)||(!$result))
-            return true;
-        return ($result->num_rows <=0);    
+            return true;    
     }
 
     function setResultVuoto(){

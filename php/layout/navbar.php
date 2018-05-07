@@ -45,12 +45,18 @@
     document.getElementById("cercaLuogo").addEventListener("change",function(){
                     var valore3=document.getElementById("cercaLuogo").value;
                     CaricaEventi.cercaParola(CaricaEventi.CERCA_LUOGO,valore3,"luogo")});
-    document.getElementById("searchImg").addEventListener("change",function(){
-                    var gruppoSearch=document.getElementsById('search-bar');
-                    if(gruppoSearch.hidden==true){
-                        gruppoSearch.hidden=false;
+    document.getElementById("searchImg").addEventListener("click",function(){
+                    var gruppoSearch=document.getElementById('search-bar');
+                    var larghezza=gruppoSearch.offsetWidth;
+                    if(gruppoSearch.clientHeight ==0){
+
+                        if(larghezza>700){
+                            gruppoSearch.style.height="40px";
+                        }else{
+                            gruppoSearch.style.height="auto";
+                        }
                     }else{
-                        gruppoSearch.hidden=true;
+                        gruppoSearch.style.height="0";
                     }
     });
 </script>
