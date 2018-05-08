@@ -1,4 +1,4 @@
-<div>
+
 <ul class="navbar">
     <li><a href="/index.php" class="active">Home</a></li>
     <li><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
@@ -34,7 +34,6 @@
         <input type="date" placeholder="yyyy-mm-dd" id="cercaData">
     </li>
 </ul>
-</div>
 <script>
     document.getElementById("cercaTesto").addEventListener("change",function(){
                     var valore=document.getElementById("cercaTesto").value;

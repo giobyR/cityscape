@@ -5,6 +5,7 @@
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    bottom: 0px;
 }
 .precedente , .successivo{
     height: 50px;
