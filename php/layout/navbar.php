@@ -1,7 +1,7 @@
 
 <ul class="navbar">
     <li><a href="/index.php" class="active">Home</a></li>
-    <li><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
+    <li><a href='/php/esplora_eventiRecenti.php' onclick="cambiaActiveNavbarElem(this)">Ultimi Eventi Inseriti</a></li>
     <li><a href='/php/esplora_eventiPiuInteressanti.php' >Eventi del momento</a></li>
     <li class="dropdown">
         <a class="dropdown-button" href='javascript:void(0)'>Categoria Eventi</a>

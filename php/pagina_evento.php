@@ -34,39 +34,63 @@
             include DIR_LAYOUT.'navbar.php';
         ?>
     </nav>
-    <div id="poster">
-        <?php
-        echo "<img alt='immagine copertina evento' src=/images/eventi/".$_GET['poster'].">";
-        ?>
-    </div>
     <header id="titolo">
         <h1>
             <?php echo $_GET['titolo']; ?>   
         </h1>
-    </header>     
+    </header> 
+    <div class="contenitore-posterInfo">
+        <div id="poster">
+            <?php
+            echo "<img alt='immagine copertina evento' src=/images/eventi/".$_GET['poster'].">";
+            ?>
+        </div>
+        <div id="contenitore-infoGenerali">
+            <div id="luogo-data">
+                <span>
+                    <label>Luogo evento: </label>
+                    <p>
+                        <?php echo $_GET['luogo']; ?>
+                    </p>
+                </span>
+                <span>
+                    <label>Data Evento:</label>
+                    <p>
+                        <?php echo $_GET['data']; ?>
+                    </p>
+                </span>
+            </div>
+            <div id="costo">
+                <span>
+                    <label>Costo evento:</label>
+                    <p>
+                                    <?php 
+                                        if($_GET['prezzo']==0){
+                                            echo "gratis";
+                                        }else{
+                                            echo $_GET['prezzo']; 
+                                        }
+                                    ?>
+                    </p>
+                </span>
+                <span>
+                    <label>Numero massimo di partecipanti: </label>
+                    <p>
+                                                        <?php 
+                                                            if($_GET['maxPartecipanti']==0){
+                                                                echo "nessun limite";
+                                                            }else{
+                                                                echo $_GET['maxPartecipanti'];
+                                                            }     
+                                                        ?>
+                    </p>
+                </span>
+            </div>
+        </div>
+    </div>
+        
     <p id="descrizione"><?php echo $_GET['descrizione']; ?></p>
-    <div id="luogo-data">
-        <p>Luogo evento: <?php echo $_GET['luogo']; ?></p>
-        <p>Data Evento: <?php echo $_GET['data']; ?></p>
-    </div>
-    <div id="costo">
-        <p>Costo evento:<?php 
-                            if($_GET['prezzo']==0){
-                                echo "gratis";
-                            }else{
-                                echo $_GET['prezzo']; 
-                            }
-                        ?>
-        </p>
-        <p>Numero massimo di partecipanti: <?php 
-                                                if($_GET['maxPartecipanti']==0){
-                                                    echo "nessun limite";
-                                                }else{
-                                                    echo $_GET['maxPartecipanti'];
-                                                }     
-                                            ?>
-        </p>
-    </div>
+    
     <div id="referral-contenitore">
         <div id="selezione-referral">
             <label>Hai un codice referral?</label>
@@ -90,9 +114,15 @@
         while($row= $result->fetch_assoc()){
             $referral=$row['codiceReferral'];
         }
+        
         echo "<script>";
-            echo "document.getElementById('verificaReferral').addEventListener('click',function(){ verificaReferral('".$referral."',".$_GET['idEvento'].")});\n";
-            echo "document.getElementById('buttonPartecipa').addEventListener('click',function(){ inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID'].")});";
+            echo "document.getElementById('verificaReferral').addEventListener('click',function(){ verificaReferral('".$referral."',".$_GET['idEvento'].")});";
+            if(empty($_SESSION['userID'])){
+                echo "document.getElementById('buttonPartecipa').disabled=true; ";
+                echo "document.getElementById('errMsg').innerHTML='Devi esssere loggato per inviare partecipazione'; ";
+            }else{
+                echo "document.getElementById('buttonPartecipa').addEventListener('click',function(){ inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID'].")});";
+            }
         echo "</script>";
     ?>
     <footer>

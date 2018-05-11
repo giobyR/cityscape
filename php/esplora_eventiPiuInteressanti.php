@@ -31,7 +31,7 @@
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)">
     <header>
-        <h1>Ultimi eventi aggiunti</h1>
+        <h1>Eventi considerati piu interessanti dagli utenti</h1>
     </header>
     <nav>
         <?php

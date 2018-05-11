@@ -33,6 +33,14 @@
             fratello.style.maxHeight=null;
         }    
     }
+    function cambiaActiveNavbarElem(elem){
+        var string=elem.className;
+        if(string.includes('active')){
+            elem.className = element.className.replace(/\bactive\b/g, "");
+        }else{
+            elem.className +=" active";
+        }
+    }
     /*
     function aggiungiListenersPaginaEvento(){
         var referrralSelector=document.querySelector("[name=selezioneReferral]");
