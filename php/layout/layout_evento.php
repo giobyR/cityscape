@@ -1,6 +1,6 @@
 
     <div id='layout_evento' class='container'>
-        <div class='container-img' onclick='displayEventOnClick(this)'>
+        <div class='container-img' onclick='displayEventOnClick(this)' onfocusout='displayEventOnClick(this)'>
             <img src='/images/eventi/easterParty.jpg' class='img'>
             <div class='overlay'>Titolo evento</div>
         </div>

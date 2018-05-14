@@ -57,27 +57,26 @@
   .event-content:disabled{
       max-height:0;
   }
-  .event-content button{
+  .event-content a{
       width:100%;
       max-width: 300px;
       background:white;
       color:rgb(59, 75, 167);
       font-size: 18px;
-      position: absolute;
       padding: 10px;
       border: 3px solid;
       border-color: rgb(59, 75, 167);
       border-radius: 10px;
   }
-  .event-content button:hover{
-      background: rgb(59, 75, 167);
-      color: white;
-      cursor: pointer;
-      transition:  0.3s ease-out;
-  }
-  .event-content button:click{
-      background: rgb(41, 52, 114);
-  }
+  .event-content a:hover{
+    background: rgb(59, 75, 167);
+    color: white;
+    cursor: pointer;
+    transition:  0.3s ease-out;
+}
+  .event-content a:active{
+    background: rgb(3, 20, 117);
+}
   .container{
     display:block;
     overflow: hidden;
