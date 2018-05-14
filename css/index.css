@@ -10,6 +10,7 @@ body{
     font-family: "sanFranciscoThin";
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
 .container-video{
     position: relative;
@@ -39,6 +40,7 @@ video{
     font-size: 40px;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 .div-img{
     display: flex;
@@ -50,10 +52,12 @@ video{
     transition: ease-out 1s;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
     margin: 10px;
+    margin-left: 30px;
 }
 .div-img p{
     font-size: 40px;
     max-width: 700px;
+    padding: 10px;
 }
 .div-img img{
     max-width: 700px;
@@ -69,8 +73,9 @@ video{
     flex-direction: column;
     font-size: 40px;
     align-items: center;
+    margin-bottom: 20px;
 }
-a:link, a:visited {
+#div-scopriEventi a:link,#div-scopriEventi a:visited {
     background-color: white;
     color: black;
     border: 2px solid rgb(67, 107, 218);
@@ -81,7 +86,7 @@ a:link, a:visited {
     max-height: 30px;
 }
 
-a:hover, a:active {
+#div-scopriEventi a:hover,#div-scopriEventi a:active {
     background-color: rgb(67, 107, 218);
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);

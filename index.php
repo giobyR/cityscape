@@ -3,10 +3,11 @@
     require_once __DIR__."/php/configurazione.php";
     require_once DIR_SESSION."sessionManager.php";
     require_once DIR_LOGIN_REG."gestione_registrazione.php";
-
+    /*
     if(isLogged()){
         header("Location: /php/esplora_eventiRecenti.php");
     }
+    */
 ?>  
 <!DOCTYPE html>
 <html lang="it-IT">
@@ -16,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/form_layout.css">
+    <link rel="stylesheet" href="/css/footer.css">
 
 
     <script type="text/javascript" src="/js/login_registrazione.js"></script>
@@ -58,9 +60,7 @@
     </div>
     <div class="div-img">
         <p> 
-            <b class="titolo-maratona">
-                Vuoi organizzare un nuovo evento sportivo?  
-            </b><br>
+            
             Su Cityscape puoi creare il tuo evento inserendo le informazioni utili agli altri per 
             conoscere meglio cosa stai organizzando, come ad esempio luogo,data , numero massimo
             di partecipanti e quota di partecipazione.     
@@ -87,12 +87,17 @@
             <a  href="/php/registrazione.php" >Registrati</a>
         </div>       
     </div>
+    <footer>
+            <?php
+                include DIR_LAYOUT.'footer.php';
+            ?>
+    </footer>
     <?php
             if(isset($_GET['err_msg'])){
                 echo "<script>";
                 echo "window.alert('".$_GET['err_msg']."');";
                 echo "</script>";
             }    
-        ?>  
+    ?>  
 </body>
 </html>
