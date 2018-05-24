@@ -11,7 +11,7 @@
     }else{
         header("Location: /php/loginUtente.php?err_msg= ".$err_msg);
     }
-
+//effettua il login
     function login(&$email,&$password){
         $userID=autentifica($email,$password);
         if($userID <0){
@@ -22,7 +22,7 @@
             return null;
         }
     }
-
+//verifica se è presente qualche utente con questi dati nel database
     function autentifica(&$email,&$password){
         global $cityscapeDB;
         $email=$cityscapeDB->sqlInjectionFilter($email);

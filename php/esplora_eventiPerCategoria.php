@@ -5,7 +5,7 @@
     
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
-        header("Location: /index.html");
+        header("Location: /index.php");
         exit;
     }
 ?>
@@ -35,15 +35,12 @@
     </header>
     <nav>
         <?php
-            //echo "<div id='sidebar'>";
             include DIR_LAYOUT.'navbar.php';
-            //echo "</div>";
         ?>
     </nav>
     <div id="divContenuto"></div>
     <section class="pulsanti-navigazione">
         <?php
-            $searchType=EVENTI_PIU_INTERESSANTI;
             include DIR_LAYOUT.'pulsanti_navigazione.php';
         ?>
     </section>
@@ -52,11 +49,15 @@
                 include DIR_LAYOUT.'footer.php';
             ?>
     </footer>
+    
     <?php
+    //carico gli eventi corrispondenti alla categoria richiesta
+    //tramite richiesta Ajax inviata al server
         if(isset($_GET['categoria'])){
             $categoria=strtoupper($_GET['categoria']);
             echo "<script>";
-            echo "document.body.addEventListener('load',CaricaEventi.loadData(CaricaEventi.CATEGORIA_".$categoria."));";
+            //echo "document.body.addEventListener('load',CaricaEventi.loadData(CaricaEventi.CATEGORIA_".$categoria."));";
+            echo "CaricaEventi.loadData(CaricaEventi.CATEGORIA_".$categoria.")";
             echo "</script>";
         }
     ?>    

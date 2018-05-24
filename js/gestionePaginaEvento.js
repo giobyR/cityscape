@@ -23,8 +23,12 @@
         function abilitaReferral(){
             if(document.getElementById('sceltaSI').checked ==true){
                 document.getElementById('referral').disabled=false;
+                document.getElementById('verificaReferral').disabled=false;
+
             }else{
                 document.getElementById('referral').disabled=true;
+                document.getElementById('verificaReferral').disabled=true;
+
             }
         }
         function riceviSconto(risposta){

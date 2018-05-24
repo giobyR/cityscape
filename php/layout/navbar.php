@@ -29,19 +29,19 @@
         <input type="image" src="/images/search.png" id="searchImg"class="searchImg" style="float:right">
     </li>
     <li class="search-bar" id="search-bar">
-        <input type="text" placeholder="parola chiave..." id="cercaTesto">
+        <input type="text" placeholder="parola chiave..." id="cercaTesto" >
         <input type="text" placeholder="luogo.." id="cercaLuogo">
         <input type="date" placeholder="yyyy-mm-dd" id="cercaData">
     </li>
 </ul>
 <script>
-    document.getElementById("cercaTesto").addEventListener("change",function(){
+    document.getElementById("cercaTesto").addEventListener("input",function(){
                     var valore=document.getElementById("cercaTesto").value;
                     CaricaEventi.cercaParola(CaricaEventi.CERCA_PAROLA_CHIAVE,valore,"parolaChiave")});
-    document.getElementById("cercaData").addEventListener("change",function(){
+    document.getElementById("cercaData").addEventListener("input",function(){
                     var valore2=document.getElementById("cercaData").value;
                     CaricaEventi.cercaParola(CaricaEventi.CERCA_DATA,valore2,"data")});
-    document.getElementById("cercaLuogo").addEventListener("change",function(){
+    document.getElementById("cercaLuogo").addEventListener("input",function(){
                     var valore3=document.getElementById("cercaLuogo").value;
                     CaricaEventi.cercaParola(CaricaEventi.CERCA_LUOGO,valore3,"luogo")});
     document.getElementById("searchImg").addEventListener("click",function(){
@@ -58,4 +58,5 @@
                         gruppoSearch.style.height="0";
                     }
     });
+    
 </script>

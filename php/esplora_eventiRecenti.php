@@ -28,6 +28,7 @@
     <script type="text/javascript" src="/js/caricaEventi.js"></script>
     <script type="text/javascript" src="/js/ajaxManager.js"></script>
     <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    
     <title>Eventi del momento</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">
@@ -36,9 +37,7 @@
     </header>
     <nav>
         <?php
-            //echo "<div id='sidebar'>";
             include DIR_LAYOUT.'navbar.php';
-            //echo "</div>";
         ?>
     </nav>
     <div id="divContenuto"></div>

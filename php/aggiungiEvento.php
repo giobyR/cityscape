@@ -9,6 +9,8 @@
     //variabile usata per segnalare gli errori all'utente
     $err_msg;
 
+    //effettua upload file su server
+    //se non è possibile lancia un messaggio di errore nel campo err_msg
     function upload_file(&$uploadOK,&$err_msg){
         //variabili usate per il caricamento del file su server
         $target_dir="../images/eventi/";
@@ -36,21 +38,22 @@
         $timestamp=date('Y-m-d H:i:s');
         $query="INSERT INTO evento(titolo,dataCreazione,dataEvento,maxPartecipanti,descrizione,luogo,poster,prezzo,creatore,categoria) "
                 ."VALUES(\"".$evento["titoloEvento"]."\",\""
-                        .$timestamp."\",\""
-                        //."STR_TO_DATE('".$evento["dataEvento"]."','%d-%m-%Y'),"
-                        .$evento["dataEvento"]."\","
-                        .(empty($evento["maxPartecipanti"])?'NULL':("\"".$evento["maxPartecipanti"]."\"")).",\""
+                        .$timestamp."\","
+                        ."STR_TO_DATE('".$evento["dataEvento"]."','%Y/%m/%d'),"
+                        //.$evento["dataEvento"]."\","
+                        .(empty($evento["maxPartecipanti"])?'NULL':($evento["maxPartecipanti"])).",\""
                         .$evento["descrizioneEvento"]."\",\""
                         .$evento["luogoEvento"]."\",\""
                         .$evento["posterEvento"]."\",\""
                         .$evento["prezzoEvento"]."\",\""
                         .$_SESSION["userID"]."\",\""
                         .$evento["categoriaEvento"]."\");";
-        echo $query;
+        //echo "<script>console.log('".$query."')</script>";        
         $result=$cityscapeDB->lanciaQuery($query);      
         return $result;          
     }
 
+    //salvo tutti i dati ricevuti via post in un array
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $evento["titoloEvento"]=$cityscapeDB->sqlInjectionFilter($_POST["titoloEvento"]);
         $evento["dataEvento"]=$cityscapeDB->sqlInjectionFilter($_POST["dataEvento"]);
@@ -74,7 +77,7 @@
             upload_file($uploadOK,$err_msg);
             if($uploadOK==1){
                 //devo modificarlo per indirizzarlo alla pagina eventi creati
-                header('Location: ../php/mieiEventi.php');
+                header('Location: ../php/profilo_eventiCreati.php');
             }else{
                 header('Location: ../php/formAggiungiEvento.php?err_msg='.$err_msg);
             }

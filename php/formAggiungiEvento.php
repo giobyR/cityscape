@@ -46,7 +46,7 @@
                         </div>
                         <div class="displayVerticale">
                             <label for="luogoEvento">Luogo Evento*</label>
-                            <input type="text" name="luogoEvento" required>
+                            <input type="text" name="luogoEvento" required id="cercaLuogo">
                         </div>
                     </div>
                     <label for="descrizioneEvento">Descrizione*</label>
@@ -82,7 +82,7 @@
                     </div>    
                     <label for="posterEvento">Carica poster evento*</label>
                     <input type="file" name="posterEvento" required>
-                    <input type="submit" name="submit" value="Aggiungi Evento">
+                    <input type="submit" id="submitEvent" name="submit" value="Aggiungi Evento">
                     <label>I campi contrassegnati con (*) sono obbligatori</label>
                 <?php
                     if(isset($_GET['err_msg'])){
@@ -100,7 +100,10 @@
     <script>
             //document.getElementById("caricaEvento").namedItem("selezioneGratis").onclick=disabilitaPrezzo;
             document.getElementById('dataEvento').onblur=function(){
-                gestisciErrore.verificaData(document.getElementById('err_data'),document.getElementById('dataEvento'))};
+                gestisciErrore.verificaData(document.getElementById('err_data'),document.getElementById('dataEvento'))
+            };
+            
     </script>
+    
 </body>
 </html>

@@ -16,6 +16,8 @@ function crea_referral(){
     }
     return $code;
 }
+//verifica se il referral è presente nel database
+//se non è presente crea un nuovo referral
 function verifica_referral(){
     global $cityscapeDB;
     $ref=crea_referral();
@@ -31,6 +33,7 @@ function verifica_referral(){
     $cityscapeDB->closeConnection();              
     return $ref;            
 }
+//verifico se la mail è presente nel database
 function verifica_email(&$data){
     global $cityscapeDB;
     $stringaQuery;

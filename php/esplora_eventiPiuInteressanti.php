@@ -35,9 +35,7 @@
     </header>
     <nav>
         <?php
-            //echo "<div id='sidebar'>";
             include DIR_LAYOUT.'navbar.php';
-            //echo "</div>";
         ?>
     </nav>
     <div id="divContenuto"></div>

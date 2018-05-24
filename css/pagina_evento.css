@@ -96,6 +96,10 @@
 #verificaReferral:active{
     background-color: slateblue;
 }
+#verificaReferral:disabled{
+    background-color: #333;
+    border-color: #333;
+}
 #buttonPartecipa,#buttonInteresse{
     margin-top: 20px;
     background-color: white;
@@ -129,6 +133,10 @@
 #buttonPartecipa:active{
     background-color: rgb(11, 197, 67);
     border-color: rgb(11, 197, 67);
+}
+#buttonPartecipa:disabled{
+    background-color: #333;
+    border-color: #333;
 }
 #buttonInteresse:active{
     background-color: rgb(238, 238, 33);

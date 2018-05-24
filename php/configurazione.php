@@ -1,4 +1,5 @@
 <?php
+//costanti per i path
     define("DIR_BASE",__DIR__.'/');
     define("DIR_DATABASE",DIR_BASE."database/");
     define("DIR_AJAX",DIR_BASE."ajax/");
@@ -28,5 +29,6 @@
     define('CERCA_PAROLA_CHIAVE',18);
     define('CERCA_LUOGO',19);
     define('CERCA_DATA',20);
+    define('SALVA_LUOGO',21);
 
 ?>

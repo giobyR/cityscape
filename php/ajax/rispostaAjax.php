@@ -1,4 +1,9 @@
 <?php
+//classe usata per gestire le riposte date dal server al client 
+//presenta 3 elementi :
+// STATO RISPOSTA: indica se l'operazione è andata a buon fine oppure no
+// MESSAGGIO: resituisce un determinato messaggio al client
+// DATA: restituisce il dato richiesto dal client
     class RispostaAjax{
         public $statoRisposta;
         // 1 => codice errore

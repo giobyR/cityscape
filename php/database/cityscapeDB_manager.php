@@ -34,12 +34,14 @@
             }
             return $this->conn->query($stringa);
         }
+        //verifica la conformità dei parametri da usare nelle query del database
         function sqlInjectionFilter($parameter){
 			if(!$this->isOpened())
 				$this->openConnection();
 				
 			return $this->conn->real_escape_string($parameter);
         }
+        //chiude connessione con database
         function closeConnection(){
             if($this->conn !==null)
                 $this->conn->close();

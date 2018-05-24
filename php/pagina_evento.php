@@ -100,7 +100,7 @@
         <span >
             <label for="referral">Codice Referral:</label>
             <input type='text' id='referral' name='referral' disabled>
-            <button id="verificaReferral">VERIFICA</button>
+            <button id="verificaReferral" disabled >VERIFICA</button>
         </span>
         <p id='errMsg' class="errore"></p>
         <span class="button-group">

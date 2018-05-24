@@ -28,22 +28,22 @@ gestisciErrore.verificaData=function(campoDoveSegnalare,campoDaVerificare){
     var vm;
     if((data.value !='')&&(val=data.value.match(re))){
             //giorno fra 1 e 31 
-            if(val[3]<1 || val[1]>31){
+            if(val[3]<1 || val[3]>31){
                 vm="il giorno inserito non e' valido!";
                 data.setCustomValidity(vm);
-                gestisciErroreForm.segnalaErrore(err,data);
+                gestisciErrore.segnalaErrore(err,data);
             }
             //mese fra 1 e 12
             if(val[2]<1 || val[2]>12){
                 vm="il mese inserito non e'valido!";
                 data.setCustomValidity(vm);
-                gestisciErroreForm.segnalaErrore(err,data);
+                gestisciErrore.segnalaErrore(err,data);
             }
             //anno  inferiore a quello odierno
-            if(val[1]> 1910 || val[3]<(new Date().getFullYear())){
+            if(val[1]<(new Date().getFullYear())){
                 vm="l'anno inserito non e'valido!";
                 data.setCustomValidity(vm);
-                gestisciErroreForm.segnalaErrore(err,data);
+                gestisciErrore.segnalaErrore(err,data);
             }
     }else{
         vm="inserire la data nel formato aaaa/mm/gg";

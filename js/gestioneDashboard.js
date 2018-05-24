@@ -8,7 +8,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     var divInternoImg=document.createElement('div');
     divInternoImg.setAttribute('class','container-img');
     divInternoImg.setAttribute('onClick','displayEventOnClick(this)');
-    divInternoImg.setAttribute('onblur','hideEventOnBlur(this)');
+    divInternoImg.setAttribute('onfocusout','displayEventOnClick(this)');
     var img=document.createElement('img');
     img.setAttribute('class','img');
     img.setAttribute('src',"/images/eventi/" + evento.poster);
@@ -36,7 +36,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     if(evento.maxPartecipanti==null){
         maxPartecipantiSpan.textContent='posti non limitati';
     }else{
-        maxPartecipantiSpan.textContent=evento.maxPartecipanti;
+        maxPartecipantiSpan.textContent="posti liberi:"+evento.maxPartecipanti;
     }
     //label prezzo 
     var prezzoSpan=document.createElement('span');
@@ -44,7 +44,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     if(evento.prezzo==0){
         prezzoSpan.textContent='gratis';
     }else{
-        prezzoSpan.textContent=evento.prezzo;
+        prezzoSpan.textContent="prezzo:"+evento.prezzo;
     }
     //button per accedere alla pagina con le informazioni su tale evento
     var button=document.createElement('a');

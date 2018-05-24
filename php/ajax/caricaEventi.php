@@ -4,11 +4,14 @@
     require_once DIR_DATABASE."queryEvento.php";
     require_once DIR_AJAX.'rispostaAjax.php';
 
+    //questo file rappresenta la parte PHP della comunicazione Ajax client-server
+    //per restituire determinati eventi richiesti
     $tipo_richiesta;
     $limite_risultati;
     $result;
     $risposta=new RispostaAjax();
-
+    
+    //serve per verificare che vengano inviate soltanto richiesta GET
     if($_SERVER["REQUEST_METHOD"]!="GET"){
         echo json_encode($risposta);
         return;
@@ -27,6 +30,9 @@
         $offset=$_GET['offset'];
     }
     //0=eventi piu' recenti
+
+    //in base al tipo di richiesta Ajax ricevuta viene lanciata
+    //una determinata interazione con il server
     switch($tipo_richiesta){
         case EVENTI_PIU_RECENTI:
             $result=recuperaEventiPiuRecenti($limite_risultati,$offset);
@@ -71,14 +77,16 @@
             $result=null;
             break;    
     }
+    //verifico che il risultato restituito dal database non sia vuoto
     if(verificaResultVuoto($result)){
         $risposta=setResultVuoto();
         echo json_encode($risposta);
         return;
     }
+    //arrivato qui significa che ho una risposta che devo restituire al client
     $msg="OK";
     $risposta=setRisposta($result,$msg);
-    echo json_encode($risposta);
+    echo json_encode($risposta); //invia risposta al client
     return;
 
     function verificaResultVuoto($result){
@@ -92,15 +100,16 @@
         $risposta=new RispostaAjax("-1",$msg);
         return $risposta;
     }
+    //crea array di eventi con un evento corrispondente a
+    //ogni tupla del result set
     function setRisposta($result,$msg){
         $risposta=new RispostaAjax("0",$msg);
         $indice=0;
-        //$row=mysqli_fetch_assoc($result);
-        //return $row['titolo'];
         $risposta->data=array();
         $row=0;
         $dim=$result->num_rows;
         while($row = $result->fetch_assoc()){
+            //usando la classe evento creo un nuovo oggetto evento
             $evento= new Evento();
             $evento->idEvento=$row['idEvento'];
             $evento->titolo=$row['titolo'];
@@ -111,8 +120,9 @@
             $evento->maxPartecipanti=$row['maxPartecipanti'];
             $evento->creatore=$row['creatore'];
             $evento->poster=$row['poster'];
-
-            $risposta->data[$indice]=json_encode($evento);
+            
+            //salvo ogni array nel campo dati dell'oggetto RispostaAjax
+            $risposta->data[$indice]=json_encode($evento); 
             $indice++;
         }
         return $risposta;

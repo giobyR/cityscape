@@ -4,8 +4,11 @@
     require_once DIR_DATABASE."queryEvento.php";
     require_once DIR_AJAX.'rispostaAjax.php';
 
+    //questo file viene usato per la comunicazione AJAX client-server
+    //per operazioni generiche di interazione client e database lato server
     $risposta=new RispostaAjax();
 
+    //verifico di ricevere soltanto richiesta GET
     if($_SERVER["REQUEST_METHOD"]!="GET"){
         echo json_encode($risposta);
         return;
@@ -14,6 +17,8 @@
     if(isset($_GET['idEvento'])){
         $idEvento=$_GET['idEvento'];
     }
+    //in base al tipo di richiesta ricevuta svolto una
+    //certa operazione lato database
     switch($tipo_richiesta){
         case CANCELLA_EVENTO:
             $result=cancellaEvento($idEvento,$_SESSION['userID']);
@@ -31,12 +36,20 @@
             $result=getScontoReferral($_GET['referral'],$idEvento);
             $msg="trovato sconto referral";
             break;
+        case SALVA_LUOGO:
+            $result=salvaLuogoMaps($_GET['placeID'],$_GET['indirizzo']);
+            $msg="luogo salvato";
+            break;    
     }
     if(verificaResultVuoto($result)){
         $risposta=setResultVuoto();
         echo json_encode($risposta);
         return;
     }
+    //questa verifica condizionale serve per distinguere i casi
+    //in cui il database restituice un result set e il caso 
+    //in cui restituisce un booleano per notificare che 
+    //l'operazione sia andata a buon fine oppure no
     if(isset($_GET['referral'])){
         $risposta=setRispostaSconto($result);
     }else{
@@ -64,7 +77,7 @@
 
     }
     function setRispostaSconto($result){
-        $risposta=new RispostaAjax('o',$msg);
+        $risposta=new RispostaAjax('0',$msg);
         while($row= $result->fetch_assoc()){
             $risposta->data=$row['sconto'];
         }

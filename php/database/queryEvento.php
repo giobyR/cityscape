@@ -65,6 +65,7 @@
         $cityscapeDB->closeConnection();
         return $result; 
     }
+    //recupera informazioni account utente
     function recuperaAccountUtente($idUtente){
         global $cityscapeDB;
         $query="SELECT * FROM utente WHERE idUtente='".$idUtente."';";
@@ -72,6 +73,7 @@
         $cityscapeDB->closeConnection();
         return $result; 
     }
+    //aggiorna le informazioni sull'utente presenti nel databasae
     function aggiornaAccountUtente($infoUtente){
         global $cityscapeDB;
         $query="UPDATE utente SET nome='".$infoUtente->nome."', "
@@ -85,6 +87,7 @@
         $cityscapeDB->closeConnection();
         return $result;         
     }
+    //aggiunge nel database l'interesse utente nei confronti di un nuovo evento
     function aggiungiInteresseUtente($idEvento,$utente){
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
@@ -94,6 +97,7 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    //aggiunge partecipazione utente nel database
     function aggiungiPartecipazioneUtente($idEvento,$utente){
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
@@ -103,6 +107,7 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    //in base al codice referral restituisce lo sconto applicato corrispondente
     function getScontoReferral($referral,$idEvento){
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
@@ -112,6 +117,7 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    //prende il codice referral corrispondente a un certo utente
     function getReferral($idUtente){
         global $cityscapeDB;
         $idUtente=$cityscapeDB->sqlInjectionFilter($idUtente);
@@ -121,6 +127,7 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    //cancella evento dal database
     function cancellaEvento($idEvento,$utente){
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
@@ -136,6 +143,7 @@
         $cityscapeDB->closeConnection();
         return $result;
     }
+    //cerca nel campo titolo e descrizione di un evento una certa parola chiave
     function cercaParolaChiave($parola_chiave,$limite_risultati,$offset){
         global $cityscapeDB;
         $parola_chiave=$cityscapeDB->sqlInjectionFilter($parola_chiave);
@@ -147,24 +155,37 @@
         $cityscapeDB->closeConnection();
         return $result; 
     }
+    //cerca evento in base a un certo luogo inserito
     function cercaLuogo($luogo,$limite_risultati,$offset){
         global $cityscapeDB;
         $luogo=$cityscapeDB->sqlInjectionFilter($luogo);
         $query="SELECT * FROM evento WHERE luogo LIKE '%".$luogo."%' "
                 ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
-        echo "<script>console.log('".$query."')</script>";        
+        //echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result; 
     }
+    //cerca evento nel database in base a una certa data inserita come parola chiave
     function cercaData($data,$limite_risultati,$offset){
         global $cityscapeDB;
         $data=$cityscapeDB->sqlInjectionFilter($data);
         $query="SELECT * FROM evento WHERE dataEvento LIKE '%".$data."%' "
             ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
-        echo "<script>console.log('".$query."')</script>";        
+        //echo "<script>console.log('".$query."')</script>";        
         $cityscapeDB->closeConnection();
         return $result; 
+    }
+    //salva nel database l'id corrispondente a un certo luogo usabile dalle API Google
+    function salvaLuogo($placeID,$indirizzo){
+        global $cityscapeDB;
+        $data=$cityscapeDB->sqlInjectionFilter($placeID);
+        $data=$cityscapeDB->sqlInjectionFilter($placeID);
+        $query="INSERT INTO luogoMaps VALUES('".$placeID."','".$indirizzo."');";
+        $result=$cityscapeDB->lanciaQuery($query);
+        //echo "<script>console.log('".$query."')</script>";        
+        $cityscapeDB->closeConnection();
+        return $result;
     }
 ?>
