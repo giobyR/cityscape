@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="/css/footer.css">
 
 
-    <script type="text/javascript" src="/js/login_registrazione.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
+    <script src="/js/login_registrazione.js"></script>
+    <script src="/js/ajaxManager.js"></script>
 
 
     

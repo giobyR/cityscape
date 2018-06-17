@@ -84,7 +84,7 @@ button:active{
 }
 .modal {
     display: flex; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    /* position: fixed;  opzione tolta per problemi con form registrazione */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;

@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="/css/formAccountUtente.css">
 
 
-    <script type="text/javascript" src="/js/gestisciErroreForm.js"></script>
-    <script type="text/javascript" src="/js/effects.js"></script>
+    <script src="/js/gestisciErroreForm.js"></script>
+    <script src="/js/effects.js"></script>
     <title>Aggiungi Evento</title>
 </head>
 <body>
@@ -37,31 +37,31 @@
             <div id="divContenuto" class="content">
                 <form id='caricaEvento' method="POST" action="/php/aggiungiEvento.php" enctype="multipart/form-data" class="form-content">
                     <label for="titoloEvento">Titolo*</label>
-                    <input type="text" name="titoloEvento" required>
+                    <input type="text" name="titoloEvento" id="titoloEvento" required>
                     <div class="box-orizzontale">
                         <div class="displayVerticale">
                             <label for="dataEvento">Data Evento*</label>
-                            <input type="data" name="dataEvento" id="dataEvento" placeholder='aaaa/mm/dd' required>
+                            <input type="text" name="dataEvento" id="dataEvento" placeholder='aaaa/mm/dd' required onblur="verificaData(document.getElementById('err_data'),this)">
                             <span id="err_data" class="errore"></span>
                         </div>
                         <div class="displayVerticale">
-                            <label for="luogoEvento">Luogo Evento*</label>
+                            <label for="cercaLuogo">Luogo Evento*</label>
                             <input type="text" name="luogoEvento" required id="cercaLuogo">
                         </div>
                     </div>
                     <label for="descrizioneEvento">Descrizione*</label>
-                    <textarea name="descrizioneEvento" 
-                                row="1600" 
-                                columns="1000" 
+                    <textarea name="descrizioneEvento" id="descrizioneEvento"
+                                rows="500" 
+                                cols="1000" 
                                 required >
                     </textarea>
                     <label for="maxPartecipanti">Numero massimo di partecipanti</label>
-                    <input type="number" name="maxPartecipanti" title="lasciare vuoto se non ci sono limiti al numero di partecipanti">
-                    <label for="selezioneGratis">L'evento è gratis?</label>
+                    <input type="number" id="maxPartecipanti" name="maxPartecipanti" title="lasciare vuoto se non ci sono limiti al numero di partecipanti">
+                    <label>L'evento è gratis?</label>
                     <div class="selezionePrezzo">
-                        <label for="selezioneGratis">SI</label>
+                        <label for="selezioneSI">SI</label>
                         <input type='radio' name='selezioneGratis' id="selezioneSI" value='si' checked required >
-                        <label for="selezioneGratis">NO</label>
+                        <label for="selezioneNO">NO</label>
                         <input type='radio' name='selezioneGratis' id="selezioneNO" value='no'  required>
                     </div>
                     <div class="selezionePrezzo">
@@ -70,9 +70,9 @@
                     <input type='number' name='prezzoEvento' id="prezzoEvento" value='0' title="scrivere 0 se l'evento è gratis" required>
                     <div class="select-container">
                         <label for="categoriaEvento">categoria Evento*</label>
-                        <select name='categoriaEvento' required>
+                        <select name='categoriaEvento' id="categoriaEvento" required size=7>
                             <option value='bambini'>Bambini</option>
-                            <option  value='cinema'>Cinema</option>
+                            <option value='cinema'>Cinema</option>
                             <option value='concerti'>Concerti</option>
                             <option value='cultura'>Cultura</option>
                             <option value='nightlife'>Nightlife</option>
@@ -81,7 +81,7 @@
                         </select>
                     </div>    
                     <label for="posterEvento">Carica poster evento*</label>
-                    <input type="file" name="posterEvento" required>
+                    <input type="file" id="posterEvento" name="posterEvento" required>
                     <input type="submit" id="submitEvent" name="submit" value="Aggiungi Evento">
                     <label>I campi contrassegnati con (*) sono obbligatori</label>
                 <?php

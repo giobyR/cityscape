@@ -14,8 +14,8 @@
     <meta charset="utf-8">
     <title>Registrazione utente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="../js/login_registrazione.js"></script>
-    <script type="text/javascript" src="../js/ajaxManager.js"></script>
+    <script src="../js/login_registrazione.js"></script>
+    <script src="../js/ajaxManager.js"></script>
 
     <link rel="stylesheet" href="/css/form_layout.css">
 </head>
@@ -51,8 +51,8 @@
                     echo '<p> '.$_GET['err_msg'].'</p>';
                 }
             ?>
-            <input type="submit" name="submitButton"  value="registrati" id="submitButton" disabled></input>
-            <input type="reset" name="resetButton" value="azzera campi"></input>
+            <input type="submit" name="submitButton" value="registrati" id="submitButton" disabled>
+            <input type="reset" name="resetButton" value="azzera campi">
             <p>I campi contrasegnati con asterisco(*) sono obbligatori</p>
     </form>
 </body>

@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title>Login utente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="/js/login_registrazione.js"></script>
+    <script src="/js/login_registrazione.js"></script>
 
     <link rel="stylesheet" href="/css/form_layout.css">
 

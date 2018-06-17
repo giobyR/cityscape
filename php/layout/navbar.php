@@ -26,7 +26,7 @@
         </div>
     </li>
     <li >
-        <input type="image" src="/images/search.png" id="searchImg"class="searchImg" style="float:right">
+        <input type="image" src="/images/search.png" id="searchImg" class="searchImg" alt="background tasto cerca" style="float:right">
     </li>
     <li class="search-bar" id="search-bar">
         <input type="text" placeholder="parola chiave..." id="cercaTesto" >
