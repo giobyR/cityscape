@@ -41,6 +41,9 @@
     <div id="divContenuto"></div>
     <section class="pulsanti-navigazione">
         <?php
+            if(isset($_GET['categoria'])){
+                $searchType='CATEGORIA_'.$_GET['categoria'];
+            }
             include DIR_LAYOUT.'pulsanti_navigazione.php';
         ?>
     </section>

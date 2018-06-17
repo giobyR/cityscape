@@ -17,10 +17,10 @@
     //recupera gli eventi in base alla categoria scelta
     function recuperaEventiPerCategoria($categoria,$limite_risultati,$offset){
         global $cityscapeDB;
-        $categoria=($categoria);
+        $categoria=$cityscapeDB->sqlInjectionFilter($categoria);
         $limite_risultati=$cityscapeDB->sqlInjectionFilter($limite_risultati);
         $query="SELECT * FROM evento WHERE categoria='".$categoria."' "
-                ."AND dataEvento<=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
+                ."AND dataEvento>=CURRENT_DATE ORDER BY dataEvento ASC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;        

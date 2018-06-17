@@ -44,7 +44,7 @@
             <div id="divContenuto"></div>    
             <section class="pulsanti-navigazione">
                 <?php
-                    $searchType=EVENTI_PIU_INTERESSANTI;
+                    $searchType=EVENTI_INTERESSE_UTENTE;
                     include DIR_LAYOUT.'pulsanti_navigazione.php';
                 ?>
             </section>

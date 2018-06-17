@@ -48,7 +48,7 @@ li.dropdown {
 }
 input[type="image"]{
     height: 50px;
-    float: center;
+    /*float: center; */
     align-content: center;
 }
 

@@ -39,7 +39,6 @@
 #contenitore-infoGenerali{
     width: auto;
     max-width: 100%;
-    justify-content: left;
     margin-top: 30px;
     padding: 30px;
     display: flex;
@@ -48,7 +47,6 @@
 #luogo-data,#costo{
     display: flex;
     flex-direction: column;
-    justify-content: left;
     font-family: "sanFranciscoRegular";
     margin-right: 50px;
 }

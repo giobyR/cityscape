@@ -6,7 +6,7 @@ CaricaEventi.urlModificaProfiloUtente='/php/ajax/modificaProfilo.php';
 CaricaEventi.urlOperazioniAggiornamento='/php/ajax/operazioniAggiornamento.php';
 //parametri da usare per impostare il tipo di interrogazione AJax
 CaricaEventi.tipoRichiesta="GET";
-CaricaEventi.limiteNumeroEventi=20;
+CaricaEventi.limiteNumeroEventi=9;
 //costanti da usare nella scelta delle query da fare quando si interroga il database
 CaricaEventi.EVENTI_PIU_RECENTI=0;
 CaricaEventi.EVENTI_PIU_INTERESSANTI=1;
@@ -34,15 +34,17 @@ CaricaEventi.SUCCESS_RESPONSE='0';
 CaricaEventi.NO_DATA='-1';
 CaricaEventi.CURRENT_PAGE_INDEX=1;
 
-CaricaEventi.caricaPrecedente=function(queryType){
+CaricaEventi.caricaSuccessivo=function(queryType){
     CaricaEventi.CURRENT_PAGE_INDEX++;
+    document.getElementById('numeroPagina').innerHTML='Pagina '+CaricaEventi.CURRENT_PAGE_INDEX;
     CaricaEventi.loadData(queryType);
 }
-CaricaEventi.caricaSuccessivo=function(queryType){
+CaricaEventi.caricaPrecedente=function(queryType){
     CaricaEventi.CURRENT_PAGE_INDEX--;
     if(CaricaEventi.CURRENT_PAGE_INDEX<=1){
         CaricaEventi.CURRENT_PAGE_INDEX=1;
     }
+    document.getElementById('numeroPagina').innerHTML='Pagina '+CaricaEventi.CURRENT_PAGE_INDEX;
     CaricaEventi.loadData(queryType);
 }
 CaricaEventi.loadData=function(queryType){
