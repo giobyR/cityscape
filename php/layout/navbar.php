@@ -31,7 +31,7 @@
     <li class="search-bar" id="search-bar">
         <input type="text" placeholder="parola chiave..." id="cercaTesto" >
         <input type="text" placeholder="luogo.." id="cercaLuogo">
-        <input type="date" placeholder="yyyy-mm-dd" id="cercaData">
+        <input type="text" placeholder="yyyy-mm-dd" id="cercaData">
     </li>
 </ul>
 <script>

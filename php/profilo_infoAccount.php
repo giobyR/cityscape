@@ -10,7 +10,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/formAccountUtente.css">
 
-    <script type="text/javascript" src="/js/effects.js"></script>
-    <script type="text/javascript" src="/js/caricaEventi.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
+    <script src="/js/ajaxManager.js"></script>
+    <script src="/js/gestioneDashboard.js"></script>
     <title>Profilo utente</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.ACCOUNT_UTENTE)">
@@ -43,33 +43,33 @@
             <div>
                 <div class="element-container">
                     <label for="idUtente">ID Utente</label>
-                    <input type="text" disabled id="idUtente"></input>
+                    <input type="text" disabled id="idUtente">
                 </div>
                 <div class='element-container'>
                     <label for="email">Email</label>
-                    <input type="text" disabled id="email"></input>
+                    <input type="text" disabled id="email">
                 </div>
                 <div class='element-container'>
                     <label for="referral">Codice Referral</label>
-                    <input type="text" disabled id="referral"></input>
+                    <input type="text" disabled id="referral">
                 </div>
                 <div class='element-container'>
                     <label for="nome">Nome</label>
-                    <input type="text" disabled id="nome"></input>
-                    <input type='image' class="img-modifica" id="abilitaInputNome" src='/images/edit.png'>
+                    <input type="text" disabled id="nome">
+                    <input type='image' class="img-modifica" id="abilitaInputNome" src='/images/edit.png' alt="icona modifica campo">
                 </div>
                 <div class='element-container'>
                     <label for="cognome">Cognome</label>
-                    <input type="text" disabled id="cognome"></input>
-                    <input type='image' class="img-modifica"  id="abilitaInputCognome" src='/images/edit.png'>
+                    <input type="text" disabled id="cognome">
+                    <input type='image' class="img-modifica"  id="abilitaInputCognome" src='/images/edit.png' alt="icona modifica campo">
                 </div>
                 <div class='element-container'>
                     <label for="password">Password</label>
-                    <input type="text" disabled id="password"></input>
-                    <input type='image' class="img-modifica"  id="abilitaInputPassword" src='/images/edit.png'>
+                    <input type="text" disabled id="password">
+                    <input type='image' class="img-modifica"  id="abilitaInputPassword" src='/images/edit.png' alt="icona modifica campo">
                 </div>
                 <p id='err_msg' class="errore"></p>
-                <input type="submit" id="submit" value="Salva Modifiche"></input>
+                <input type="submit" id="submit" value="Salva Modifiche">
             </div>
         </div>
     </div>

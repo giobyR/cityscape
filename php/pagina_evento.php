@@ -9,22 +9,21 @@
     }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/pagina_evento.css">
 
-    <script type="text/javascript" src="/js/effects.js"></script>
-    <script type="text/javascript" src="/js/caricaEventi.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
-    <script type="text/javascript" src="/js/gestionePaginaEvento.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
+    <script src="/js/ajaxManager.js"></script>
+    <script src="/js/gestioneDashboard.js"></script>
+    <script src="/js/gestionePaginaEvento.js"></script>
 
     <title>Informazioni Evento</title>
 </head>
@@ -48,22 +47,22 @@
         <div id="contenitore-infoGenerali">
             <div id="luogo-data">
                 <span>
-                    <label>Luogo evento: </label>
-                    <p>
+                    <label class="etichetta">Luogo evento: </label>
+                    <label class="valore">
                         <?php echo $_GET['luogo']; ?>
-                    </p>
+                    </label>
                 </span>
                 <span>
-                    <label>Data Evento:</label>
-                    <p>
+                    <label class="etichetta">Data Evento:</label>
+                    <label class="valore">
                         <?php echo $_GET['data']; ?>
-                    </p>
+                    </label>
                 </span>
             </div>
             <div id="costo">
                 <span>
-                    <label>Costo evento:</label>
-                    <p>
+                    <label class="etichetta">Costo evento:</label>
+                    <label class="valore">
                                     <?php 
                                         if($_GET['prezzo']==0){
                                             echo "gratis";
@@ -71,11 +70,11 @@
                                             echo $_GET['prezzo']; 
                                         }
                                     ?>
-                    </p>
+                    </label>
                 </span>
                 <span>
-                    <label>Numero massimo di partecipanti: </label>
-                    <p>
+                    <label class="etichetta">Numero massimo di partecipanti: </label>
+                    <label class="valore">
                                                         <?php 
                                                             if($_GET['maxPartecipanti']==0){
                                                                 echo "nessun limite";
@@ -83,7 +82,7 @@
                                                                 echo $_GET['maxPartecipanti'];
                                                             }     
                                                         ?>
-                    </p>
+                    </label>
                 </span>
             </div>
         </div>
@@ -94,8 +93,8 @@
     <div id="referral-contenitore">
         <div id="selezione-referral">
             <label>Hai un codice referral?</label>
-            <input type='radio' id="sceltaSI" name='selezioneReferral' value="si" onclick="abilitaReferral()">SI</input>
-            <input type='radio' id="sceltaNO" name='selezioneReferral' value="no" checked onclick="abilitaReferral()">NO</input>
+            <input type='radio' id="sceltaSI" name='selezioneReferral' value="si" onclick="abilitaReferral()">SI
+            <input type='radio' id="sceltaNO" name='selezioneReferral' value="no" checked onclick="abilitaReferral()">NO
         </div>
         <span >
             <label for="referral">Codice Referral:</label>

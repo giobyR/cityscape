@@ -49,5 +49,7 @@ gestisciErrore.verificaData=function(campoDoveSegnalare,campoDaVerificare){
         vm="inserire la data nel formato aaaa/mm/gg";
         data.setCustomValidity(vm);
         gestisciErrore.segnalaErrore(err,data);
-    }     
+    }
+    data.setCustomValidity("");
+    gestisciErrore.segnalaErrore(err,data);     
 }    

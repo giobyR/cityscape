@@ -10,7 +10,7 @@
     
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +22,10 @@
     <link rel="stylesheet" href="/css/layout_evento.css">
     <link rel="stylesheet" href="/css/pulsantiNavigazione.css">
 
-    <script type="text/javascript" src="/js/effects.js"></script>
-    <script type="text/javascript" src="/js/caricaEventi.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
+    <script src="/js/ajaxManager.js"></script>
+    <script src="/js/gestioneDashboard.js"></script>
     <title>Profilo utente</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_INTERESSE_UTENTE)">
@@ -42,12 +42,12 @@
         </div>
         <div id="paginazioneProfilo">
             <div id="divContenuto"></div>    
-            <section class="pulsanti-navigazione">
+            <div class="pulsanti-navigazione">
                 <?php
                     $searchType=EVENTI_INTERESSE_UTENTE;
                     include DIR_LAYOUT.'pulsanti_navigazione.php';
                 ?>
-            </section>
+            </div>
         </div>
     </div>
     <footer>

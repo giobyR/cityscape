@@ -9,7 +9,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +23,10 @@
 
 
 
-    <script type="text/javascript" src="/js/effects.js"></script>
-    <script type="text/javascript" src="/js/caricaEventi.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
+    <script src="/js/ajaxManager.js"></script>
+    <script src="/js/gestioneDashboard.js"></script>
     <title>Profilo utente</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE)">
@@ -44,12 +44,12 @@
         <div id="paginazioneProfilo">
             <a href="/php/formAggiungiEvento.php" class="button-aggiungi">Aggiungi Nuovo Evento</a>
             <div id="divContenuto"></div>    
-            <section class="pulsanti-navigazione">
+            <div class="pulsanti-navigazione">
                     <?php
                         $searchType=EVENTI_CREATI_UTENTE;
                         include DIR_LAYOUT.'pulsanti_navigazione.php';
                     ?>
-            </section>
+            </div>
         </div>
     </div>
     <footer>

@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="/css/layout_evento.css">
     <link rel="stylesheet" href="/css/pulsantiNavigazione.css">
 
-    <script type="text/javascript" src="/js/effects.js"></script>
-    <script type="text/javascript" src="/js/caricaEventi.js"></script>
-    <script type="text/javascript" src="/js/ajaxManager.js"></script>
-    <script type="text/javascript" src="/js/gestioneDashboard.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
+    <script src="/js/ajaxManager.js"></script>
+    <script src="/js/gestioneDashboard.js"></script>
     <title>Eventi del momento</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI)">
@@ -39,12 +39,12 @@
         ?>
     </nav>
     <div id="divContenuto"></div>
-    <section class="pulsanti-navigazione">
+    <div class="pulsanti-navigazione">
         <?php
             $searchType=EVENTI_PIU_INTERESSANTI;
             include DIR_LAYOUT.'pulsanti_navigazione.php';
         ?>
-    </section>
+    </div>
     <footer>
             <?php
                 include DIR_LAYOUT.'footer.php';

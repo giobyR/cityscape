@@ -7,7 +7,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,14 +45,14 @@
                             <span id="err_data" class="errore"></span>
                         </div>
                         <div class="displayVerticale">
-                            <label for="cercaLuogo">Luogo Evento*</label>
-                            <input type="text" name="luogoEvento" required id="cercaLuogo">
+                            <label for="luogoEvento">Luogo Evento*</label>
+                            <input type="text" name="luogoEvento" required id="luogoEvento">
                         </div>
                     </div>
                     <label for="descrizioneEvento">Descrizione*</label>
                     <textarea name="descrizioneEvento" id="descrizioneEvento"
-                                rows="500" 
-                                cols="1000" 
+                                rows="10" 
+                                cols="100" 
                                 required >
                     </textarea>
                     <label for="maxPartecipanti">Numero massimo di partecipanti</label>
@@ -67,10 +67,11 @@
                     <div class="selezionePrezzo">
                     </div>
                     <label for="prezzoEvento">Prezzo evento(€)</label>
-                    <input type='number' name='prezzoEvento' id="prezzoEvento" value='0' title="scrivere 0 se l'evento è gratis" required>
+                    <input type='number' name='prezzoEvento' id="prezzoEvento" value="0" title="scrivere 0 se l'evento è gratis" required>
                     <div class="select-container">
                         <label for="categoriaEvento">categoria Evento*</label>
-                        <select name='categoriaEvento' id="categoriaEvento" required size=7>
+                        <select name='categoriaEvento' id="categoriaEvento" required >
+                            <option value=''>Seleziona</option>
                             <option value='bambini'>Bambini</option>
                             <option value='cinema'>Cinema</option>
                             <option value='concerti'>Concerti</option>
@@ -79,6 +80,7 @@
                             <option value='sport'>Sport</option>
                             <option value='altro'>Altro</option>
                         </select>
+                        <p class="errore" id="err_msg"></p>
                     </div>    
                     <label for="posterEvento">Carica poster evento*</label>
                     <input type="file" id="posterEvento" name="posterEvento" required>
@@ -102,7 +104,13 @@
             document.getElementById('dataEvento').onblur=function(){
                 gestisciErrore.verificaData(document.getElementById('err_data'),document.getElementById('dataEvento'))
             };
-            
+            document.getElementById('categoriaEvento').onblur=function(){
+                var val=document.getElementById('categoriaEvento');
+                if(val.value=="Seleziona"){
+                    val.setCustomValidity("categoria scelta non valida!")
+                    document.getElementById('err_msg').innerHTML=val.validationMessage;
+                }
+            };    
     </script>
     
 </body>

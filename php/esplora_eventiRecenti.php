@@ -41,12 +41,12 @@
         ?>
     </nav>
     <div id="divContenuto"></div>
-    <section class="pulsanti-navigazione">
+    <div class="pulsanti-navigazione">
         <?php
             $searchType=EVENTI_PIU_RECENTI;
             include DIR_LAYOUT.'pulsanti_navigazione.php';
         ?>
-    </section>
+    </div>
     <footer>
             <?php
                 include DIR_LAYOUT.'footer.php';
