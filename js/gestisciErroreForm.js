@@ -7,7 +7,6 @@ gestisciErrore.segnalaErrore=function(campoErrore,trigger){
         campoErrore.innerHTML=trigger.validationMessage;
     }else{
         campoErrore.innerHTML="";
-        trigger.setCustomValidity("");
     }
 }
 gestisciErrore.verificaCampoNullo=function(campoDoveSegnalare,campoDaVerificare){
@@ -26,29 +25,40 @@ gestisciErrore.verificaData=function(campoDoveSegnalare,campoDaVerificare){
     var data=campoDaVerificare;//document.getElementById('dataEvento');
     var err=campoDoveSegnalare;//document.getElementById('err_data');
     var vm;
-    if((data.value !='')&&(val=data.value.match(re))){
-            //giorno fra 1 e 31 
-            if(val[3]<1 || val[3]>31){
-                vm="il giorno inserito non e' valido!";
+    val=data.value.match(re);
+    if((data.value !='')&&(val)){
+            //anno  inferiore a quello odierno
+            if(val[1]<(new Date().getFullYear())){
+                vm="l'anno inserito non e'valido!";
                 data.setCustomValidity(vm);
                 gestisciErrore.segnalaErrore(err,data);
+                return;
             }
             //mese fra 1 e 12
             if(val[2]<1 || val[2]>12){
                 vm="il mese inserito non e'valido!";
                 data.setCustomValidity(vm);
                 gestisciErrore.segnalaErrore(err,data);
+                return;
             }
-            //anno  inferiore a quello odierno
-            if(val[1]<(new Date().getFullYear())){
-                vm="l'anno inserito non e'valido!";
+            //giorno fra 1 e 31 
+            if(val[3]<1 || val[3]>31){
+                vm="il giorno inserito non e' valido!";
                 data.setCustomValidity(vm);
                 gestisciErrore.segnalaErrore(err,data);
+                return;
+            }
+            if((val[1]==(new Date().getFullYear()))&&(val[2]==(new Date().getMonth()))&&(val[3]<=(new Date().getDate()))){
+                vm="la data inserita deve essere successiva a oggi !";
+                data.setCustomValidity(vm);
+                gestisciErrore.segnalaErrore(err,data);
+                return;
             }
     }else{
         vm="inserire la data nel formato aaaa/mm/gg";
         data.setCustomValidity(vm);
         gestisciErrore.segnalaErrore(err,data);
+        return;
     }
     data.setCustomValidity("");
     gestisciErrore.segnalaErrore(err,data);     

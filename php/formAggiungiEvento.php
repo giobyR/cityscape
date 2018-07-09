@@ -41,7 +41,7 @@
                     <div class="box-orizzontale">
                         <div class="displayVerticale">
                             <label for="dataEvento">Data Evento*</label>
-                            <input type="text" name="dataEvento" id="dataEvento" placeholder='aaaa/mm/dd' required onblur="verificaData(document.getElementById('err_data'),this)">
+                            <input type="text" name="dataEvento" id="dataEvento" placeholder='aaaa/mm/dd' required >
                             <span id="err_data" class="errore"></span>
                         </div>
                         <div class="displayVerticale">
@@ -101,8 +101,10 @@
         </footer>
     <script>
             //document.getElementById("caricaEvento").namedItem("selezioneGratis").onclick=disabilitaPrezzo;
-            document.getElementById('dataEvento').onblur=function(){
-                gestisciErrore.verificaData(document.getElementById('err_data'),document.getElementById('dataEvento'))
+            document.getElementById('dataEvento').onchange=function(){
+                var campoDoveSegnalare=document.getElementById('err_data');
+                var campoDaVerificare=document.getElementById('dataEvento');
+                gestisciErrore.verificaData(campoDoveSegnalare,campoDaVerificare);
             };
             document.getElementById('categoriaEvento').onblur=function(){
                 var val=document.getElementById('categoriaEvento');

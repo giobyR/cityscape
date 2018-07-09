@@ -47,7 +47,7 @@
                         .$evento["posterEvento"]."\",\""
                         .$evento["prezzoEvento"]."\",\""
                         .$_SESSION["userID"]."\",\""
-                        .$evento["categoriaEvento"]."\");";
+                        .$evento["categoriaEvento"]."\",0);";
         //echo "<script>console.log('".$query."')</script>";        
         $result=$cityscapeDB->lanciaQuery($query);      
         return $result;          
