@@ -85,6 +85,7 @@
             setResultVuoto();
         }
         $risposta=new RispostaAjax('0',$msg);
+        return $risposta;
     }
     function setRisposta($result,$msg){
         if(mysql_num_rows($result)==0){
@@ -92,7 +93,7 @@
         }else{
             $risposta=new RispostaAjax("0",$msg);
         }
-
+        return $risposta;
     }
     function setRispostaSconto($result){
         $risposta=new RispostaAjax('0',$msg);

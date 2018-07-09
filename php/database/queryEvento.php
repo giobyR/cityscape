@@ -164,7 +164,7 @@
     //segnala l'evento indicato come contenuto inappropiato
     function segnalaEvento($idEvento){
         global $cityscapeDB;
-        $idEvento=$cityscape->sqlInjectionFilter($idEvento);
+        $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $query="UPDATE evento SET segnalato=1 WHERE idEvento=".$idEvento.";";
         $result=$cityscapeDB->lanciaQuery($query);
         //echo "<script>console.log('".$query."')</script>";
