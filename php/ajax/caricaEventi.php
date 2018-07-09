@@ -49,6 +49,9 @@
         case EVENTI_CREATI_UTENTE:
             $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID'],$offset);
             break;
+        case EVENTI_CREATI_UTENTE_ADMIN:
+            $result=recuperaEventiCreatiAdmin($limite_risultati,$offset);
+            break;
         case ACCOUNT_UTENTE:
             $result=recuperaAccountUtente($_SESSION['userID']);
             break;
@@ -120,7 +123,7 @@
             $evento->maxPartecipanti=$row['maxPartecipanti'];
             $evento->creatore=$row['creatore'];
             $evento->poster=$row['poster'];
-            
+            $evento->segnalato=$row['segnalato'];
             //salvo ogni array nel campo dati dell'oggetto RispostaAjax
             $risposta->data[$indice]=json_encode($evento); 
             $indice++;

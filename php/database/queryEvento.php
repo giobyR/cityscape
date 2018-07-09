@@ -65,6 +65,14 @@
         $cityscapeDB->closeConnection();
         return $result; 
     }
+    //recupera tutti gli eventi presenti nel database per l'admin di sistema
+    function recuperaEventiCreatiAdmin($limite_risultati,$offset){
+        global $cityscapeDB;
+        $query="SELECT * FROM evento ORDER BY dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
+        $result=$cityscapeDB->lanciaQuery($query);
+        $cityscapeDB->closeConnection();
+        return $result; 
+    }
     //recupera informazioni account utente
     function recuperaAccountUtente($idUtente){
         global $cityscapeDB;
@@ -142,6 +150,36 @@
         $result=$result && $result2;
         $cityscapeDB->closeConnection();
         return $result;
+    }
+    //togli segnalazione evento dal database
+    function togliSegnalazione($idEvento){
+        global $cityscapeDB;
+        $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
+        $query="UPDATE evento SET segnalato=0 WHERE idEvento=".$idEvento.";";
+        $result=$cityscapeDB->lanciaQuery($query);
+        //echo "<script>console.log('".$query."')</script>";
+        $cityscapeDB->closeConnection();
+        return $result;
+    }
+    //segnala l'evento indicato come contenuto inappropiato
+    function segnalaEvento($idEvento){
+        global $cityscapeDB;
+        $idEvento=$cityscape->sqlInjectionFilter($idEvento);
+        $query="UPDATE evento SET segnalato=1 WHERE idEvento=".$idEvento.";";
+        $result=$cityscapeDB->lanciaQuery($query);
+        //echo "<script>console.log('".$query."')</script>";
+        $cityscapeDB->closeConnection();
+        return $result;
+    }
+    //restituisce il numero di persone interessate per un certo evento
+    function restituisciInteressati($idEvento){
+        global $cityscapeDB;
+        $idEvento=$cityscape->sqlInjectionFilter($idEvento);
+        $query="SELECT evento,count(interesse) as interessati FROM statisticheutenti "
+                ."WHERE evento=".$idEvento.";";
+        $result=$cityscapeDB->lanciaQuery($query);
+        $cityscapeDB->closeConnection();
+        return $result;        
     }
     //cerca nel campo titolo e descrizione di un evento una certa parola chiave
     function cercaParolaChiave($parola_chiave,$limite_risultati,$offset){

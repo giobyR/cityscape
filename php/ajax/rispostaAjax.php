@@ -39,6 +39,7 @@
         public $maxPartecipanti;
         public $poster;
         public $creatore;
+        public $segnalato;
         function Evento($idEvento=null,
                         $titolo=null,
                         $descrizione=null,
@@ -47,7 +48,8 @@
                         $prezzo=null,
                         $maxPartecipanti=null,
                         $poster=null,
-                        $creatore=null){
+                        $creatore=null,
+                        $segnalato=null){
             $this->idEvento=$idEvento;
             $this->titolo=$titolo;
             $this->descrizione=$descrizione;
@@ -57,6 +59,7 @@
             $this->maxPartecipanti=$maxPartecipanti;
             $this->poster=$poster;
             $this->creatore=$creatore;
+            $this->segnalato=$segnalato;
         }         
     }
     class Utente{

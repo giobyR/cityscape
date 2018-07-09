@@ -8,7 +8,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     var divInternoImg=document.createElement('div');
     divInternoImg.setAttribute('class','container-img');
     divInternoImg.setAttribute('onClick','displayEventOnClick(this)');
-    divInternoImg.setAttribute('onfocusout','displayEventOnClick(this)');
+    divInternoImg.setAttribute('onBlur','hideEventOnBlur(this)');
     var img=document.createElement('img');
     img.setAttribute('class','img');
     img.setAttribute('src',"/images/eventi/" + evento.poster);
@@ -44,7 +44,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     if(evento.prezzo==0){
         prezzoSpan.textContent='gratis';
     }else{
-        prezzoSpan.textContent="prezzo:"+evento.prezzo;
+        prezzoSpan.textContent="prezzo(€):"+evento.prezzo;
     }
     //button per accedere alla pagina con le informazioni su tale evento
     var button=document.createElement('a');
@@ -90,7 +90,7 @@ gestioneDashboard.aggiornaProfiloLatoServer=function(){
     utente['cognome']=document.getElementById('cognome').value;
     utente['password']=document.getElementById('password').value;
     utente['referral']=document.getElementById('referral').value;
-    //carico informazioni nel database tramite richeista Ajax
+    //carico informazioni nel database tramite richiesta Ajax
     CaricaEventi.loadDataProfilo(utente);
 }
 //crea lista di eventi 
@@ -105,6 +105,7 @@ gestioneDashboard.creaElementoLista=function(evento){
     elemLista.appendChild(div);
     return elemLista;
 }
+//crea il layout evento con pulsanti aggiuntivi
 gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
     var elemLista=document.createElement('li');
     var div=gestioneDashboard.caricaInfoEvento(evento);
@@ -115,7 +116,34 @@ gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
     deleteButton.setAttribute('src','/images/delete.png');
     deleteButton.setAttribute('title','cancella');
     deleteButton.addEventListener('click',function(){
-                                        var tipo_CANCELLAZIONE_EVENTO=16;
+                                        var tipo_CANCELLAZIONE_EVENTO=14;
+                                        var url=CaricaEventi.urlOperazioniAggiornamento
+                                                +'?queryType='+tipo_CANCELLAZIONE_EVENTO
+                                                +"&idEvento="+evento.idEvento;
+                                        AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                                                    url,
+                                                                    CaricaEventi.ASYNC_TYPE,
+                                                                    null,null);        
+                                        elemLista.removeChild(div);
+                                    
+                                });
+    div.appendChild(deleteButton);                              
+    elemLista.appendChild(div);
+    return elemLista;
+}
+
+//crea il layout evento con pulsanti aggiuntivi
+gestioneDashboard.creaElementoListaConSegnalaDeleteButton=function(evento){
+    var elemLista=document.createElement('li');
+    var div=gestioneDashboard.caricaInfoEvento(evento);
+    //aggiungo il delete button alla struttura del mio evento
+    var deleteButton=document.createElement('input');
+    deleteButton.setAttribute('type','image');
+    deleteButton.setAttribute('class','delete-button');
+    deleteButton.setAttribute('src','/images/delete.png');
+    deleteButton.setAttribute('title','cancella');
+    deleteButton.addEventListener('click',function(){
+                                        var tipo_CANCELLAZIONE_EVENTO=14;
                                         var url=CaricaEventi.urlOperazioniAggiornamento
                                                 +'?queryType='+tipo_CANCELLAZIONE_EVENTO
                                                 +"&idEvento="+evento.idEvento;
@@ -127,6 +155,28 @@ gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
                                     
                                 });
     div.appendChild(deleteButton);
+    //aggiungo il pulsante per rendere idoneo il mio evento
+    //in seguito a una segnalazione da parte di utente per 
+    //contenuto non idoneo
+    if(evento.segnalato==1){
+        var togliSegnalazioneButton=document.createElement('input');
+        togliSegnalazioneButton.setAttribute('type','image');
+        togliSegnalazioneButton.setAttribute('class','segnala-button');
+        togliSegnalazioneButton.setAttribute('src','/images/segnala.png');
+        togliSegnalazioneButton.setAttribute('title','togli segnalazione');
+        togliSegnalazioneButton.addEventListener('click',function(){
+                                            var tipo_TOGLI_SEGNALAZIONE_EVENTO=22;
+                                            var url=CaricaEventi.urlOperazioniAggiornamento
+                                                    +'?queryType='+tipo_TOGLI_SEGNALAZIONE_EVENTO
+                                                    +"&idEvento="+evento.idEvento;
+                                            AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                                                        url,
+                                                                        CaricaEventi.ASYNC_TYPE,
+                                                                        null,null);        
+                                            div.removeChild(togliSegnalazioneButton);
+                                        });
+        div.appendChild(togliSegnalazioneButton);                                
+    }
     elemLista.appendChild(div);
     return elemLista;
 }
@@ -145,11 +195,15 @@ gestioneDashboard.refreshData=function(arrayEventi){
     }
     node.appendChild(lista);
 }
-gestioneDashboard.refreshDataEventiCreati=function(arrayEventi){
+gestioneDashboard.refreshDataEventiCreati=function(arrayEventi,admin){
     var lista=gestioneDashboard.creaLista();
     for(var i=0;i<arrayEventi.length;++i){
         if(arrayEventi[i] !=undefined){
-            var elem=gestioneDashboard.creaElementoListaConDeleteButton(arrayEventi[i]);
+            if(admin==true){
+                var elem=gestioneDashboard.creaElementoListaConSegnalaDeleteButton(arrayEventi[i]);
+            }else{
+                var elem=gestioneDashboard.creaElementoListaConDeleteButton(arrayEventi[i]);
+            }
             lista.appendChild(elem);
         }
     }
@@ -164,18 +218,18 @@ gestioneDashboard.refreshIndiciPagina=function(currentPage,altriEventidaCaricare
     var currPage=document.getElementsByClassName("current-page");
     currPage.innerHTML="Pagina "+currentPage;
     
-    var previous=document.getElementsByClassName("precedente");
+    var previous=document.getElementById("precedente");
     if(currentPage===1){
         previous.disabled=true;
     }else{
         previous.disabled=false;
     }
 
-    var next=document.getElementsByClassName("successivo");
+    var next=document.getElementById("successivo");
     if(altriEventidaCaricare){
-        next.disabled=true;
-    }else{
         next.disabled=false;
+    }else{
+        next.disabled=true;
     }
 }
 //rendo le parti di input del form utente modificabili    

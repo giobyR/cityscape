@@ -30,5 +30,8 @@
     define('CERCA_LUOGO',19);
     define('CERCA_DATA',20);
     define('SALVA_LUOGO',21);
-
+    define('TOGLI_SEGNALAZIONE',22);
+    define('SEGNALA_EVENTO',23);
+    define('RICEVI_INTERESSATI_EVENTO',24);
+    define('EVENTI_CREATI_UTENTE_ADMIN',25);
 ?>

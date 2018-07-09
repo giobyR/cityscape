@@ -105,6 +105,7 @@
         <span class="button-group">
             <button id='buttonPartecipa'>Partecipa</button>
             <button id='buttonInteresse'>Sono Interessato</button>
+            <button id='buttonSegnala' title="segnala come contenuto inappropiato">Segnala Contenuto</button>
         </span>
     </div>
     <?php
@@ -121,6 +122,9 @@
                 echo "document.getElementById('errMsg').innerHTML='Devi esssere loggato per inviare partecipazione'; ";
             }else{
                 echo "document.getElementById('buttonPartecipa').addEventListener('click',function(){ inviaPartecipazione(".$_GET['idEvento'].",".$_SESSION['userID'].")});";
+                echo "document.getElementById('buttonInteresse').addEventListener('click',function(){ aggiungiInteresse(".$_GET['idEvento'].",".$_SESSION['userID'].")});";
+                echo "document.getElementById('buttonSegnala').addEventListener('click',function(){ segnala_evento(".$_GET['idEvento'].")});";
+
             }
         echo "</script>";
     ?>

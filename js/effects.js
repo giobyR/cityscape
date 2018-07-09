@@ -30,16 +30,17 @@
     function hideEventOnBlur(element){
         var fratello=element.nextElementSibling;
         if(fratello.style.maxHeight){
+            console.log("sono nel ciclo per chiudere finestra");
             fratello.style.maxHeight=null;
         }    
     }
     function cambiaActiveNavbarElem(elem){
-        var string=elem.className;
-        if(string.includes('active')){
-            elem.className = element.className.replace(/\bactive\b/g, "");
-        }else{
-            elem.className +=" active";
+        console.log("entro nel metodo");
+        var elemConClasse=document.getElementsByTagName('li');
+        for(var i=0;i<elemConClasse.length;i++){
+            elemConClasse.removeAttibute("class");
         }
+        elem.setAttribute("class","active");
     }
     /*
     function aggiungiListenersPaginaEvento(){

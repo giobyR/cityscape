@@ -5,7 +5,7 @@
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
         header("Location: /index.php?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
-        exit;
+        exit();
     }
 ?>
 <!DOCTYPE html>
@@ -29,7 +29,15 @@
     <script src="/js/gestioneDashboard.js"></script>
     <title>Profilo utente</title>
 </head>
-<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE)">
+<?php
+/*
+if($_SESSION['userID']!=1){
+    echo('<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE)">');
+}else{
+    echo('<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN)">');
+} */
+?>
+<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN)">
     <nav>
             <?php
                 include DIR_LAYOUT.'navbar.php';
@@ -46,7 +54,11 @@
             <div id="divContenuto"></div>    
             <div class="pulsanti-navigazione">
                     <?php
-                        $searchType=EVENTI_CREATI_UTENTE;
+                        if($_SESSION['userID']!=1){
+                            $searchType=EVENTI_CREATI_UTENTE;
+                        }else{
+                            $searchType=EVENTI_CREATI_UTENTE_ADMIN;
+                        }    
                         include DIR_LAYOUT.'pulsanti_navigazione.php';
                     ?>
             </div>

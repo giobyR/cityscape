@@ -20,13 +20,17 @@ CaricaEventi.CATEGORIA_ALTRO=13;
 CaricaEventi.EVENTI_INTERESSE_UTENTE=2;
 CaricaEventi.EVENTI_PARTECIPAZIONI_UTENTE=3;
 CaricaEventi.EVENTI_CREATI_UTENTE=4;
+CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN=25;
 CaricaEventi.ACCOUNT_UTENTE=5;
 CaricaEventi.AGGIORNA_UTENTE=7;
 CaricaEventi.CANCELLA_EVENTO=14;
 CaricaEventi.AGGIUNGI_PARTECIPAZIONE=15;
+CaricaEventi.AGGIUNGI_INTERESSE=16;
 CaricaEventi.CERCA_PAROLA_CHIAVE=18;
 CaricaEventi.CERCA_LUOGO=19;
 CaricaEventi.CERCA_DATA=20;
+CaricaEventi.TOGLI_SEGNALAZIONE=22;
+CaricaEventi.SEGNALA_EVENTO=23;
 //indica se la richiesta ajax e' asincrona oppure no con il server
 CaricaEventi.ASYNC_TYPE='true';
 //costanti usate dalle risposte ajax per indicare lo stato della risposta
@@ -109,6 +113,12 @@ CaricaEventi.loadData=function(queryType){
                     +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
                     +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
             var responseFunction=CaricaEventi.rispostaAjaxProfiloEventiCreati;
+            break;    
+        case CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN:
+            var url=CaricaEventi.urlRichiestaPHP+"?queryType="+CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN
+                    +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
+                    +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi;
+            var responseFunction=CaricaEventi.rispostaAjaxProfiloEventiCreatiAdmin;
             break;    
         default:
             var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType
@@ -202,7 +212,8 @@ CaricaEventi.rispostaAjax=function(risposta){
         console.log(arrayDati);
         gestioneDashboard.refreshData(arrayDati/*JSON.parse(risposta.data)*/);
     }
-    var altriEventiDaCaricare=((risposta.data===null)||(risposta.data.length <CaricaEventi.limiteNumeroEventi));
+    var altriEventiDaCaricare=((risposta.data!==null)&&(risposta.data.length >=CaricaEventi.limiteNumeroEventi));
+    console.log("altrieventidacaricare="+altriEventiDaCaricare);
     gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare);    
 }
 CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
@@ -218,8 +229,27 @@ CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
                 arrayDati[i]=JSON.parse(risposta.data[i]);
         }
         console.log(arrayDati);
-        gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/);
+        gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/,false);
     }
-    var altriEventiDaCaricare=((risposta.data===null)||(risposta.data.length <CaricaEventi.limiteNumeroEventi));
+    var altriEventiDaCaricare=((risposta.data!==null)&&(risposta.data.length >=CaricaEventi.limiteNumeroEventi));
+    gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare); 
+}    
+CaricaEventi.rispostaAjaxProfiloEventiCreatiAdmin=function(risposta){
+    //console.log(risposta);
+    if(risposta.statoRisposta==CaricaEventi.NO_DATA){
+        //crea lista eventi vuota nella pagina principale
+        return;
+    }
+    if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
+        var arrayDati=new Array();
+        for(var i=0;i<risposta.data.length;i++){
+            if(risposta.data[i]!==false)
+                arrayDati[i]=JSON.parse(risposta.data[i]);
+        }
+        console.log(arrayDati);
+        gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/,true);
+    }
+    var altriEventiDaCaricare=((risposta.data!==null)&&(risposta.data.length >=CaricaEventi.limiteNumeroEventi));
+    console.log("altrieventidacaricare="+altriEventiDaCaricare);
     gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare); 
 }    

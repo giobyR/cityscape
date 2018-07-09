@@ -98,7 +98,7 @@
     background-color: #333;
     border-color: #333;
 }
-#buttonPartecipa,#buttonInteresse{
+#buttonPartecipa,#buttonInteresse,#buttonSegnala{
     margin-top: 20px;
     background-color: white;
     color: green;
@@ -125,8 +125,13 @@
     border-color: yellow;
     border: 3px solid yellow;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
-
-
+}
+#buttonSegnala:hover{
+    background-color: red;
+    color: white;
+    border-color: red;
+    border: 3px solid red;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
 }
 #buttonPartecipa:active{
     background-color: rgb(11, 197, 67);
@@ -139,6 +144,10 @@
 #buttonInteresse:active{
     background-color: rgb(238, 238, 33);
     border-color:rgb(238, 238, 33);
+}
+#buttonSegnala:active{
+    background-color: rgb(204, 32, 9);
+    border-color:rgb(204, 32, 9);
 }
 .button-group{
     display: inline;

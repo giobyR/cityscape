@@ -1,5 +1,4 @@
         
-        //invia la partecipazione 
         //controlla validità referral e indica lo sconto corrispondente
         function verificaReferral(referral,idEvento){
             if(document.getElementById('referral').value ==referral){
@@ -42,6 +41,7 @@
                 console.log(document.getElementById('errMsg').value);
             }
         }
+        //invia la partecipazione 
         function inviaPartecipazione(idEvento,utente){
             if(typeof utente =="undefined"){
                 document.getElementById('errMsg').innerHTML="Impossibile inviare la partecipazione perche devi essere registrato!";
@@ -58,7 +58,8 @@
                                 CaricaEventi.ASYNC_TYPE,
                                 null,
                                 responseFunction);
-        }                        
+        }                      
+        /*  
         function riceviConferma(risposta){
             if(risposta.statoRisposta==CaricaEventi.NO_DATA){
                 document.getElementById('errMsg').innerHTML="Impossibile salvare la partecipazione, riprovare!";
@@ -66,4 +67,59 @@
             if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
                 document.getElementById('errMsg').innerHTML="Evento prenotato!";
             }
-        }            
+        }
+        */
+       function riceviConferma(risposta){
+        document.getElementById('errMsg').innerHTML=risposta.messaggio;
+        }
+        /*
+        function riceviConfermaSegnalazione(risposta){
+            if(risposta.statoRisposta==CaricaEventi.NO_DATA){
+                document.getElementById('errMsg').innerHTML="Impossibile inviare la segnalazione, riprovare!";
+            }
+            if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
+                document.getElementById('errMsg').innerHTML="Evento segnalato!";
+            }
+        }
+        */
+       function aggiungiInteresse(idEvento,utente){
+            if(typeof utente =="undefined"){
+                document.getElementById('errMsg').innerHTML="Impossibile aggiungere interesse perche devi essere registrato!";
+                return;
+            }
+            var url=CaricaEventi.urlOperazioniAggiornamento
+                    +"?queryType="
+                    +CaricaEventi.AGGIUNGI_INTERESSE
+                    +"&idEvento="+idEvento
+                    +"&utente="+utente;
+            var responseFunction=riceviConferma;
+            AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                                url,
+                                CaricaEventi.ASYNC_TYPE,
+                                null,
+                                responseFunction);
+       }
+        function segnala_evento(idEvento){
+            var url=CaricaEventi.urlOperazioniAggiornamento
+                    +"?queryType="
+                    +CaricaEventi.SEGNALA_EVENTO
+                    +"&idEvento="+idEvento
+            var responseFunction=riceviConferma;
+            AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                        url,
+                        CaricaEventi.ASYNC_TYPE,
+                        null,
+                        responseFunction);
+        }
+        function togli_segnalazione_evento(idEvento){
+            var url=CaricaEventi.urlOperazioniAggiornamento
+                    +"?queryType="
+                    +CaricaEventi.TOGLI_SEGNALAZIONE
+                    +"&idEvento="+idEvento
+            var responseFunction=riceviConferma;        
+            AjaxManager.inviaRichiesta(CaricaEventi.tipoConnessione,
+                        url,
+                        CaricaEventi.ASYNC_TYPE,
+                        null,
+                        responseFunction);
+        }           

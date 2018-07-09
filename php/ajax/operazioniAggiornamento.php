@@ -39,7 +39,15 @@
         case SALVA_LUOGO:
             $result=salvaLuogoMaps($_GET['placeID'],$_GET['indirizzo']);
             $msg="luogo salvato";
-            break;    
+            break;
+        case TOGLI_SEGNALAZIONE:
+            $result=togliSegnalazione($idEvento);
+            $msg="segnalazione evento tolta con successo";
+            break;
+        case SEGNALA_EVENTO:
+            $result=segnalaEvento($idEvento);
+            $msg="evento segnalato con successo";
+            break;
     }
     if(verificaResultVuoto($result)){
         $risposta=setResultVuoto();
@@ -52,7 +60,9 @@
     //l'operazione sia andata a buon fine oppure no
     if(isset($_GET['referral'])){
         $risposta=setRispostaSconto($result);
-    }else{
+    }else if(($_GET['queryType']==TOGLI_SEGNALAZIONE)||($_GET['queryType']==SEGNALA_EVENTO)){
+        $risposta=setRispostaConferma($result,$msg);
+    }else{    
         $risposta=setRisposta($result,$msg);
     }
     echo json_encode($risposta);
@@ -61,12 +71,20 @@
     function verificaResultVuoto($result){
         if(($result===null)||(!$result))
             return true;
+        if($result)
+            return false;    
         return ($result->num_rows <=0);    
     }
     function setResultVuoto(){
         $msg="operazione di aggiornamento non andata a buon fine";
         $risposta=new RispostaAjax("-1",$msg);
         return $risposta;
+    }
+    function setRispostaConferma($result,$msg){
+        if(!$result){
+            setResultVuoto();
+        }
+        $risposta=new RispostaAjax('0',$msg);
     }
     function setRisposta($result,$msg){
         if(mysql_num_rows($result)==0){

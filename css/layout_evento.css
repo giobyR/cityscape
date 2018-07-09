@@ -104,3 +104,11 @@
       top:0;
       right:0;
   }
+  .segnala-button{
+    display: block;
+    height: 10px;
+    width: auto;
+    position: absolute;
+    top:0;
+    left:0;
+  }
