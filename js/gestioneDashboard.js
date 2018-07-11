@@ -8,7 +8,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     var divInternoImg=document.createElement('div');
     divInternoImg.setAttribute('class','container-img');
     divInternoImg.setAttribute('onClick','displayEventOnClick(this)');
-    divInternoImg.setAttribute('onBlur','hideEventOnBlur(this)');
+    divInternoImg.setAttribute('onblur','hideEventOnBlur(this)');
     var img=document.createElement('img');
     img.setAttribute('class','img');
     img.setAttribute('src',"/images/eventi/" + evento.poster);

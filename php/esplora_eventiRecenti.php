@@ -32,7 +32,7 @@
     <title>Eventi del momento</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">
-    <header>
+    <header class="background-header">
         <h1>Ultimi eventi aggiunti</h1>
     </header>
     <nav>

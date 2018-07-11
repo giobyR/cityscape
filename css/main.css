@@ -71,6 +71,11 @@ html{
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
 }
+.background-header{
+    background-image: url('/images/cityWall.png');
+    background-size: 500px auto;
+    background-repeat: no-repeat;
+}
 .errore{
     font-size: 20px;
     color:red;

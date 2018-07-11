@@ -4,7 +4,7 @@
 
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
-        header("Location: /index.php?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
+        header("Location: /index.php?err_msg=Devi effettuare l'accesso usando le tue credenziali !");
         exit();
     }
 ?>
@@ -30,14 +30,14 @@
     <title>Profilo utente</title>
 </head>
 <?php
-/*
+
 if($_SESSION['userID']!=1){
     echo('<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE)">');
 }else{
     echo('<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN)">');
-} */
+} 
+//<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN)">
 ?>
-<body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN)">
     <nav>
             <?php
                 include DIR_LAYOUT.'navbar.php';

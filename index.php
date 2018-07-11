@@ -27,12 +27,8 @@
     
 </head>
 <body>
-    <div class="container-video">
-        <video autoplay loop muted>
-            <source src="/images/blurPeople.mp4" type="video/mp4">
-            <source src="/images/blurPeople.ogg" type="video/mp4">
-            Il video non è supportato
-        </video>
+    <div class="container-img">
+        <img src="/images/citySunshine.jpg" alt="grattacielo di notte ">
         <div class="contenuto">
             <h1>Benvenuto su Cityscape</h1>
             <h3>Questa piattaforma ti permette di cercare e iscriverti a eventi di tuo interesse</h3>
@@ -85,6 +81,21 @@
         <div id="pulsanti">
             <a  href="/php/loginUtente.php"  >Login</a>
             <a  href="/php/registrazione.php" >Registrati</a>
+        </div>
+        <div>
+        <?php
+            if(isset($_GET['err_msg'])){
+                echo "<script>";
+                echo "window.onload=function(){"
+                    ."alert(\"".$_GET['err_msg']."\");}";
+                echo "</script>";
+            }   
+            /*
+            if(isset($_GET['err_msg'])){
+                echo '<p class="errore"> '.$_GET['err_msg'].'</p>';
+            }     
+            */
+    ?>  
         </div>       
     </div>
     <footer>
@@ -92,12 +103,6 @@
                 include DIR_LAYOUT.'footer.php';
             ?>
     </footer>
-    <?php
-            if(isset($_GET['err_msg'])){
-                echo "<script>";
-                echo "window.alert('".$_GET['err_msg']."');";
-                echo "</script>";
-            }    
-    ?>  
+    
 </body>
 </html>

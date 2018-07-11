@@ -201,7 +201,7 @@ CaricaEventi.rispostaAjax=function(risposta){
         //crea lista eventi vuota nella pagina principale
         var arrayDati=new Array();
         gestioneDashboard.refreshData(arrayDati);
-        return;
+        //return;
     }
     if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
         var arrayDati=new Array();
@@ -220,7 +220,8 @@ CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
     //console.log(risposta);
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
         //crea lista eventi vuota nella pagina principale
-        return;
+        var arrayDati=new Array();
+        gestioneDashboard.refreshData(arrayDati);
     }
     if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
         var arrayDati=new Array();
@@ -238,7 +239,8 @@ CaricaEventi.rispostaAjaxProfiloEventiCreatiAdmin=function(risposta){
     //console.log(risposta);
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
         //crea lista eventi vuota nella pagina principale
-        return;
+        var arrayDati=new Array();
+        gestioneDashboard.refreshData(arrayDati);
     }
     if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
         var arrayDati=new Array();

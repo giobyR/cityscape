@@ -28,7 +28,8 @@
         //});
     }
     function hideEventOnBlur(element){
-        var fratello=element.nextElementSibling;
+        var fratello=element.nextSibling;
+        console.log("sono dentro hideEvents");
         if(fratello.style.maxHeight){
             console.log("sono nel ciclo per chiudere finestra");
             fratello.style.maxHeight=null;

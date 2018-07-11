@@ -48,6 +48,7 @@ gestisciErrore.verificaData=function(campoDoveSegnalare,campoDaVerificare){
                 gestisciErrore.segnalaErrore(err,data);
                 return;
             }
+            //verifica che la data sia successiva ad oggi
             if((val[1]==(new Date().getFullYear()))&&(val[2]==(new Date().getMonth()))&&(val[3]<=(new Date().getDate()))){
                 vm="la data inserita deve essere successiva a oggi !";
                 data.setCustomValidity(vm);
