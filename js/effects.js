@@ -36,12 +36,41 @@
         }    
     }
     function cambiaActiveNavbarElem(elem){
-        console.log("entro nel metodo");
-        var elemConClasse=document.getElementsByTagName('li');
+        console.log("entro nel metodo cambiaActiveNavbarElem");
+        var elemConClasse=document.getElementsByTagName('a');
         for(var i=0;i<elemConClasse.length;i++){
-            elemConClasse.removeAttibute("class");
+            elemConClasse.removeClass("active");
         }
         elem.setAttribute("class","active");
+    }
+
+    //serve per disabilitare il tasto di ricerca 
+    //se l'utente si trova all'interno di una pagina dove 
+    //non è prevista la ricerca 
+    function disabilitaSearchImg(){
+        var indirizzo=window.location.href;
+        var subString="/php/profilo_infoAccount.php";
+        switch(true){
+            case CaricaEventi.verificaLocationHref("/php/profilo_infoAccount.php"):
+                document.getElementById('searchImg').disabled=true;
+                break;
+            case CaricaEventi.verificaLocationHref("/php/pagina_evento.php"):
+                document.getElementById('searchImg').disabled=true;
+                break;
+            case CaricaEventi.verificaLocationHref("/php/formAggiungiEvento.php"):
+                document.getElementById('searchImg').disabled=true;
+                break;
+            default:
+                document.getElementById('searchImg').disabled=false;
+                break;
+        }
+        /*
+        if(indirizzo.indexOf(subString)>-1){
+            document.getElementById('searchImg').disabled=true;
+        }else{
+            document.getElementById('searchImg').disabled=false;
+        }
+        */
     }
     /*
     function aggiungiListenersPaginaEvento(){

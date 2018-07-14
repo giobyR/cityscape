@@ -83,7 +83,8 @@
         echo "document.getElementById('abilitaInputNome').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('nome'))});\n";
         echo "document.getElementById('abilitaInputCognome').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('cognome'))});\n";
         echo "document.getElementById('abilitaInputPassword').addEventListener('click',function(){gestioneDashboard.rendiModificabileFormElement(document.getElementById('password'))});\n";
-        echo "document.getElementById('submit').addEventListener('click',gestioneDashboard.aggiornaProfiloLatoServer)";
+        echo "document.getElementById('submit').addEventListener('click',gestioneDashboard.aggiornaProfiloLatoServer);\n";
+        //echo "window.onload=function(){disabilitaSearchImg();};\n";
         echo "</script>";
     ?>
 </body>

@@ -20,9 +20,10 @@
 
     <script src="/js/gestisciErroreForm.js"></script>
     <script src="/js/effects.js"></script>
+    <script src="/js/caricaEventi.js"></script>
     <title>Aggiungi Evento</title>
 </head>
-<body>
+<body onLoad="disabilitaSearchImg()">
         <nav class="navbar">
             <?php
                 include DIR_LAYOUT.'navbar.php';

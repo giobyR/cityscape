@@ -12,7 +12,7 @@
     $risposta=new RispostaAjax();
     $utente=new Utente();
 
-    //verifico che le richeiste ricevute siano di tipo POST o GET
+    //verifico che le richieste ricevute siano di tipo POST o GET
     if($_SERVER["REQUEST_METHOD"]!="GET"){
         if($_SERVER["REQUEST_METHOD"]!="POST"){
         $msg=$_SERVER['REQUEST_METHOD'];
@@ -52,6 +52,7 @@
         echo json_encode($risposta);
         return;
     }
+    
     //arrivato qui significa che le operazioni precedente sono andate a buon fine 
     //di conseguenza restituisco una risposta positiva al client
     //e le informazioni sull'account utente aggiornate

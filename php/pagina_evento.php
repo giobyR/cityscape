@@ -27,7 +27,7 @@
 
     <title>Informazioni Evento</title>
 </head>
-<body >
+<body onload="disabilitaSearchImg()">
     <nav>
         <?php
             include DIR_LAYOUT.'navbar.php';

@@ -40,6 +40,7 @@
             include DIR_LAYOUT.'navbar.php';
         ?>
     </nav>
+    
     <div id="divContenuto"></div>
     <div class="pulsanti-navigazione">
         <?php

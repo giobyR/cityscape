@@ -4,7 +4,7 @@
     require_once DIR_SESSION."sessionManager.php";
 
     if(isLogged()){
-        header("Location: /php/esploraEventiRecenti.php");
+        header("Location: /php/esplora_eventiRecenti.php");
     }
     
 ?>

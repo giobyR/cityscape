@@ -1,7 +1,7 @@
 
 <ul class="navbar">
     <li><a href="/index.php" class="active">Home</a></li>
-    <li onclick="cambiaActiveNavbarElem(this)"><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
+    <li><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
     <li><a href='/php/esplora_eventiPiuInteressanti.php' >Eventi del momento</a></li>
     <li class="dropdown">
         <a class="dropdown-button" href='javascript:void(0)'>Categoria Eventi</a>
@@ -18,7 +18,7 @@
     <li class="dropdown">
         <a class="dropdown-button" href='javascript:void(0)'>Profilo Personale</a>
         <div class="dropdown-content">
-            <a href="/php/profilo_infoAccount.php" >Account</a>
+            <a href="/php/profilo_infoAccount.php" id='infoAccount' >Account</a>
             <a href='/php/profilo_eventiInteresse.php' >Eventi d'interesse</a>
             <a href='/php/profilo_partecipazioni.php' >Partecipazioni</a>
             <a href='/php/profilo_eventiCreati.php' >Eventi creati</a>
@@ -58,5 +58,15 @@
                         gruppoSearch.style.height="0";
                     }
     });
-    
+    /*
+    var elems=document.getElementsByTagName('a');
+    for(var i=0;i<elems.length;i++){
+        elems[i].addEventListener("click",function(){
+            console.log("click funziona!");
+            var activeElem=document.getElementsByClassName("active");
+            activeElem[0].className = activeElem[0].className.replace(" active", "");
+            this.className +=" active";
+        });
+    }
+    */
 </script>
