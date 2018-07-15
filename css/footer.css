@@ -26,3 +26,6 @@ footer{
 footer a{
     color:white;
 }
+footer a:link,footer a:visited,footer a:hover,footer a:active{
+    text-decoration: none;
+}
