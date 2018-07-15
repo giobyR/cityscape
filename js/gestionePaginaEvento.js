@@ -31,13 +31,13 @@
             }
         }
         function riceviSconto(risposta){
-            if(risposta.statoRisposta==CaricaEventi.NO_DATA){
+            var sconto=JSON.parse(risposta.data);
+            console.log(sconto);
+            if((risposta.statoRisposta==CaricaEventi.NO_DATA)||(sconto==null)){
                 document.getElementById('errMsg').innerHTML="nessuno sconto trovato!";
                 console.log(document.getElementById('errMsg').value);
-            }
-            if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
-                var sconto=JSON.parse(risposta.data);
-                document.getElementById('errMsg').innerHTML="trovato uno sconto sul prezzo di prenotazione pari a "+sconto+"!";
+            }else if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){
+                document.getElementById('errMsg').innerHTML="trovato uno sconto sul prezzo di prenotazione pari a "+sconto+"%!";
                 console.log(document.getElementById('errMsg').value);
             }
         }

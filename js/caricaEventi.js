@@ -57,15 +57,6 @@ CaricaEventi.caricaPrecedente=function(queryType){
     CaricaEventi.loadData(queryType);
 }
 CaricaEventi.loadData=function(queryType){
-    /*
-    if(queryType==CaricaEventi.ACCOUNT_UTENTE){
-        var url=CaricaEventi.urlModificaProfiloUtente+"?queryType="+queryType;
-        var responseFunction=CaricaEventi.rispostaAjaxProfiloUtente;
-    }else{
-        var url=CaricaEventi.urlRichiestaPHP+"?queryType="+queryType+"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi;
-        var responseFunction=CaricaEventi.rispostaAjax;
-    }
-    */
     switch(queryType){
         case CaricaEventi.ACCOUNT_UTENTE:
             var url=CaricaEventi.urlModificaProfiloUtente+"?queryType="+queryType;
@@ -198,13 +189,7 @@ CaricaEventi.cercaParola=function(queryType,parolaChiave,tipoRicerca){
             +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi
             +"&tipoRicerca="+tipoEvento
             +"&categoria="+categoria;
-    }
-    /*
-    var url=CaricaEventi.urlRichiestaPHP+"?queryType="+tipoQuery+"&"+tipoRicerca+"="+parolaChiave
-            +"&limiteNumeroEventi="+CaricaEventi.limiteNumeroEventi
-            +"&offset="+(CaricaEventi.CURRENT_PAGE_INDEX-1)*CaricaEventi.limiteNumeroEventi
-            +"&tipoRicerca="+tipoEvento;
-    */        
+    }    
     //seleziono la funzione di risposta
     switch(tipoEvento){
         case CaricaEventi.EVENTI_CREATI_UTENTE:
@@ -288,110 +273,6 @@ CaricaEventi.trovaTipoQuery=function(){
     }
     return tipoQuery;
 }
-/*
-CaricaEventi.cercaParolaJavascript=function(parolaChiave,tipoRicerca){
-    var arrayTmp=new Array();
-    //tipoRefresh è usata per selezionare la funzione
-    //giusta da richiamare per il refresh:
-    //1 -> refreshData
-    //2 -> refreshDataEventiCreati con ruolo Admin
-    //3 -> refreshDataEventiCreati con ruolo Utente
-    var tipoRefresh;
-    var url=window.location.href;
-    switch(url){
-        case "/php/esplora_eventiRecenti.php":
-            CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPiuInteressanti.php":
-            CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_INTERESSANTI);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=bambini":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_BAMBINI);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=cinema":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_CINEMA);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=concerti":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_CONCERTI);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=cultura":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_CULTURA);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=nightlife":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_NIGHTLIFE);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=sport":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_SPORT);
-            tipoRefresh=1;
-            break;
-        case "/php/esplora_eventiPerCategoria.php?categoria=altro":
-            CaricaEventi.loadData(CaricaEventi.CATEGORIA_ALTRO);
-            tipoRefresh=1;
-            break;
-        case "/php/profilo_eventiInteresse.php":
-            CaricaEventi.loadData(CaricaEventi.EVENTI_INTERESSE_UTENTE);
-            tipoRefresh=1;
-            break;
-        case "/php/profilo_partecipazioni.php":
-            CaricaEventi.loadData(CaricaEventi.EVENTI_PARTECIPAZIONI_UTENTE);
-            tipoRefresh=1;
-            break;
-        case "/php/profilo_eventiCreati.php":
-            if(CaricaEventi.isAdmin){
-                CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE_ADMIN);
-                tipoRefresh=2;
-            }else{
-                CaricaEventi.loadData(CaricaEventi.EVENTI_CREATI_UTENTE);
-                tipoRefresh=3;
-            }
-            break;
-        default:
-            break;                                                
-    }
-    switch(tipoRicerca){
-        case "parolaChiave":
-            for(var i=0;i<CaricaEventi.arrayEventi.length;i++){
-                if((arrayEventi[i].titolo.includes(parolaChiave))||(arrayEventi[i].descrizione.includes(parolaChiave)))
-                    arrayTmp.push(this.arrayEventi[i]);
-            }
-            break;
-        case "data":
-            for(var i=0;i<CaricaEventi.arrayEventi.length;i++){
-                if(arrayEventi[i].data.includes(parolaChiave))
-                    arrayTmp.push(this.arrayEventi[i]);
-            }
-            break;
-        case "luogo":
-            for(var i=0;i<CaricaEventi.arrayEventi.length;i++){
-                if(arrayEventi[i].luogo.includes(parolaChiave))
-                    arrayTmp.push(this.arrayEventi[i]);
-            }
-            break;
-        default:
-            break;        
-    }
-    switch(tipoRefresh){
-        case 1:
-            gestioneDashboard.refreshData(arrayTmp);
-            break;
-        case 2:
-            gestioneDashboard.refreshDataEventiCreati(arrayTmp,true);
-            break;
-        case 3:
-            gestioneDashboard.refreshDataEventiCreati(arrayTmp,false);
-            break;        
-    }
-    gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,CaricaEventi.altriEventiDaCaricare);    
-
-}
-*/
 
 //riceve risposta da server con dati utente e aggiorna
 //la pagina web con i dati ricevuti
@@ -413,7 +294,6 @@ CaricaEventi.rispostaAjaxProfiloUtente=function(risposta){
 }
 
 CaricaEventi.rispostaAjax=function(risposta){
-    //console.log(risposta);
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
         //crea lista eventi vuota nella pagina principale
         var arrayDati=new Array();
@@ -430,11 +310,10 @@ CaricaEventi.rispostaAjax=function(risposta){
         gestioneDashboard.refreshData(arrayDati/*JSON.parse(risposta.data)*/);
     }
     CaricaEventi.altriEventiDaCaricare=((risposta.data!==null)&&(risposta.data.length >=CaricaEventi.limiteNumeroEventi));
-    console.log("altrieventidacaricare="+CaricaEventi.altriEventiDaCaricare);
+    //console.log("altrieventidacaricare="+CaricaEventi.altriEventiDaCaricare);
     gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,CaricaEventi.altriEventiDaCaricare);    
 }
 CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
-    //console.log(risposta);
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
         //crea lista eventi vuota nella pagina principale
         var arrayDati=new Array();
@@ -453,7 +332,6 @@ CaricaEventi.rispostaAjaxProfiloEventiCreati=function(risposta){
     gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare); 
 }    
 CaricaEventi.rispostaAjaxProfiloEventiCreatiAdmin=function(risposta){
-    //console.log(risposta);
     if(risposta.statoRisposta==CaricaEventi.NO_DATA){
         //crea lista eventi vuota nella pagina principale
         var arrayDati=new Array();
@@ -469,6 +347,5 @@ CaricaEventi.rispostaAjaxProfiloEventiCreatiAdmin=function(risposta){
         gestioneDashboard.refreshDataEventiCreati(arrayDati/*JSON.parse(risposta.data)*/,true);
     }
     var altriEventiDaCaricare=((risposta.data!==null)&&(risposta.data.length >=CaricaEventi.limiteNumeroEventi));
-    console.log("altrieventidacaricare="+altriEventiDaCaricare);
     gestioneDashboard.refreshIndiciPagina(CaricaEventi.CURRENT_PAGE_INDEX,altriEventiDaCaricare); 
 }    

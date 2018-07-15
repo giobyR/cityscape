@@ -51,6 +51,11 @@ if($_SESSION['userID']!=1){
         </div>
         <div id="paginazioneProfilo">
             <a href="/php/formAggiungiEvento.php" class="button-aggiungi">Aggiungi Nuovo Evento</a>
+            <?php
+                if($_SESSION['userID']==1){
+                    echo('<p>In quanto Admin stai visualizzando tutti gli eventi disponibili sulla piattaforma!</p>');
+                }
+            ?>
             <div id="divContenuto"></div>    
             <div class="pulsanti-navigazione">
                     <?php

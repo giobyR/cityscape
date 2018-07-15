@@ -28,7 +28,7 @@
     <script src="/js/caricaEventi.js"></script>
     <script src="/js/ajaxManager.js"></script>
     <script src="/js/gestioneDashboard.js"></script>
-    
+
     <title>Eventi del momento</title>
 </head>
 <body onLoad="CaricaEventi.loadData(CaricaEventi.EVENTI_PIU_RECENTI)">

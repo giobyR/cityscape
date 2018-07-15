@@ -30,7 +30,7 @@
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN "
                 ."(SELECT SU.evento,COUNT(*) AS Interessi FROM statisticheutenti SU "
-                ."GROUP BY SU.evento ) AS D ON E.idEvento=D.evento"
+                ."GROUP BY SU.evento ) AS D ON E.idEvento=D.evento "
                 ."GROUP BY E.idEvento ORDER BY D.Interessi DESC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
@@ -40,8 +40,8 @@
     function recuperaEventiInteresseUtente($limite_risultati,$utente,$offset){
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
-                ." WHERE SU.utente=".$utente." AND SU.interesse=1"
-                ."GROUP BY E.idEvento ORDER BY E.dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
+                ." WHERE SU.utente=".$utente." AND SU.interesse=1 "
+                ."GROUP BY E.idEvento ORDER BY E.dataCreazione ASC LIMIT ".$offset.",".$limite_risultati.";";
         //echo "<script>console.log('".$query."'</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
@@ -52,7 +52,7 @@
         global $cityscapeDB;
         $query="SELECT E.* FROM evento E INNER JOIN statisticheutenti SU ON E.idEvento=SU.evento"
                 ." WHERE SU.utente=".$utente." AND SU.partecipazione=1 "
-                ."GROUP BY E.idEvento ORDER BY E.dataCreazione DESC LIMIT ".$offset.",".$limite_risultati.";";
+                ."GROUP BY E.idEvento ORDER BY E.dataCreazione ASC LIMIT ".$offset.",".$limite_risultati.";";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result; 
@@ -100,7 +100,8 @@
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $utente=$cityscapeDB->sqlInjectionFilter($utente);
-        $query="INSERT INTO statisticheutenti VALUES('".$idEvento."','".$utente."',1,0);";
+        $query="INSERT INTO statisticheutenti(evento,utente,interesse) VALUES('".$idEvento."','".$utente."',1)"
+            ."ON DUPLICATE KEY UPDATE interesse=1;";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;
@@ -110,7 +111,11 @@
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $utente=$cityscapeDB->sqlInjectionFilter($utente);
-        $query="INSERT INTO statisticheutenti VALUES('".$idEvento."','".$utente."',1,1);";
+        $query="INSERT INTO statisticheutenti(evento,utente,partecipazione) VALUES('".$idEvento."','".$utente."',1)"
+            ."ON DUPLICATE KEY UPDATE interesse=1,partecipazione=1;";
+        //do per scontato che se l útente partecipa a un evento è anche interessato a tale evento 
+        aggiungiInteresseUtente($idEvento,$utente);
+        //echo "<script>console.log('".$query."')</script>";
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;
@@ -121,6 +126,7 @@
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $referral=$cityscapeDB->sqlInjectionFilter($referral);
         $query="SELECT S.sconto FROM sconto S WHERE S.referral='".$referral."' AND S.evento=".$idEvento.";";
+        //echo "<script>console.log('".$query."')</script>";        
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;

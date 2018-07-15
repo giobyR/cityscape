@@ -69,4 +69,9 @@
         });
     }
     */
+    document.getElementById('cercaData').onchange=function(){
+                var campoDoveSegnalare=document.getElementById('err_data');
+                var campoDaVerificare=document.getElementById('cercaData');
+                gestisciErrore.verificaData(campoDoveSegnalare,campoDaVerificare);
+            };
 </script>

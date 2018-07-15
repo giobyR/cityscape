@@ -63,7 +63,7 @@
     }else if(($_GET['queryType']==TOGLI_SEGNALAZIONE)||($_GET['queryType']==SEGNALA_EVENTO)){
         $risposta=setRispostaConferma($result,$msg);
     }else{    
-        $risposta=setRisposta($result,$msg);
+        $risposta=setRispostaConferma($result,$msg);
     }
     echo json_encode($risposta);
     return;
@@ -96,8 +96,15 @@
         return $risposta;
     }
     function setRispostaSconto($result){
+        $msg="trovato sconto referral";
+        if($result->num_rows <=0){
+            setResultVuoto();
+        }
         $risposta=new RispostaAjax('0',$msg);
         while($row= $result->fetch_assoc()){
+            if($row['sconto']===null){
+                $risposta->data=0;
+            }
             $risposta->data=$row['sconto'];
         }
         return $risposta;
