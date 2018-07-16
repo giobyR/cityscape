@@ -7,7 +7,6 @@
     //questo file viene usato per la comunicazione AJAX client-server
     //per operazioni generiche di interazione client e database lato server
     $risposta=new RispostaAjax();
-
     //verifico di ricevere soltanto richiesta GET
     if($_SERVER["REQUEST_METHOD"]!="GET"){
         echo json_encode($risposta);
@@ -59,10 +58,10 @@
     //in cui restituisce un booleano per notificare che 
     //l'operazione sia andata a buon fine oppure no
     if(isset($_GET['referral'])){
-        $risposta=setRispostaSconto($result);
+        $risposta=setRispostaSconto($result,$msg);
     }else if(($_GET['queryType']==TOGLI_SEGNALAZIONE)||($_GET['queryType']==SEGNALA_EVENTO)){
         $risposta=setRispostaConferma($result,$msg);
-    }else{    
+    }else{
         $risposta=setRispostaConferma($result,$msg);
     }
     echo json_encode($risposta);
@@ -95,11 +94,10 @@
         }
         return $risposta;
     }
-    function setRispostaSconto($result){
+    function setRispostaSconto($result,$msg){
         if(!$result){
             return setResultVuoto();
         }
-        $msg="trovato sconto referral";
         $risposta=new RispostaAjax('0',$msg);
         while($row= $result->fetch_assoc()){
             if($row['sconto']===null){
@@ -109,4 +107,5 @@
         }
         return $risposta;
     }
+
 ?>
