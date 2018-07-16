@@ -30,9 +30,9 @@
     <title>Eventi del momento</title>
 </head>
 <body >
-    <header>
-        <h1>Eventi creati</h1>
-    </header>
+    <?php
+        echo "<header> <h1> Eventi disponibili nella categoria ".$_GET['categoria']."</h1></header>";
+    ?>
     <nav>
         <?php
             include DIR_LAYOUT.'navbar.php';
