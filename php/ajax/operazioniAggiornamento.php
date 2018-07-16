@@ -69,11 +69,10 @@
     return;
 
     function verificaResultVuoto($result){
-        if(($result===null)||(!$result))
+        if(($result===null)||(!$result)||($result->num_rows <=0))
             return true;
         if($result)
             return false;    
-        return ($result->num_rows <=0);    
     }
     function setResultVuoto(){
         $msg="operazione di aggiornamento non andata a buon fine";
@@ -89,17 +88,17 @@
     }
     function setRisposta($result,$msg){
         if(mysql_num_rows($result)==0){
-            setResultVuoto();
+            return setResultVuoto();
         }else{
             $risposta=new RispostaAjax("0",$msg);
         }
         return $risposta;
     }
     function setRispostaSconto($result){
-        $msg="trovato sconto referral";
-        if($result->num_rows <=0){
-            setResultVuoto();
+        if(!$result){
+            return setResultVuoto();
         }
+        $msg="trovato sconto referral";
         $risposta=new RispostaAjax('0',$msg);
         while($row= $result->fetch_assoc()){
             if($row['sconto']===null){

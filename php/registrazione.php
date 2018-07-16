@@ -43,16 +43,17 @@
             <span id="errRpwd" class="errore"></span><br>
         </div>
             <div id="condizioniUso">
-                <label>Accetti i <a href="html/condizioniUso.html">termini e condizioni d'uso*</a></label>
+                <label>Accetti i <a href="/html/condizioniUso.html">termini e condizioni d'uso*</a></label>
                 <input type="checkbox" name="checkCondizioniUso" required >   
             </div>
             <?php
                 if(isset($_GET['err_msg'])){
-                    echo '<p> '.$_GET['err_msg'].'</p>';
+                    echo '<p class="errore" > '.$_GET['err_msg'].'</p>';
                 }
             ?>
             <input type="submit" name="submitButton" value="registrati" id="submitButton" disabled>
             <input type="reset" name="resetButton" value="azzera campi">
+            <a href="/index.php" id="tornaButton">Torna a home</a>
             <p>I campi contrasegnati con asterisco(*) sono obbligatori</p>
     </form>
 </body>

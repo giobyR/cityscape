@@ -27,10 +27,22 @@ input{
     margin: 24px 0 12px 0;
     position: relative;
 }
-input[type="submit"],input[type="reset"]{
+input[type="submit"],input[type="reset"],#tornaButton{
     background-color: white;
     color: black;
     border: 3px solid rgb(67, 107, 218);
+    padding: 10px 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 25%;
+    display: inline-block;
+}
+input[type="submit"]:disabled{
+    background-color: rgb(102, 101, 101);
+    color: black;
+    border: 3px solid rgb(102, 101, 101);
     padding: 10px 20px;
     margin-left: 20px;
     font-size: 20px;
@@ -51,7 +63,7 @@ input[type="submit"],input[type="reset"]{
     box-sizing: unset;
 }
 
-input[type="submit"]:hover,input[type="reset"]:hover{
+input[type="submit"]:hover:enabled,input[type="reset"]:hover,#tornaButton:hover{
     background-color: rgb(67, 107, 218);
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
@@ -116,6 +128,7 @@ button:active{
     color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
 }
+
 .errore{
     font-size: 20px;
     color:red;

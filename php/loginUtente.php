@@ -33,10 +33,11 @@
             <p id="errPwd" class="errore"></p>
             <button type="submit" name="submitButton" id="submitButton" >Login</button>
             <button type="reset" name="resetButton">Azzera Campi</button>
+            <a href="/index.php" id="tornaButton">Torna a Home</a>
         </div>
         <?php
             if(isset($_GET['err_msg'])){
-                echo '<p> '.$_GET['err_msg'].'</p>';
+                echo '<p class="errore"> '.$_GET['err_msg'].'</p>';
             }    
         ?>            
         <div class="info-container">

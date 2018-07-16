@@ -84,7 +84,7 @@ function registra(&$data){
         $result=verifica_email($data);
         if($result !=0){
             $err_msg="Utente già registrato!";
-            header("Location: ../php/registrazione.php?err_msg=".$err_msg);
+            header("Location: /php/registrazione.php?err_msg=".$err_msg);
             exit;
         }
         //arrivato qui significa che posso registrare il nuovo utente
@@ -92,7 +92,7 @@ function registra(&$data){
         if(strpos($err_msg,"Impossibile registrarsi,riprovare!")){
             header("Location: ../php/registrazione.php?err_msg=".$err_msg);
         }else{
-            header("Location: /html/esplora_eventiRecenti.php");
+            header("Location: /php/profilo_infoAccount.php");
         }
     }
 ?>

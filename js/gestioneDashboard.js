@@ -90,6 +90,10 @@ gestioneDashboard.aggiornaProfiloLatoServer=function(){
     utente['cognome']=document.getElementById('cognome').value;
     utente['password']=document.getElementById('password').value;
     utente['referral']=document.getElementById('referral').value;
+    
+    document.getElementById('nome').disabled=true;
+    document.getElementById('cognome').disabled=true;
+    document.getElementById('password').disabled=true;
     //carico informazioni nel database tramite richiesta Ajax
     CaricaEventi.loadDataProfilo(utente);
 }
@@ -236,5 +240,7 @@ gestioneDashboard.refreshIndiciPagina=function(currentPage,altriEventidaCaricare
 gestioneDashboard.rendiModificabileFormElement=function(dataInput){
     if(dataInput.disabled==true){
         dataInput.disabled=false;
+    }else{
+        dataInput.disabled=true;
     }
 }

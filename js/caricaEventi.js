@@ -9,6 +9,7 @@ CaricaEventi.urlOperazioniAggiornamento='/php/ajax/operazioniAggiornamento.php';
 CaricaEventi.arrayEventi=new Array();
 CaricaEventi.altriEventiDaCaricare=false;
 CaricaEventi.isAdmin=false;
+CaricaEventi.toggleButton=0;
 //parametri da usare per impostare il tipo di interrogazione AJax
 CaricaEventi.tipoRichiesta="GET";
 CaricaEventi.limiteNumeroEventi=9;

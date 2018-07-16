@@ -36,7 +36,7 @@
     function aggiungi_evento(&$evento){
         global $cityscapeDB;
         $timestamp=date('Y-m-d H:i:s');
-        $query="INSERT INTO evento(titolo,dataCreazione,dataEvento,maxPartecipanti,descrizione,luogo,poster,prezzo,creatore,categoria) "
+        $query="INSERT INTO evento(titolo,dataCreazione,dataEvento,maxPartecipanti,descrizione,luogo,poster,prezzo,creatore,categoria,segnalato) "
                 ."VALUES(\"".$evento["titoloEvento"]."\",\""
                         .$timestamp."\","
                         ."STR_TO_DATE('".$evento["dataEvento"]."','%Y/%m/%d'),"
@@ -77,9 +77,9 @@
             upload_file($uploadOK,$err_msg);
             if($uploadOK==1){
                 //devo modificarlo per indirizzarlo alla pagina eventi creati
-                header('Location: ../php/profilo_eventiCreati.php');
+                header('Location: /php/profilo_eventiCreati.php');
             }else{
-                header('Location: ../php/formAggiungiEvento.php?err_msg='.$err_msg);
+                header('Location: /php/formAggiungiEvento.php?err_msg= '.$err_msg);
             }
         }
     }   

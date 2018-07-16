@@ -34,4 +34,8 @@
     define('SEGNALA_EVENTO',23);
     define('RICEVI_INTERESSATI_EVENTO',24);
     define('EVENTI_CREATI_UTENTE_ADMIN',25);
+    define('VERIFICA_PARTECIPAZIONE',26);
+    define('VERIFICA_INTERESSE',27);
+    define('TOGLI_PARTECIPAZIONE',28);
+    define('TOGLI_INTERESSE',29);
 ?>
