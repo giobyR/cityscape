@@ -87,7 +87,7 @@
         }
         function riceviSconto(risposta){
             var sconto=JSON.parse(risposta.data);
-            if((risposta.statoRisposta==CaricaEventi.NO_DATA)){
+            if((risposta.statoRisposta==CaricaEventi.NO_DATA)||(sconto==null)){
                 document.getElementById('errMsg').innerHTML="nessuno sconto trovato!";
                 console.log(document.getElementById('errMsg').innerHTML);
             }else if(risposta.statoRisposta==CaricaEventi.SUCCESS_RESPONSE){

@@ -25,15 +25,6 @@
             fratello.style.maxHeight=null;
         }    
     }
-    function cambiaActiveNavbarElem(elem){
-        console.log("entro nel metodo cambiaActiveNavbarElem");
-        var elemConClasse=document.getElementsByTagName('a');
-        for(var i=0;i<elemConClasse.length;i++){
-            elemConClasse.removeClass("active");
-        }
-        elem.setAttribute("class","active");
-    }
-
     //serve per disabilitare il tasto di ricerca 
     //se l'utente si trova all'interno di una pagina dove 
     //non è prevista la ricerca 

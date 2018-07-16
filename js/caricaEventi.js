@@ -12,7 +12,7 @@ CaricaEventi.isAdmin=false;
 CaricaEventi.toggleButton=0;
 //parametri da usare per impostare il tipo di interrogazione AJax
 CaricaEventi.tipoRichiesta="GET";
-CaricaEventi.limiteNumeroEventi=10;
+CaricaEventi.limiteNumeroEventi=9;
 //costanti da usare nella scelta delle query da fare quando si interroga il database
 CaricaEventi.EVENTI_PIU_RECENTI=0;
 CaricaEventi.EVENTI_PIU_INTERESSANTI=1;

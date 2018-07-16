@@ -2,12 +2,13 @@
 <?php
     session_start();
     require_once __DIR__."/configurazione.php";
-    
+    /*
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
         header("Location: /index.php");
         exit;
     }
+    */
 ?>
 <!DOCTYPE html>
 <html lang="en">

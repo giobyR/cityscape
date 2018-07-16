@@ -12,6 +12,7 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     var img=document.createElement('img');
     img.setAttribute('class','img');
     img.setAttribute('src',"/images/eventi/" + evento.poster);
+    img.setAttribute('alt','titolo'+evento.poster);
 
     var titoloElem=document.createElement('div');
     titoloElem.setAttribute('class','overlay');
@@ -47,9 +48,9 @@ gestioneDashboard.caricaInfoEvento=function(evento){
         prezzoSpan.textContent="prezzo(€):"+evento.prezzo;
     }
     //button per accedere alla pagina con le informazioni su tale evento
-    var button=document.createElement('a');
+    var button=document.createElement('button');
     button.textContent="Maggiori Informazioni";
-    var infoEvento="/php/pagina_evento.php?idEvento="+evento.idEvento
+    var infoEvento="idEvento="+evento.idEvento
                     +"&titolo="+evento.titolo
                     +"&descrizione="+evento.descrizione
                     +"&data="+evento.data
@@ -58,7 +59,8 @@ gestioneDashboard.caricaInfoEvento=function(evento){
                     +"&maxPartecipanti="+evento.maxPartecipanti
                     +"&poster="+evento.poster
                     +"&creatore="+evento.creatore;
-    button.setAttribute('href',infoEvento);
+    button.setAttribute('value',encodeURIComponent(infoEvento));
+    button.setAttribute('onclick','gestioneDashboard.decodeURIBtn(this)');
     //aggiungo i label precedent come figli di divContenuto
     divContenuto.appendChild(spanData);
     divContenuto.appendChild(spanLuogo);
@@ -69,6 +71,14 @@ gestioneDashboard.caricaInfoEvento=function(evento){
     divEvent.appendChild(divInternoImg);
     divEvent.appendChild(divContenuto);
     return divEvent;
+}
+//uso questa funzione per fare encode della stringa da passare come indirizzo
+//per rimediare ai problemi dati dal validatore HTML statico se passato
+//l'indirizzo direttamente come attributo href al pulsante  
+gestioneDashboard.decodeURIBtn=function(elem){
+    var addr=elem.getAttribute('value');
+    var addrToUse=decodeURIComponent(addr);
+    window.location.href='/php/pagina_evento.php?'+addrToUse;
 }
 gestioneDashboard.riempiFormProfilo=function(utente){
     var formInfoUtente=document.getElementById('divContenuto');
@@ -119,6 +129,7 @@ gestioneDashboard.creaElementoListaConDeleteButton=function(evento){
     deleteButton.setAttribute('class','delete-button');
     deleteButton.setAttribute('src','/images/delete.png');
     deleteButton.setAttribute('title','cancella');
+    deleteButton.setAttribute('alt','cancella evento');
     deleteButton.addEventListener('click',function(){
                                         var tipo_CANCELLAZIONE_EVENTO=14;
                                         var url=CaricaEventi.urlOperazioniAggiornamento
@@ -146,6 +157,8 @@ gestioneDashboard.creaElementoListaConSegnalaDeleteButton=function(evento){
     deleteButton.setAttribute('class','delete-button');
     deleteButton.setAttribute('src','/images/delete.png');
     deleteButton.setAttribute('title','cancella');
+    deleteButton.setAttribute('alt','cancella evento');
+
     deleteButton.addEventListener('click',function(){
                                         var tipo_CANCELLAZIONE_EVENTO=14;
                                         var url=CaricaEventi.urlOperazioniAggiornamento
@@ -168,6 +181,8 @@ gestioneDashboard.creaElementoListaConSegnalaDeleteButton=function(evento){
         togliSegnalazioneButton.setAttribute('class','segnala-button');
         togliSegnalazioneButton.setAttribute('src','/images/segnala.png');
         togliSegnalazioneButton.setAttribute('title','togli segnalazione');
+        togliSegnalazioneButton.setAttribute('alt','togli segnalazione evento');
+
         togliSegnalazioneButton.addEventListener('click',function(){
                                             var tipo_TOGLI_SEGNALAZIONE_EVENTO=22;
                                             var url=CaricaEventi.urlOperazioniAggiornamento

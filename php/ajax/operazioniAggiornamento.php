@@ -69,10 +69,11 @@
     return;
 
     function verificaResultVuoto($result){
-        if(($result===null)||(!$result)||($result->num_rows <=0))
+        if(($result===null)||(!$result))
             return true;
         if($result)
-            return false;    
+            return false;
+        return ($result->num_rows <=0);        
     }
     function setResultVuoto(){
         $msg="operazione di aggiornamento non andata a buon fine";

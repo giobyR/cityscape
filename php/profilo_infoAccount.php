@@ -5,7 +5,7 @@
     
     if(!isLogged()){
         header("Location: /index.php?err_msg='Devi effettuare l'accesso usando le tue credenziali !'");
-        exit;
+        exit();
     }
 ?>
 

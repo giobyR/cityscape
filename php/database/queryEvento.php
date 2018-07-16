@@ -197,64 +197,6 @@
     //una volta selezionato eventi dal database
     //converto il result set in un array per fare la ricerca della parola chiave.
     function preparaQueryRicerca($limite_risultati,$offset,$tipoEventoCercato){
-        /*
-        switch($tipoRicerca){
-            case "parolaChiave":
-                $str_ricerca=" ((E.descrizione LIKE '%".$parola_chiave."%' ) OR (E.titolo LIKE '%".$parola_chiave."%' )) ";
-                break;
-            case "luogo":
-                $str_ricerca=" (E.luogo LIKE '%".$parola_chiave."%') ";
-                break;
-            case "data":
-                $str_ricerca=" (E.dataEvento LIKE '%".$parola_chiave."%') ";
-                break;
-            default:
-                break;                 
-        }
-        switch($tipoEventoCercato){
-            case EVENTI_PIU_RECENTI:
-                $result=recuperaEventiPiuRecenti($limite_risultati,$offset);
-                break;
-            case EVENTI_PIU_INTERESSANTI:
-                $result=recuperaEventiPerInteresse($limite_risultati,$offset);
-                break;
-            case 3:
-                $result=recuperaEventiPerCategoria("bambini",$limite_risultati,$offset);
-                break;
-            case 4:
-                $result=recuperaEventiPerCategoria("cinema",$limite_risultati,$offset);   
-                break;
-            case 5:
-                $result=recuperaEventiPerCategoria("concerti",$limite_risultati,$offset);
-                break;
-            case 6:
-                $result=recuperaEventiPerCategoria("cultura",$limite_risultati,$offset); 
-                break;
-            case 7:
-                $result=recuperaEventiPerCategoria("nightlife",$limite_risultati,$offset);
-                break;       
-            case 8:
-                $result=recuperaEventiPerCategoria("sport",$limite_risultati,$offset); 
-                break;
-            case 9:
-                $result=recuperaEventiPerCategoria("altro",$limite_risultati,$offset);
-                break;       
-            case 10:
-                $result=recuperaEventiPartecipazioneUtente($limite_risultati,$_SESSION['userID'],$offset);
-                break;
-            case 11:
-                $result=recuperaEventiInteresseUtente($limite_risultati,$_SESSION['userID'],$offset);
-                break;
-            case 12:
-                $result=recuperaEventiCreati($limite_risultati,$_SESSION['userID'],$offset);
-                break;
-            case 13:
-                $result=recuperaEventiCreatiAdmin($limite_risultati,$offset);
-                break;
-            default:
-                break;                
-        }
-        */
         //interrogo il database in base al tipo di evento richiesto
         $result=selezionaQueryEvento($limite_risultati,$offset,$tipoEventoCercato);
         $risposta=new RispostaAjax();
@@ -291,17 +233,6 @@
     //cerca nel campo titolo e descrizione di un evento una certa parola chiave
     function cercaParolaChiave($parola_chiave,$limite_risultati,$offset,$tipoEventoCercato){
         $arrayEventi=array();
-        /*
-        global $cityscapeDB;
-        $parola_chiave=$cityscapeDB->sqlInjectionFilter($parola_chiave);
-        $query="SELECT * FROM evento WHERE (descrizione LIKE '%".$parola_chiave."%' ) "
-                ."OR (titolo LIKE '%".$parola_chiave."%' )"
-                ." GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
-        $result=$cityscapeDB->lanciaQuery($query);
-        //echo "<script>console.log('".$query."')</script>";        
-        $cityscapeDB->closeConnection();
-        return $result;
-        */
         $data=preparaQueryRicerca($limite_risultati,$offset,$tipoEventoCercato);
         if($parola_chiave==""){
             return $data;
@@ -315,16 +246,6 @@
     }
     //cerca evento in base a un certo luogo inserito
     function cercaLuogo($luogo,$limite_risultati,$offset,$tipoEventoCercato){
-        /*
-        global $cityscapeDB;
-        $luogo=$cityscapeDB->sqlInjectionFilter($luogo);
-        $query="SELECT * FROM evento WHERE luogo LIKE '%".$luogo."%' "
-                ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
-        $result=$cityscapeDB->lanciaQuery($query);
-        //echo "<script>console.log('".$query."')</script>";        
-        $cityscapeDB->closeConnection();
-        return $result; 
-        */
         $arrayEventi=array();
         $data=preparaQueryRicerca($limite_risultati,$offset,$tipoEventoCercato);
         if($luogo==""){
@@ -339,16 +260,6 @@
     }
     //cerca evento nel database in base a una certa data inserita come parola chiave
     function cercaData($dataDaCercare,$limite_risultati,$offset,$tipoEventoCercato){
-        /*
-        global $cityscapeDB;
-        $data=$cityscapeDB->sqlInjectionFilter($data);
-        $query="SELECT * FROM evento WHERE dataEvento LIKE '%".$data."%' "
-            ."GROUP BY idEvento ORDER BY dataEvento DESC LIMIT ".$offset.",".$limite_risultati.";";
-        $result=$cityscapeDB->lanciaQuery($query);
-        //echo "<script>console.log('".$query."')</script>";        
-        $cityscapeDB->closeConnection();
-        return $result; 
-        */
         $arrayEventi=array();
         $data=preparaQueryRicerca($limite_risultati,$offset,$tipoEventoCercato);
         if($dataDaCercare==""){

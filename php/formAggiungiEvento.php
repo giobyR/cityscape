@@ -3,7 +3,8 @@
     require_once __DIR__."/configurazione.php";
     require_once DIR_SESSION."sessionManager.php";
     if(!isLogged()){
-        header("Location: ../index.php");
+        header("Location: /index.php?err_msg=Devi effettuare l'accesso usando le tue credenziali !");
+        exit();
     }
 ?>
 <!DOCTYPE html>

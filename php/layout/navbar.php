@@ -1,6 +1,6 @@
 
 <ul class="navbar">
-    <li><a href="/index.php" class="active">Home</a></li>
+    <li><a href="/index.php" >Home</a></li>
     <li><a href='/php/esplora_eventiRecenti.php' >Ultimi Eventi Inseriti</a></li>
     <li><a href='/php/esplora_eventiPiuInteressanti.php' >Eventi del momento</a></li>
     <li class="dropdown">

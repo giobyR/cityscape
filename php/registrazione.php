@@ -5,7 +5,8 @@
     require_once DIR_SESSION."sessionManager.php";
 
     if(isLogged()){
-        header("Location: /php/esplora_eventiRecenti.php");
+        header("Location: /index.php?err_msg='Utente già registrato !'");
+        exit();
     }
 ?>
 <!DOCTYPE html>
