@@ -100,8 +100,8 @@
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $utente=$cityscapeDB->sqlInjectionFilter($utente);
-        $query="INSERT INTO statisticheutenti(evento,utente,interesse) VALUES('".$idEvento."','".$utente."',1)"
-            ."ON DUPLICATE KEY UPDATE interesse=1;";
+        $query="INSERT INTO statisticheutenti(evento,utente,interesse) VALUES('".$idEvento."','".$utente."',1);";
+            //."ON DUPLICATE KEY UPDATE interesse=1;";  da abilitare se voglio inviare sempre richiesta di salvataggio
         $result=$cityscapeDB->lanciaQuery($query);
         $cityscapeDB->closeConnection();
         return $result;
@@ -111,7 +111,7 @@
         global $cityscapeDB;
         $idEvento=$cityscapeDB->sqlInjectionFilter($idEvento);
         $utente=$cityscapeDB->sqlInjectionFilter($utente);
-        $query="INSERT INTO statisticheutenti(evento,utente,partecipazione) VALUES('".$idEvento."','".$utente."',1)"
+        $query="INSERT INTO statisticheutenti(evento,utente,interesse,partecipazione) VALUES('".$idEvento."','".$utente."',1,1)"
             ."ON DUPLICATE KEY UPDATE interesse=1,partecipazione=1;";
         //do per scontato che se l útente partecipa a un evento è anche interessato a tale evento 
         aggiungiInteresseUtente($idEvento,$utente);

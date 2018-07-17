@@ -55,8 +55,7 @@
                     <textarea name="descrizioneEvento" id="descrizioneEvento"
                                 rows="10" 
                                 cols="100" 
-                                required >
-                    </textarea>
+                                required ></textarea>
                     <label for="maxPartecipanti">Numero massimo di partecipanti</label>
                     <input type="number" id="maxPartecipanti" name="maxPartecipanti" title="lasciare vuoto se non ci sono limiti al numero di partecipanti">
                     <label>L'evento è gratis?</label>
