@@ -95,20 +95,20 @@ button:active{
     padding: 16px;
 }
 .modal {
-    display: flex; /* Hidden by default */
+    display: flex; 
     /* position: fixed;  opzione tolta per problemi con form registrazione */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100%; 
+    height: 100%; 
     overflow: auto; /* Enable scroll if needed */
     font-size: 25px;
 }
 .modal-content {
     background-color: #ddd;
     margin: auto auto 5% auto; /* 5% from the top, 15% from the bottom and centered */
-    width: 70%; /* Could be more or less, depending on screen size */
+    width: 70%; 
     padding-bottom: 10px;
 }
 
